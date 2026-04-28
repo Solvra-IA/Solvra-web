@@ -1,21 +1,23 @@
+You are given a task to integrate an existing React component in the codebase
+
+The codebase should support:
+- shadcn project structure  
+- Tailwind CSS
+- Typescript
+
+If it doesn't, provide instructions on how to setup project via shadcn CLI, install Tailwind or Typescript.
+
+Determine the default path for components and styles. 
+If default path for components is not /components/ui, provide instructions on why it's important to create this folder
+Copy-paste this component to /components/ui folder:
+```tsx
+beams-background.tsx
 "use client";
 
 import { useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
-/**
- * Fondo oscuro animado con haces de luz tipo "aurora". Diseñado para envolver
- * cualquier contenido que necesite un canvas dramático en tema dark. Pasa el
- * contenido vía `children`. El componente no aporta padding ni layout interno,
- * solo el canvas y un overlay de opacidad pulsante — el children controla su
- * propia posición/tipografía.
- *
- * Ejemplo:
- *   <BeamsBackground intensity="medium">
- *     <section className="...">...</section>
- *   </BeamsBackground>
- */
 interface AnimatedGradientBackgroundProps {
     className?: string;
     children?: React.ReactNode;
@@ -53,7 +55,6 @@ function createBeam(width: number, height: number): Beam {
 
 export function BeamsBackground({
     className,
-    children,
     intensity = "strong",
 }: AnimatedGradientBackgroundProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -93,7 +94,7 @@ export function BeamsBackground({
 
         function resetBeam(beam: Beam, index: number, totalBeams: number) {
             if (!canvas) return beam;
-
+            
             const column = index % 3;
             const spacing = canvas.width / 3;
 
@@ -114,6 +115,7 @@ export function BeamsBackground({
             ctx.translate(beam.x, beam.y);
             ctx.rotate((beam.angle * Math.PI) / 180);
 
+            // Calculate pulsing opacity
             const pulsingOpacity =
                 beam.opacity *
                 (0.8 + Math.sin(beam.pulse) * 0.2) *
@@ -121,6 +123,7 @@ export function BeamsBackground({
 
             const gradient = ctx.createLinearGradient(0, 0, 0, beam.length);
 
+            // Enhanced gradient with multiple color stops
             gradient.addColorStop(0, `hsla(${beam.hue}, 85%, 65%, 0)`);
             gradient.addColorStop(
                 0.1,
@@ -156,6 +159,7 @@ export function BeamsBackground({
                 beam.y -= beam.speed;
                 beam.pulse += beam.pulseSpeed;
 
+                // Reset beam when it goes off screen
                 if (beam.y + beam.length < -100) {
                     resetBeam(beam, index, totalBeams);
                 }
@@ -179,7 +183,7 @@ export function BeamsBackground({
     return (
         <div
             className={cn(
-                "relative w-full overflow-hidden bg-neutral-950 text-white",
+                "relative min-h-screen w-full overflow-hidden bg-neutral-950",
                 className
             )}
         >
@@ -204,7 +208,60 @@ export function BeamsBackground({
                 }}
             />
 
-            <div className="relative z-10">{children}</div>
+            <div className="relative z-10 flex h-screen w-full items-center justify-center">
+                <div className="flex flex-col items-center justify-center gap-6 px-4 text-center">
+                    <motion.h1
+                        className="text-6xl md:text-7xl lg:text-8xl font-semibold text-white tracking-tighter"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        Beams
+                        <br />
+                        Background
+                    </motion.h1>
+                    <motion.p
+                        className="text-lg md:text-2xl lg:text-3xl text-white/70 tracking-tighter"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        For your pleasure
+                    </motion.p>
+                </div>
+            </div>
         </div>
     );
 }
+
+
+demo.tsx
+import { BeamsBackground } from "@/components/ui/beams-background"
+
+
+export function BeamsBackgroundDemo() {
+    return < BeamsBackground />
+}
+```
+
+Install NPM dependencies:
+```bash
+motion
+```
+
+Implementation Guidelines
+ 1. Analyze the component structure and identify all required dependencies
+ 2. Review the component's argumens and state
+ 3. Identify any required context providers or hooks and install them
+ 4. Questions to Ask
+ - What data/props will be passed to this component?
+ - Are there any specific state management requirements?
+ - Are there any required assets (images, icons, etc.)?
+ - What is the expected responsive behavior?
+ - What is the best place to use this component in the app?
+
+Steps to integrate
+ 0. Copy paste all the code above in the correct directories
+ 1. Install external dependencies
+ 2. Fill image assets with Unsplash stock images you know exist
+ 3. Use lucide-react icons for svgs or logos if component requires them

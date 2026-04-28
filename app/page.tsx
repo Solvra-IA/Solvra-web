@@ -1,7 +1,6 @@
 import { Lightbulb, Workflow, Plug } from 'lucide-react';
 
 import SaasTemplate from '@/components/ui/saa-s-template';
-import { BeamsBackground } from '@/components/ui/beams-background';
 import { SectorsGrid } from '@/components/ui/sectors-grid';
 import { Feature108 } from '@/components/ui/shadcnblocks-com-feature108';
 import { ProcessTimeline } from '@/components/ui/process-timeline';
@@ -61,7 +60,6 @@ export default function HomePage() {
   return (
     <div className="bg-background text-foreground">
       <SaasTemplate />
-      <BeamsBackground />
       <SectorsGrid />
       <section id="servicios">
         <Feature108
