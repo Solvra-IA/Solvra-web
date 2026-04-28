@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container';
-import { SectionBadge } from '@/components/ui/SectionBadge';
+import { SectionIntro } from '@/components/ui/SectionIntro';
 
 const faqs = [
   {
@@ -28,12 +28,14 @@ export function FAQ() {
   return (
     <section id="faq" className="bg-background py-28 md:py-40">
       <Container as="div">
-        <div className="reveal mx-auto max-w-3xl text-center">
-          <SectionBadge>FAQ</SectionBadge>
-          <h2 className="mt-6 text-balance text-display-xl text-foreground">
-            Preguntas <span className="text-gradient-brand">frecuentes</span>
-          </h2>
-        </div>
+        <SectionIntro
+          badge="FAQ"
+          title={
+            <>
+              Preguntas <span className="text-gradient-brand">frecuentes</span>
+            </>
+          }
+        />
         <div className="mx-auto mt-16 max-w-3xl">
           {faqs.map((f, i) => (
             <details

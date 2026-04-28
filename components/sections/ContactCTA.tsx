@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container';
-import { SectionBadge } from '@/components/ui/SectionBadge';
+import { SectionIntro } from '@/components/ui/SectionIntro';
 import { ContactForm } from '@/components/forms/ContactForm';
 
 const bullets = [
@@ -20,16 +20,19 @@ export function ContactCTA() {
       />
       <Container as="div" className="relative">
         <div className="grid gap-16 lg:grid-cols-12 lg:items-start lg:gap-20">
-          <div className="reveal lg:col-span-5">
-            <SectionBadge>Contacto</SectionBadge>
-            <h2 className="mt-6 text-balance text-display-lg text-foreground">
-              Cuéntanos tu <span className="text-gradient-brand">caso</span>
-            </h2>
-            <p className="mt-7 text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl md:leading-[1.5]">
-              Una sesión inicial de 30 minutos, gratuita y sin compromiso. Te diremos si
-              podemos ayudarte y cómo.
-            </p>
-            <ul className="mt-10 space-y-4">
+          <div className="lg:col-span-5">
+            <SectionIntro
+              badge="Contacto"
+              size="lg"
+              align="left"
+              title={
+                <>
+                  Cuéntanos tu <span className="text-gradient-brand">caso</span>
+                </>
+              }
+              description="Una sesión inicial de 30 minutos, gratuita y sin compromiso. Te diremos si podemos ayudarte y cómo."
+            />
+            <ul className="reveal mt-10 space-y-4">
               {bullets.map((item) => (
                 <li
                   key={item}

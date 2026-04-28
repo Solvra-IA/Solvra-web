@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container';
-import { SectionBadge } from '@/components/ui/SectionBadge';
+import { SectionIntro } from '@/components/ui/SectionIntro';
 
 const segmentos = [
   {
@@ -23,16 +23,16 @@ export function Segmentos() {
   return (
     <section id="segmentos" className="bg-muted py-28 md:py-40">
       <Container as="div">
-        <div className="reveal mx-auto max-w-3xl text-center">
-          <SectionBadge>Sectores</SectionBadge>
-          <h2 className="mt-6 text-balance text-display-xl text-foreground">
-            Sectores donde ya generamos{' '}
-            <span className="text-gradient-brand">valor</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
-            No somos generalistas. Nos centramos donde tenemos experiencia real.
-          </p>
-        </div>
+        <SectionIntro
+          badge="Sectores"
+          title={
+            <>
+              Sectores donde ya generamos{' '}
+              <span className="text-gradient-brand">valor</span>
+            </>
+          }
+          description="No somos generalistas. Nos centramos donde tenemos experiencia real."
+        />
         <div className="mt-20 grid gap-6 md:grid-cols-3">
           {segmentos.map((s, i) => (
             <article

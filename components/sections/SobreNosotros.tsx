@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container';
-import { SectionBadge } from '@/components/ui/SectionBadge';
+import { SectionIntro } from '@/components/ui/SectionIntro';
 import { siteConfig } from '@/lib/site-config';
 
 const diferenciadores = [
@@ -30,13 +30,20 @@ export function SobreNosotros() {
 
       <Container as="div" className="relative">
         <div className="grid gap-16 lg:grid-cols-12 lg:items-start lg:gap-20">
-          <div className="reveal lg:col-span-6">
-            <SectionBadge tone="inverse">Sobre nosotros</SectionBadge>
-            <h2 className="mt-6 text-balance text-display-lg">
-              Tecnología con{' '}
-              <span className="text-gradient-brand">contexto</span> de negocio
-            </h2>
-            <p className="mt-8 text-pretty text-lg leading-relaxed text-white/75 md:text-xl md:leading-[1.5]">
+          <div className="lg:col-span-6">
+            <SectionIntro
+              badge="Sobre nosotros"
+              tone="inverse"
+              size="lg"
+              align="left"
+              title={
+                <>
+                  Tecnología con{' '}
+                  <span className="text-gradient-brand">contexto</span> de negocio
+                </>
+              }
+            />
+            <p className="reveal mt-8 text-pretty text-lg leading-relaxed text-white/75 md:text-xl md:leading-[1.5]">
               {siteConfig.name} nace como joint venture con{' '}
               <strong className="font-semibold text-white">
                 {siteConfig.partner.name}
@@ -44,7 +51,7 @@ export function SobreNosotros() {
               , una gestoría con décadas de experiencia acompañando a PYMEs desde{' '}
               {siteConfig.partner.location}.
             </p>
-            <p className="mt-5 text-pretty text-lg leading-relaxed text-white/75 md:text-xl md:leading-[1.5]">
+            <p className="reveal mt-5 text-pretty text-lg leading-relaxed text-white/75 md:text-xl md:leading-[1.5]">
               Combinamos conocimiento técnico de IA con comprensión real de cómo funciona
               una pequeña o mediana empresa española: su fiscalidad, sus ritmos, sus
               obligaciones y sus límites.

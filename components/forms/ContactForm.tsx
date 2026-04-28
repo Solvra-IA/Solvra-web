@@ -43,7 +43,11 @@ export function ContactForm() {
       });
       if (!res.ok) {
         setStatus('error');
-        setErrorMsg('No se pudo enviar. Inténtalo de nuevo en unos minutos.');
+        setErrorMsg(
+          res.status === 429
+            ? 'Demasiados envíos. Espera unos minutos antes de volver a intentarlo.'
+            : 'No se pudo enviar. Inténtalo de nuevo en unos minutos.',
+        );
         return;
       }
       setStatus('success');

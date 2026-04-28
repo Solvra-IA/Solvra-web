@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container';
-import { SectionBadge } from '@/components/ui/SectionBadge';
+import { SectionIntro } from '@/components/ui/SectionIntro';
 
 const pasos = [
   {
@@ -51,15 +51,15 @@ export function ComoTrabajamos() {
   return (
     <section id="como-trabajamos" className="bg-background py-28 md:py-40">
       <Container as="div">
-        <div className="reveal mx-auto max-w-3xl text-center">
-          <SectionBadge>Proceso</SectionBadge>
-          <h2 className="mt-6 text-balance text-display-xl text-foreground">
-            Cómo <span className="text-gradient-brand">trabajamos</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Un proceso claro, sin humo ni promesas vacías.
-          </p>
-        </div>
+        <SectionIntro
+          badge="Proceso"
+          title={
+            <>
+              Cómo <span className="text-gradient-brand">trabajamos</span>
+            </>
+          }
+          description="Un proceso claro, sin humo ni promesas vacías."
+        />
 
         <ol className="relative mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-7">
           {/* Línea conectora horizontal en desktop */}

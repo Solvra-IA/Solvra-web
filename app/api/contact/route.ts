@@ -2,11 +2,28 @@ import { NextResponse } from 'next/server';
 import { contactSchema } from '@/lib/validations';
 import { getResend } from '@/lib/resend';
 import { ContactEmail } from '@/lib/email-templates';
+import { check as rateLimit, getClientIp } from '@/lib/rate-limit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
+  // Rate-limit antes de parsear payload — protege también de payloads grandes.
+  const ip = getClientIp(request.headers);
+  const limited = rateLimit(`contact:${ip}`);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: 'Demasiadas peticiones. Inténtalo más tarde.' },
+      {
+        status: 429,
+        headers: {
+          'Retry-After': String(limited.retryAfter),
+          'X-RateLimit-Remaining': '0',
+        },
+      },
+    );
+  }
+
   let body: unknown;
   try {
     body = await request.json();
@@ -50,7 +67,10 @@ export async function POST(request: Request) {
     if (error) {
       return NextResponse.json({ error: 'No se pudo enviar el email' }, { status: 502 });
     }
-    return NextResponse.json({ ok: true });
+    return NextResponse.json(
+      { ok: true },
+      { headers: { 'X-RateLimit-Remaining': String(limited.remaining) } },
+    );
   } catch {
     return NextResponse.json({ error: 'Error interno' }, { status: 500 });
   }

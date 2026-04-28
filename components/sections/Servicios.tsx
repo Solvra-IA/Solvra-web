@@ -1,5 +1,5 @@
 import { Container } from '@/components/ui/Container';
-import { SectionBadge } from '@/components/ui/SectionBadge';
+import { SectionIntro } from '@/components/ui/SectionIntro';
 
 const servicios = [
   {
@@ -28,15 +28,15 @@ export function Servicios() {
   return (
     <section id="servicios" className="bg-background py-28 md:py-40">
       <Container as="div">
-        <div className="reveal mx-auto max-w-3xl text-center">
-          <SectionBadge>Servicios</SectionBadge>
-          <h2 className="mt-6 text-balance text-display-xl text-foreground">
-            Qué <span className="text-gradient-brand">hacemos</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Cuatro servicios combinables según lo que necesite tu empresa.
-          </p>
-        </div>
+        <SectionIntro
+          badge="Servicios"
+          title={
+            <>
+              Qué <span className="text-gradient-brand">hacemos</span>
+            </>
+          }
+          description="Cuatro servicios combinables según lo que necesite tu empresa."
+        />
         <div className="mt-20 grid gap-6 md:grid-cols-2">
           {servicios.map((s, i) => (
             <article
