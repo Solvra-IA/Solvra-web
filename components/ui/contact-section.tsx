@@ -70,7 +70,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contacto" className="bg-muted py-24 md:py-32">
+    <section id="contacto" className="py-24 md:py-32 text-white">
       <div className="container mx-auto px-6">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
           <motion.div
@@ -80,11 +80,16 @@ export function ContactSection() {
             viewport={{ once: true, margin: "-80px" }}
             className="lg:col-span-5"
           >
-            <Badge variant="outline">Contacto</Badge>
+            <Badge
+              variant="outline"
+              className="border-white/20 bg-white/5 text-white/85"
+            >
+              Contacto
+            </Badge>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
               Cuéntanos tu <span className="text-primary">caso</span>
             </h2>
-            <p className="mt-5 text-muted-foreground md:text-lg">
+            <p className="mt-5 text-white/75 md:text-lg">
               Una sesión inicial de 30 minutos, gratuita y sin compromiso. Te
               diremos si podemos ayudarte y cómo.
             </p>
@@ -92,11 +97,11 @@ export function ContactSection() {
               {bullets.map((b) => (
                 <li
                   key={b}
-                  className="flex items-start gap-3 text-[15px] text-muted-foreground"
+                  className="flex items-start gap-3 text-[15px] text-white/80"
                 >
                   <span
                     aria-hidden
-                    className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary/10 text-primary"
+                    className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground"
                   >
                     <Check className="h-3 w-3" strokeWidth={3} />
                   </span>
@@ -113,7 +118,7 @@ export function ContactSection() {
             viewport={{ once: true, margin: "-80px" }}
             className="lg:col-span-7"
           >
-            <Card className="shadow-md">
+            <Card className="shadow-2xl">
               <CardContent className="p-6 sm:p-8">
                 {status === "success" ? (
                   <div className="py-6 text-center">

@@ -1,6 +1,7 @@
 import { Lightbulb, Workflow, Plug } from 'lucide-react';
 
 import SaasTemplate from '@/components/ui/saa-s-template';
+import { BeamsBackground } from '@/components/ui/beams-background';
 import { SectorsGrid } from '@/components/ui/sectors-grid';
 import { Feature108 } from '@/components/ui/shadcnblocks-com-feature108';
 import { ProcessTimeline } from '@/components/ui/process-timeline';
@@ -79,11 +80,15 @@ export default function HomePage() {
         </div>
       </section>
       <Testimonials />
-      <AboutSplit />
+      <BeamsBackground intensity="medium">
+        <AboutSplit />
+      </BeamsBackground>
       <section id="faq" className="bg-background py-24 md:py-32">
         <FaqsSection />
       </section>
-      <ContactSection />
+      <BeamsBackground intensity="strong">
+        <ContactSection />
+      </BeamsBackground>
       <SiteFooter />
     </div>
   );
