@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Container } from '@/components/ui/Container';
 
 export const metadata: Metadata = {
   title: 'Política de cookies',
@@ -8,11 +7,11 @@ export const metadata: Metadata = {
 
 export default function CookiesPage() {
   return (
-    <Container as="section" className="max-w-3xl py-16">
-      <h1 className="text-3xl font-semibold tracking-tight text-slate-900">
+    <section className="container mx-auto max-w-3xl px-6 py-24">
+      <h1 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
         Política de cookies
       </h1>
-      <div className="mt-6 space-y-4 text-slate-600">
+      <div className="mt-6 space-y-4 text-muted-foreground">
         <p>
           Este sitio no utiliza cookies de seguimiento ni de publicidad de terceros. Solo
           utiliza las cookies técnicas estrictamente necesarias para el funcionamiento de
@@ -23,6 +22,6 @@ export default function CookiesPage() {
           política y te pediremos consentimiento previo conforme a la normativa vigente.
         </p>
       </div>
-    </Container>
+    </section>
   );
 }
