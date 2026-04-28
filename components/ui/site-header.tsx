@@ -19,18 +19,19 @@ const navItems = [
 export function SiteHeader() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [revealed, setRevealed] = useState(!isHome);
+  // En home: arranca transparente sobre el hero oscuro y se vuelve opaco al
+  // pasar el primer hero. En otras rutas (legales, 404): siempre opaco.
+  const [scrolled, setScrolled] = useState(!isHome);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     if (!isHome) {
-      setRevealed(true);
+      setScrolled(true);
       return;
     }
 
     function onScroll() {
-      // Reveal cuando el usuario ha pasado ~85% del viewport (final del primer hero)
-      setRevealed(window.scrollY > window.innerHeight * 0.85);
+      setScrolled(window.scrollY > window.innerHeight * 0.8);
     }
 
     onScroll();
@@ -41,17 +42,19 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ease-out",
-        revealed
-          ? "translate-y-0 opacity-100"
-          : "pointer-events-none -translate-y-full opacity-0",
-        "border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/65",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-out",
+        scrolled
+          ? "border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/65"
+          : "border-b border-transparent bg-transparent",
       )}
     >
       <nav className="container mx-auto flex h-14 items-center justify-between gap-6 px-6">
         <Link
           href="/"
-          className="text-base font-semibold tracking-tight text-foreground transition-opacity hover:opacity-80"
+          className={cn(
+            "text-base font-semibold tracking-tight transition-colors duration-300 hover:opacity-80",
+            scrolled ? "text-foreground" : "text-white",
+          )}
         >
           Solvra
         </Link>
@@ -61,7 +64,12 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+              className={cn(
+                "text-[13px] transition-colors duration-300",
+                scrolled
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "text-white/65 hover:text-white",
+              )}
             >
               {item.label}
             </Link>
@@ -74,8 +82,11 @@ export function SiteHeader() {
           </Button>
           <button
             type="button"
-            aria-label="Abrir menú"
-            className="md:hidden"
+            aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+            className={cn(
+              "md:hidden transition-colors duration-300",
+              scrolled ? "text-foreground" : "text-white",
+            )}
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? (
