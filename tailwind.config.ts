@@ -12,8 +12,16 @@ const config: Config = {
       colors: {
         background: '#FAFAFA',
         foreground: '#0F172A',
-        card: '#FFFFFF',
+        card: {
+          DEFAULT: '#FFFFFF',
+          foreground: '#0F172A',
+        },
+        popover: {
+          DEFAULT: '#FFFFFF',
+          foreground: '#0F172A',
+        },
         border: '#E2E8F0',
+        input: '#E2E8F0',
         ring: '#0052FF',
         muted: {
           DEFAULT: '#F1F5F9',
@@ -22,6 +30,19 @@ const config: Config = {
         accent: {
           DEFAULT: '#0052FF',
           secondary: '#4D7CFF',
+          foreground: '#FFFFFF',
+        },
+        // Tokens shadcn (primary/secondary/destructive). Mapeados a marca Solvra.
+        primary: {
+          DEFAULT: '#0052FF',
+          foreground: '#FFFFFF',
+        },
+        secondary: {
+          DEFAULT: '#F1F5F9',
+          foreground: '#0F172A',
+        },
+        destructive: {
+          DEFAULT: '#ef4444',
           foreground: '#FFFFFF',
         },
         brand: {
@@ -116,6 +137,14 @@ const config: Config = {
           '0%, 100%': { transform: 'translateY(10px)' },
           '50%':      { transform: 'translateY(-10px)' },
         },
+        'accordion-down': {
+          from: { height: '0' },
+          to:   { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to:   { height: '0' },
+        },
       },
       animation: {
         'reveal-up': 'reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both',
@@ -124,6 +153,8 @@ const config: Config = {
         'spin-slow': 'spin-slow 60s linear infinite',
         'float-y': 'float-y 5s ease-in-out infinite',
         'float-y-rev': 'float-y-rev 4s ease-in-out infinite',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
       },
       transitionTimingFunction: {
         apple: 'cubic-bezier(0.16, 1, 0.3, 1)',

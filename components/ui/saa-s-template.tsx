@@ -1,20 +1,5 @@
-/**
- * REFERENCIA — NO IMPORTAR EN PRODUCCIÓN
- *
- * Plantilla SaaS oscura proporcionada como inspiración visual. NO se usa en la
- * landing actual porque entraría en conflicto con:
- *   - Copy en español de Solvra (esta plantilla está en inglés)
- *   - Tema claro de marca (esta plantilla es dark)
- *   - Font stack SF Pro/Inter (esta plantilla fuerza Poppins via @import)
- *   - Imágenes externas postimg.cc (vulnera política de assets locales)
- *
- * Las ideas visuales reaprovechadas (encuadre tipo ventana del producto y glow
- * radial detrás) se han adaptado dentro del Hero/HeroGraphic existentes con
- * tokens nativos del proyecto. Mantenemos este archivo como referencia rápida
- * para futuras iteraciones.
- *
- * Si en algún momento se decide deprecar, se puede borrar sin impacto.
- */
+"use client";
+
 import React from "react";
 
 // Inline Button Component
@@ -74,13 +59,165 @@ const ArrowRight = ({ className = "", size = 16 }: { className?: string; size?: 
   </svg>
 );
 
-// Hero Component (referencia)
+const Menu = ({ className = "", size = 24 }: { className?: string; size?: number }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <line x1="4" x2="20" y1="12" y2="12" />
+    <line x1="4" x2="20" y1="6" y2="6" />
+    <line x1="4" x2="20" y1="18" y2="18" />
+  </svg>
+);
+
+const X = ({ className = "", size = 24 }: { className?: string; size?: number }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+  >
+    <path d="M18 6 6 18" />
+    <path d="m6 6 12 12" />
+  </svg>
+);
+
+// Navigation Component
+const Navigation = React.memo(() => {
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
+  return (
+    <header className="fixed top-0 w-full z-50 border-b border-gray-800/50 bg-black/80 backdrop-blur-md">
+      <nav className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="text-xl font-semibold text-white">Logo</div>
+
+          <div className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <a href="#getting-started" className="text-sm text-white/60 hover:text-white transition-colors">
+              Getting started
+            </a>
+            <a href="#components" className="text-sm text-white/60 hover:text-white transition-colors">
+              Components
+            </a>
+            <a href="#documentation" className="text-sm text-white/60 hover:text-white transition-colors">
+              Documentation
+            </a>
+          </div>
+
+          <div className="hidden md:flex items-center gap-4">
+            <Button type="button" variant="ghost" size="sm">
+              Sign in
+            </Button>
+            <Button type="button" variant="default" size="sm">
+              Sign Up
+            </Button>
+          </div>
+
+          <button
+            type="button"
+            className="md:hidden text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </nav>
+
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800/50 animate-[slideDown_0.3s_ease-out]">
+          <div className="px-6 py-4 flex flex-col gap-4">
+            <a
+              href="#getting-started"
+              className="text-sm text-white/60 hover:text-white transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Getting started
+            </a>
+            <a
+              href="#components"
+              className="text-sm text-white/60 hover:text-white transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Components
+            </a>
+            <a
+              href="#documentation"
+              className="text-sm text-white/60 hover:text-white transition-colors py-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Documentation
+            </a>
+            <div className="flex flex-col gap-2 pt-4 border-t border-gray-800/50">
+              <Button type="button" variant="ghost" size="sm">
+                Sign in
+              </Button>
+              <Button type="button" variant="default" size="sm">
+                Sign Up
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+});
+
+Navigation.displayName = "Navigation";
+
+// Hero Component
 const Hero = React.memo(() => {
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-start px-6 py-20 md:py-24"
-      style={{ animation: "fadeIn 0.6s ease-out" }}
+      style={{
+        animation: "fadeIn 0.6s ease-out",
+      }}
     >
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+          font-family: 'Poppins', sans-serif;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+
       <aside className="mb-8 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full border border-gray-700 bg-gray-800/50 backdrop-blur-sm max-w-full">
         <span className="text-xs text-center whitespace-nowrap" style={{ color: "#9ca3af" }}>
           New version of template is out!
@@ -89,6 +226,7 @@ const Hero = React.memo(() => {
           href="#new-version"
           className="flex items-center gap-1 text-xs hover:text-white transition-all active:scale-95 whitespace-nowrap"
           style={{ color: "#9ca3af" }}
+          aria-label="Read more about the new version"
         >
           Read more
           <ArrowRight size={12} />
@@ -113,9 +251,42 @@ const Hero = React.memo(() => {
       </p>
 
       <div className="flex items-center gap-4 relative z-10 mb-16">
-        <Button type="button" variant="gradient" size="lg" className="rounded-lg flex items-center justify-center">
+        <Button
+          type="button"
+          variant="gradient"
+          size="lg"
+          className="rounded-lg flex items-center justify-center"
+          aria-label="Get started with the template"
+        >
           Get started
         </Button>
+      </div>
+
+      <div className="w-full max-w-5xl relative pb-20">
+        <div
+          className="absolute left-1/2 w-[90%] pointer-events-none z-0"
+          style={{
+            top: "-23%",
+            transform: "translateX(-50%)",
+          }}
+          aria-hidden="true"
+        >
+          <img
+            src="https://i.postimg.cc/Ss6yShGy/glows.png"
+            alt=""
+            className="w-full h-auto"
+            loading="eager"
+          />
+        </div>
+
+        <div className="relative z-10">
+          <img
+            src="https://i.postimg.cc/SKcdVTr1/Dashboard2.png"
+            alt="Dashboard preview showing analytics and metrics interface"
+            className="w-full h-auto rounded-lg shadow-2xl"
+            loading="eager"
+          />
+        </div>
       </div>
     </section>
   );
@@ -123,9 +294,11 @@ const Hero = React.memo(() => {
 
 Hero.displayName = "Hero";
 
-export default function ReferenceTemplate() {
+// Main Component
+export default function Component() {
   return (
     <main className="min-h-screen bg-black text-white">
+      <Navigation />
       <Hero />
     </main>
   );
