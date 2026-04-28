@@ -6,6 +6,16 @@ import { HeroGraphic } from '@/components/sections/HeroGraphic';
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-fade-down">
+      {/* Glow ambient detrás del bloque hero */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px]"
+        style={{
+          background:
+            'radial-gradient(60% 50% at 50% 0%, rgba(0,82,255,0.10) 0%, rgba(77,124,255,0.04) 40%, rgba(255,255,255,0) 75%)',
+        }}
+      />
+
       <Container as="div" className="relative pb-24 pt-24 md:pb-32 md:pt-32 lg:pt-36">
         <div className="mx-auto max-w-5xl text-center">
           <div className="animate-reveal-fade">
