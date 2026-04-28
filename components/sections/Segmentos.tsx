@@ -1,4 +1,5 @@
 import { Container } from '@/components/ui/Container';
+import { SectionBadge } from '@/components/ui/SectionBadge';
 
 const segmentos = [
   {
@@ -20,25 +21,39 @@ const segmentos = [
 
 export function Segmentos() {
   return (
-    <section id="segmentos" className="bg-slate-50 py-20 md:py-28">
+    <section id="segmentos" className="bg-muted py-28 md:py-40">
       <Container as="div">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Sectores donde ya generamos valor
+        <div className="reveal mx-auto max-w-3xl text-center">
+          <SectionBadge>Sectores</SectionBadge>
+          <h2 className="mt-6 text-balance text-display-xl text-foreground">
+            Sectores donde ya generamos{' '}
+            <span className="text-gradient-brand">valor</span>
           </h2>
-          <p className="mt-4 text-lg text-slate-600">
+          <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
             No somos generalistas. Nos centramos donde tenemos experiencia real.
           </p>
         </div>
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {segmentos.map((s) => (
-            <div
+        <div className="mt-20 grid gap-6 md:grid-cols-3">
+          {segmentos.map((s, i) => (
+            <article
               key={s.title}
-              className="rounded-2xl border border-slate-200 bg-white p-8"
+              className="reveal group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-10 shadow-md transition-all duration-300 ease-apple hover:-translate-y-1 hover:shadow-xl"
+              style={{ animationDelay: `${i * 0.08}s` }}
             >
-              <h3 className="text-xl font-semibold text-slate-900">{s.title}</h3>
-              <p className="mt-3 text-slate-600">{s.description}</p>
-            </div>
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent/[0.04] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              />
+              <span className="relative font-mono text-4xl font-semibold tracking-tightest text-gradient-brand">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 className="relative mt-6 text-2xl font-semibold tracking-tightest text-foreground md:text-[28px]">
+                {s.title}
+              </h3>
+              <p className="relative mt-4 text-pretty leading-relaxed text-muted-foreground md:text-[17px]">
+                {s.description}
+              </p>
+            </article>
           ))}
         </div>
       </Container>

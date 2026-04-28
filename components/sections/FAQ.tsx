@@ -1,4 +1,5 @@
 import { Container } from '@/components/ui/Container';
+import { SectionBadge } from '@/components/ui/SectionBadge';
 
 const faqs = [
   {
@@ -25,23 +26,40 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-20 md:py-28">
+    <section id="faq" className="bg-background py-28 md:py-40">
       <Container as="div">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-            Preguntas frecuentes
+        <div className="reveal mx-auto max-w-3xl text-center">
+          <SectionBadge>FAQ</SectionBadge>
+          <h2 className="mt-6 text-balance text-display-xl text-foreground">
+            Preguntas <span className="text-gradient-brand">frecuentes</span>
           </h2>
         </div>
-        <div className="mx-auto mt-12 max-w-3xl divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white">
-          {faqs.map((f) => (
-            <details key={f.q} className="group p-6">
-              <summary className="flex cursor-pointer items-center justify-between gap-4 text-left text-base font-medium text-slate-900 [&::-webkit-details-marker]:hidden">
+        <div className="mx-auto mt-16 max-w-3xl">
+          {faqs.map((f, i) => (
+            <details
+              key={f.q}
+              className="reveal group hairline-b py-6 transition-colors first:hairline-t"
+              style={{ animationDelay: `${i * 0.04}s` }}
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left text-lg font-medium text-foreground transition-colors hover:text-accent [&::-webkit-details-marker]:hidden md:text-xl">
                 <span>{f.q}</span>
-                <span className="text-brand-600 transition-transform group-open:rotate-45">
-                  +
+                <span
+                  aria-hidden
+                  className="grid h-7 w-7 shrink-0 place-items-center text-muted-foreground transition-transform duration-300 ease-apple group-open:rotate-45 group-open:text-accent"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path
+                      d="M7 1.5V12.5M1.5 7H12.5"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                    />
+                  </svg>
                 </span>
               </summary>
-              <p className="mt-3 text-slate-600">{f.a}</p>
+              <p className="mt-4 max-w-2xl text-pretty leading-relaxed text-muted-foreground md:text-[17px]">
+                {f.a}
+              </p>
             </details>
           ))}
         </div>

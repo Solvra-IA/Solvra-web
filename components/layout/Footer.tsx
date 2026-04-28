@@ -5,50 +5,36 @@ import { Container } from '@/components/ui/Container';
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-slate-200 bg-slate-50">
+    <footer className="bg-muted text-[12px] text-muted-foreground">
       <Container as="div" className="py-10">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <div>
-            <p className="text-lg font-semibold text-slate-900">{siteConfig.name}</p>
-            <p className="mt-2 max-w-sm text-sm text-slate-600">
-              {siteConfig.tagline}. Joint venture con {siteConfig.partner.name} (
-              {siteConfig.partner.location}).
+        <p className="text-pretty leading-relaxed">
+          {siteConfig.tagline}. Joint venture con {siteConfig.partner.name} (
+          {siteConfig.partner.location}).
+        </p>
+        <div className="mt-8 hairline-t pt-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              © {year} {siteConfig.name}. Todos los derechos reservados.
             </p>
-          </div>
-          <div className="flex flex-col gap-6 sm:flex-row sm:gap-12">
-            <div>
-              <p className="text-sm font-medium text-slate-900">Legal</p>
-              <ul className="mt-3 space-y-2">
-                {siteConfig.legal.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className="text-sm text-slate-600 hover:text-brand-700"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-sm font-medium text-slate-900">Contacto</p>
-              <ul className="mt-3 space-y-2">
-                <li>
-                  <a
-                    href={`mailto:${siteConfig.contactEmail}`}
-                    className="text-sm text-slate-600 hover:text-brand-700"
-                  >
-                    {siteConfig.contactEmail}
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <nav aria-label="Legal" className="flex flex-wrap items-center gap-x-5 gap-y-2">
+              {siteConfig.legal.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="transition-colors hover:text-foreground"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="transition-colors hover:text-foreground"
+              >
+                {siteConfig.contactEmail}
+              </a>
+            </nav>
           </div>
         </div>
-        <p className="mt-10 text-xs text-slate-500">
-          © {year} {siteConfig.name}. Todos los derechos reservados.
-        </p>
       </Container>
     </footer>
   );
