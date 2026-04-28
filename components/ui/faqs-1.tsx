@@ -10,11 +10,11 @@ export function FaqsSection() {
 		<div className="mx-auto w-full max-w-3xl space-y-7 px-6">
 			<div className="space-y-3 text-center">
 				<h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-					Frequently Asked Questions
+					Preguntas frecuentes
 				</h2>
 				<p className="text-muted-foreground max-w-2xl mx-auto md:text-lg">
-					Here are some common questions and answers that you might encounter when using Efferd. If
-					you don&apos;t find the answer you&apos;re looking for, feel free to reach out.
+					Lo que más nos preguntan antes de empezar a trabajar juntos. Si tu duda no
+					está aquí, escríbenos.
 				</p>
 			</div>
 			<Accordion
@@ -38,11 +38,12 @@ export function FaqsSection() {
 					</AccordionItem>
 				))}
 			</Accordion>
-			<p className="text-muted-foreground">
-				Can&apos;t find what you&apos;re looking for? Contact our{' '}
-				<a href="#" className="text-primary hover:underline">
-					customer support team
+			<p className="text-muted-foreground text-center">
+				¿No encuentras tu respuesta?{' '}
+				<a href="#contacto" className="text-primary hover:underline">
+					Escríbenos directamente
 				</a>
+				.
 			</p>
 		</div>
 	);
@@ -51,44 +52,44 @@ export function FaqsSection() {
 const questions = [
 	{
 		id: 'item-1',
-		title: 'What is Efferd?',
+		title: '¿Cuánto cuesta un proyecto con Solvra?',
 		content:
-			'Efferd is a collection of beautifully crafted Shadcn UI blocks and components, designed to help developers build modern websites with ease.',
+			'Depende del alcance. Ofrecemos un diagnóstico inicial gratuito y, tras esa sesión, enviamos un presupuesto cerrado con entregables y plazos. Trabajamos con PYMEs, así que ajustamos el alcance a presupuestos realistas.',
 	},
 	{
 		id: 'item-2',
-		title: 'Who can benefit from Efferd?',
+		title: '¿Tengo que cambiar mis herramientas actuales?',
 		content:
-			'Efferd is built for founders, product teams, and agencies that want to accelerate idea validation and delivery.',
+			'No. Integramos la IA con tu CRM, ERP, correo o agenda actuales. Solo proponemos cambios si una herramienta está bloqueando el resultado.',
 	},
 	{
 		id: 'item-3',
-		title: 'What features does Efferd include?',
+		title: '¿Qué pasa con la protección de datos?',
 		content:
-			'Efferd offers a collaborative workspace where you can design and build beautiful web applications, with reusable UI blocks, deployment automation, and comprehensive analytics all in one place.',
+			'Cumplimos RGPD de serie. Revisamos qué datos salen del entorno de tu empresa, firmamos los acuerdos necesarios y priorizamos soluciones que mantienen los datos sensibles bajo tu control.',
 	},
 	{
 		id: 'item-4',
-		title: 'Can I customize components in Efferd?',
+		title: '¿Cuánto tarda en verse resultado?',
 		content:
-			'Yes. Efferd offers editable design systems and code scaffolding so you can tailor blocks to your brand and workflow.',
+			'La mayoría de proyectos entregan impacto medible en 4–8 semanas. Los diagnósticos se cierran en una o dos sesiones.',
 	},
 	{
 		id: 'item-5',
-		title: 'Does Efferd integrate with my existing tools?',
+		title: '¿Trabajáis solo en Cataluña?',
 		content:
-			'Efferd connects with popular source control, design tools, and cloud providers to fit into your current stack.',
+			'Estamos en Vilanova i la Geltrú, pero trabajamos con empresas de toda España en remoto. Para proyectos grandes, nos desplazamos.',
 	},
 	{
 		id: 'item-6',
-		title: 'How do I get support while using Efferd?',
+		title: '¿Quién mantiene la solución después de implementarla?',
 		content:
-			'You can access detailed docs, community forums, and dedicated customer success channels for help at any time.',
+			'Te entregamos documentación, formación y un periodo de acompañamiento. Después puedes mantenerlo tú o seguir con nosotros como soporte continuado. Sin lock-in.',
 	},
 	{
 		id: 'item-7',
-		title: 'How do I get started with Efferd?',
+		title: '¿Qué tipo de empresas son vuestros clientes?',
 		content:
-			'You can access detailed docs, community forums, and dedicated customer success channels for help at any time.',
+			'PYMEs españolas en tres sectores: inmobiliarias, clínicas (dentales, fisio, estéticas) y servicios profesionales (gestorías, despachos, consultoras pequeñas). Si tu sector no aparece, pregúntanos.',
 	},
 ];

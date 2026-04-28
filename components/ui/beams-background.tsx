@@ -200,17 +200,18 @@ export function BeamsBackground({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        Beams
+                        Tecnología
                         <br />
-                        Background
+                        con propósito
                     </motion.h1>
                     <motion.p
-                        className="text-base md:text-lg text-white/60"
+                        className="text-base md:text-lg text-white/60 max-w-md"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        For your pleasure
+                        IA aplicada a problemas reales de PYMEs.
+                        Sin humo, con resultados medibles.
                     </motion.p>
                 </div>
             </div>

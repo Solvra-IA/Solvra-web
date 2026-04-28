@@ -104,26 +104,26 @@ const Navigation = React.memo(() => {
     <header className="relative w-full border-b border-white/10 bg-neutral-950/80 backdrop-blur-md">
       <nav className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-xl font-semibold text-white">Logo</div>
+          <div className="text-xl font-semibold text-white">Solvra</div>
 
           <div className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <a href="#getting-started" className="text-sm text-white/65 hover:text-white transition-colors">
-              Getting started
+            <a href="#servicios" className="text-sm text-white/65 hover:text-white transition-colors">
+              Servicios
             </a>
-            <a href="#components" className="text-sm text-white/65 hover:text-white transition-colors">
-              Components
+            <a href="#sectores" className="text-sm text-white/65 hover:text-white transition-colors">
+              Sectores
             </a>
-            <a href="#documentation" className="text-sm text-white/65 hover:text-white transition-colors">
-              Documentation
+            <a href="#nosotros" className="text-sm text-white/65 hover:text-white transition-colors">
+              Nosotros
             </a>
           </div>
 
           <div className="hidden md:flex items-center gap-4">
             <Button type="button" variant="ghost" size="sm">
-              Sign in
+              Iniciar sesión
             </Button>
             <Button type="button" variant="default" size="sm">
-              Sign Up
+              Hablemos
             </Button>
           </div>
 
@@ -142,32 +142,32 @@ const Navigation = React.memo(() => {
         <div className="md:hidden bg-neutral-950/95 backdrop-blur-md border-t border-white/10 animate-[slideDown_0.3s_ease-out]">
           <div className="px-6 py-4 flex flex-col gap-4">
             <a
-              href="#getting-started"
+              href="#servicios"
               className="text-sm text-white/65 hover:text-white transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Getting started
+              Servicios
             </a>
             <a
-              href="#components"
+              href="#sectores"
               className="text-sm text-white/65 hover:text-white transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Components
+              Sectores
             </a>
             <a
-              href="#documentation"
+              href="#nosotros"
               className="text-sm text-white/65 hover:text-white transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Documentation
+              Nosotros
             </a>
             <div className="flex flex-col gap-2 pt-4 border-t border-white/10">
               <Button type="button" variant="ghost" size="sm">
-                Sign in
+                Iniciar sesión
               </Button>
               <Button type="button" variant="default" size="sm">
-                Sign Up
+                Hablemos
               </Button>
             </div>
           </div>
@@ -201,14 +201,14 @@ const Hero = React.memo(() => {
 
       <aside className="mb-8 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm max-w-full">
         <span className="text-xs text-center whitespace-nowrap text-white/60">
-          New version of template is out!
+          Nuevo: diagnóstico de IA gratuito disponible
         </span>
         <a
-          href="#new-version"
+          href="#contacto"
           className="flex items-center gap-1 text-xs text-white/60 hover:text-white transition-all active:scale-95 whitespace-nowrap"
-          aria-label="Read more about the new version"
+          aria-label="Saber más sobre el diagnóstico"
         >
-          Read more
+          Saber más
           <ArrowRight size={12} />
         </a>
       </aside>
@@ -223,11 +223,13 @@ const Hero = React.memo(() => {
           letterSpacing: "-0.05em",
         }}
       >
-        Give your big idea <br />the website it deserves
+        La IA que tu PYME merece, <br />sin complicaciones
       </h1>
 
       <p className="text-sm md:text-base text-center max-w-2xl px-6 mb-10 text-white/60">
-        Landing page kit template with React, Shadcn/ui and Tailwind <br />that you can copy/paste into your project.
+        Consultoría de IA para inmobiliarias, clínicas y servicios profesionales.
+        <br />
+        Diagnóstico, automatización e integración con tus herramientas actuales.
       </p>
 
       <div className="flex items-center gap-4 relative z-10 mb-16">
@@ -236,9 +238,9 @@ const Hero = React.memo(() => {
           variant="gradient"
           size="lg"
           className="rounded-lg flex items-center justify-center"
-          aria-label="Get started with the template"
+          aria-label="Solicitar diagnóstico gratuito"
         >
-          Get started
+          Solicitar diagnóstico
         </Button>
       </div>
 
@@ -262,7 +264,7 @@ const Hero = React.memo(() => {
         <div className="relative z-10">
           <img
             src="https://i.postimg.cc/SKcdVTr1/Dashboard2.png"
-            alt="Dashboard preview showing analytics and metrics interface"
+            alt="Vista previa del panel de Solvra con métricas e indicadores"
             className="w-full h-auto rounded-lg shadow-2xl"
             loading="eager"
           />

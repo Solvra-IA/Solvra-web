@@ -66,58 +66,58 @@ export const TestimonialsColumn = (props: {
 
 const testimonials: Testimonial[] = [
   {
-    text: "This ERP revolutionized our operations, streamlining finance and inventory. The cloud-based platform keeps us productive, even remotely.",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
-    name: "Briana Patton",
-    role: "Operations Manager",
+    text: "Pasamos de tardar tres días en cualificar leads a hacerlo en minutos. El equipo se centra en cerrar visitas, no en filtrar emails.",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Marta Ribas",
+    role: "Inmobiliaria, Sant Cugat",
   },
   {
-    text: "Implementing this ERP was smooth and quick. The customizable, user-friendly interface made team training effortless.",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
-    name: "Bilal Ahmed",
-    role: "IT Manager",
+    text: "Implementamos los recordatorios automáticos de citas y bajamos las cancelaciones un 40% en dos meses. Sin tocar nuestro software actual.",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "David Romero",
+    role: "Clínica dental, Tarragona",
   },
   {
-    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our satisfaction.",
-    image: "https://randomuser.me/api/portraits/women/3.jpg",
-    name: "Saman Malik",
-    role: "Customer Support Lead",
+    text: "Llevábamos años posponiendo la digitalización. Solvra hizo el diagnóstico, marcó prioridades y arrancamos sin caos.",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    name: "Núria Vidal",
+    role: "Gestoría, Barcelona",
   },
   {
-    text: "This ERP's seamless integration enhanced our business operations and efficiency. Highly recommend for its intuitive interface.",
-    image: "https://randomuser.me/api/portraits/men/4.jpg",
-    name: "Omar Raza",
-    role: "CEO",
+    text: "Lo que más valoramos es que hablan claro. Te dicen lo que se puede hacer y lo que no, sin venderte humo.",
+    image: "https://randomuser.me/api/portraits/men/22.jpg",
+    name: "Jordi Martínez",
+    role: "Despacho de abogados, Sabadell",
   },
   {
-    text: "Its robust features and quick support have transformed our workflow, making us significantly more efficient.",
-    image: "https://randomuser.me/api/portraits/women/5.jpg",
-    name: "Zainab Hussain",
-    role: "Project Manager",
+    text: "El asistente responde fuera de horario en castellano y catalán. Nuestros pacientes se sorprenden por la rapidez.",
+    image: "https://randomuser.me/api/portraits/women/12.jpg",
+    name: "Elena Serrano",
+    role: "Clínica de fisioterapia, Vilafranca",
   },
   {
-    text: "The smooth implementation exceeded expectations. It streamlined processes, improving overall business performance.",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-    name: "Aliza Khan",
-    role: "Business Analyst",
+    text: "Precio cerrado desde el inicio. Sin facturas sorpresa ni horas extra. Cumplieron en tiempo y forma.",
+    image: "https://randomuser.me/api/portraits/men/51.jpg",
+    name: "Pablo Ruiz",
+    role: "Inmobiliaria, Castelldefels",
   },
   {
-    text: "Our business functions improved with a user-friendly design and positive customer feedback.",
-    image: "https://randomuser.me/api/portraits/men/7.jpg",
-    name: "Farhan Siddiqui",
-    role: "Marketing Director",
+    text: "El acompañamiento posterior marca la diferencia. No nos dejaron solos cuando se complicó la integración.",
+    image: "https://randomuser.me/api/portraits/women/28.jpg",
+    name: "Cristina Aliaga",
+    role: "Consultoría empresarial, Reus",
   },
   {
-    text: "They delivered a solution that exceeded expectations, understanding our needs and enhancing our operations.",
-    image: "https://randomuser.me/api/portraits/women/8.jpg",
-    name: "Sana Sheikh",
-    role: "Sales Manager",
+    text: "Nos preocupaba el tema RGPD. Pasaron por todos los compliance que necesitábamos sin que tuviéramos que pelearlo.",
+    image: "https://randomuser.me/api/portraits/men/76.jpg",
+    name: "Manel Casas",
+    role: "Asesoría fiscal, Sitges",
   },
   {
-    text: "Using this ERP, our online presence and conversions significantly improved, boosting business performance.",
-    image: "https://randomuser.me/api/portraits/men/9.jpg",
-    name: "Hassan Ali",
-    role: "E-commerce Manager",
+    text: "Antes nuestro equipo gastaba media jornada redactando descripciones de inmuebles. Ahora ese tiempo se va a visitar pisos.",
+    image: "https://randomuser.me/api/portraits/women/89.jpg",
+    name: "Sandra Beltrán",
+    role: "Inmobiliaria, Vilanova i la Geltrú",
   },
 ];
 
@@ -137,13 +137,13 @@ export const Testimonials = () => {
           className="flex flex-col items-center justify-center max-w-2xl mx-auto text-center gap-4"
         >
           <div className="border border-border py-1 px-4 rounded-full text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Testimonials
+            Testimonios
           </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
-            What our users say
+            Lo que dicen nuestros clientes
           </h2>
           <p className="text-muted-foreground md:text-lg">
-            See what our customers have to say about us.
+            PYMEs que ya integran IA con Solvra.
           </p>
         </motion.div>
 

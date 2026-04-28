@@ -1,17 +1,8 @@
 /**
- * Playground — los 8 componentes en orden, normalizados para sentir
- * una sola página coherente. Fuente verbatim conservada en components/ui/.
- *
- * Decisiones de coherencia (fase 2):
- * - Tipografía: una sola pila (SF Pro / Inter via global). Removido @import Poppins.
- * - Spacing: py-24 md:py-32 en todas las secciones light. Heroes con altura propia.
- * - Heading scale: h1 hero text-5xl→7xl, h2 sección text-3xl→5xl, todo font-semibold.
- * - Color tokens: paleta dark (neutral-950 + white/N) en heroes 1-2, semantic tokens
- *   (background/muted/card/primary) en secciones 3-8. Misma marca electric-blue.
- * - Containers: max-w-7xl con px-6 consistente.
- * - Bordes: border-border en todo lo light, border-white/10 en lo dark.
+ * Playground — los 8 componentes en orden con copy adaptado a marca Solvra.
+ * Fase 3: contenido localizado y propuestas reales del negocio.
  */
-import { Layout, Pointer, Zap } from 'lucide-react';
+import { Lightbulb, Workflow, Plug } from 'lucide-react';
 
 import SaasTemplate from '@/components/ui/saa-s-template';
 import { BeamsBackground } from '@/components/ui/beams-background';
@@ -24,78 +15,78 @@ import { RoadmapCard } from '@/components/ui/roadmap-card';
 
 export const metadata = {
   title: 'Playground · Solvra',
-  description: 'Stack de 8 componentes normalizados.',
+  description: 'Stack de 8 componentes con copy adaptado a Solvra.',
   robots: { index: false, follow: false },
 };
 
 const feature108Tabs = [
   {
     value: 'tab-1',
-    icon: <Zap className="h-auto w-4 shrink-0" />,
-    label: 'Boost Revenue',
+    icon: <Lightbulb className="h-auto w-4 shrink-0" />,
+    label: 'Diagnóstico',
     content: {
-      badge: 'Modern Tactics',
-      title: 'Make your site a true standout.',
+      badge: 'Punto de partida',
+      title: 'Identificamos dónde la IA mueve la aguja.',
       description:
-        'Discover new web trends that help you craft sleek, highly functional sites that drive traffic and convert leads into customers.',
-      buttonText: 'See Plans',
+        'Una sesión sin compromiso para mapear tus procesos y detectar oportunidades concretas. Sin lenguaje técnico, con un plan claro al final.',
+      buttonText: 'Solicitar diagnóstico',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg',
-      imageAlt: 'placeholder',
+      imageAlt: 'Diagnóstico de IA',
     },
   },
   {
     value: 'tab-2',
-    icon: <Pointer className="h-auto w-4 shrink-0" />,
-    label: 'Higher Engagement',
+    icon: <Workflow className="h-auto w-4 shrink-0" />,
+    label: 'Automatización',
     content: {
-      badge: 'Expert Features',
-      title: 'Boost your site with top-tier design.',
+      badge: 'Procesos repetitivos',
+      title: 'Tu equipo dedicado a lo que importa.',
       description:
-        'Use stellar design to easily engage users and strengthen their loyalty. Create a seamless experience that keeps them coming back for more.',
-      buttonText: 'See Tools',
+        'Automatizamos respuestas, gestión documental y seguimiento comercial con agentes inteligentes que se integran con tus herramientas actuales.',
+      buttonText: 'Ver casos de uso',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-2.svg',
-      imageAlt: 'placeholder',
+      imageAlt: 'Automatización de procesos',
     },
   },
   {
     value: 'tab-3',
-    icon: <Layout className="h-auto w-4 shrink-0" />,
-    label: 'Stunning Layouts',
+    icon: <Plug className="h-auto w-4 shrink-0" />,
+    label: 'Integración',
     content: {
-      badge: 'Elite Solutions',
-      title: 'Build an advanced web experience.',
+      badge: 'Compatible con lo tuyo',
+      title: 'Sin reemplazar lo que ya funciona.',
       description:
-        'Lift your brand with modern tech that grabs attention and drives action. Create a digital experience that stands out from the crowd.',
-      buttonText: 'See Options',
+        'Conectamos la IA con tu CRM, ERP, email y agenda. Solo proponemos cambios cuando una herramienta está bloqueando el resultado.',
+      buttonText: 'Ver integraciones',
       imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-3.svg',
-      imageAlt: 'placeholder',
+      imageAlt: 'Integraciones',
     },
   },
 ];
 
 const roadmapItems = [
   {
-    quarter: 'Q1 2023',
-    title: 'Core Platform',
-    description: 'Basic functionality and user management',
+    quarter: 'Q2 2026',
+    title: 'Plantillas sectoriales',
+    description: 'Soluciones precargadas para inmobiliarias y clínicas',
     status: 'done' as const,
   },
   {
-    quarter: 'Q2 2023',
-    title: 'Analytics',
-    description: 'Reporting and data visualization',
+    quarter: 'Q3 2026',
+    title: 'Conectores CRM',
+    description: 'Integración nativa con HubSpot, Pipedrive y Sage',
     status: 'in-progress' as const,
   },
   {
-    quarter: 'Q3 2023',
-    title: 'Integrations',
-    description: 'Third-party app connections',
+    quarter: 'Q4 2026',
+    title: 'Asistentes verticales',
+    description: 'Agentes especializados por sector y tarea',
     status: 'upcoming' as const,
   },
   {
-    quarter: 'Q4 2023',
-    title: 'AI Features',
-    description: 'Smart automation and predictions',
+    quarter: 'Q1 2027',
+    title: 'Programa partners',
+    description: 'Red de gestorías que despliegan Solvra',
     status: 'upcoming' as const,
   },
 ];
@@ -107,34 +98,60 @@ export default function PlaygroundPage() {
       <SaasTemplate />
       <BeamsBackground />
 
-      {/* Light bands — alterna background/muted con padding y eyebrow consistentes */}
+      {/* Servicios (feature108) */}
       <div className="bg-background">
-        <Feature108 tabs={feature108Tabs} />
+        <Feature108
+          badge="Servicios"
+          heading="Cuatro servicios que se adaptan a tu negocio"
+          description="Diagnóstico, automatización, integración y acompañamiento. Combínalos según lo que necesites."
+          tabs={feature108Tabs}
+        />
       </div>
 
+      {/* Tecnología que usamos (logo-cloud) */}
       <section className="bg-muted py-24 md:py-32">
         <div className="container mx-auto max-w-3xl px-6">
           <h2 className="mb-10 text-center text-3xl font-semibold tracking-tight md:text-4xl">
-            Companies we{' '}
-            <span className="text-primary">collaborate</span> with.
+            Tecnología que{' '}
+            <span className="text-primary">utilizamos</span>
           </h2>
           <LogoCloud />
         </div>
       </section>
 
+      {/* Testimonios */}
       <Testimonials />
 
+      {/* CTA-4 */}
       <div className="bg-muted">
-        <Cta4 />
+        <Cta4
+          title="Empieza con un diagnóstico gratuito"
+          description="30 minutos para entender tu negocio y proponerte un plan claro. Sin compromiso, sin comerciales insistentes."
+          buttonText="Hablemos"
+          buttonUrl="#contacto"
+          items={[
+            'Diagnóstico inicial sin coste',
+            'Precio cerrado desde el inicio',
+            'Cumplimiento RGPD de serie',
+            'Soporte en español',
+            'Acompañamiento real, no un curso',
+          ]}
+        />
       </div>
 
+      {/* FAQs */}
       <section className="bg-background py-24 md:py-32">
         <FaqsSection />
       </section>
 
+      {/* Roadmap */}
       <section className="bg-muted py-24 md:py-32">
         <div className="container mx-auto flex justify-center px-6">
-          <RoadmapCard items={roadmapItems} />
+          <RoadmapCard
+            title="Nuestra hoja de ruta"
+            description="Próximas evoluciones del servicio Solvra"
+            items={roadmapItems}
+          />
         </div>
       </section>
     </div>
