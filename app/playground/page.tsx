@@ -1,8 +1,15 @@
 /**
- * Playground — los 8 componentes pegados verbatim desde components/*.txt en orden.
- * Esta ruta vive aparte de la landing principal para no romper la marca Solvra.
+ * Playground — los 8 componentes en orden, normalizados para sentir
+ * una sola página coherente. Fuente verbatim conservada en components/ui/.
  *
- * Fase 1: integración en crudo. Fase 2: adaptación a Solvra. Fase 3: normalizar estilos.
+ * Decisiones de coherencia (fase 2):
+ * - Tipografía: una sola pila (SF Pro / Inter via global). Removido @import Poppins.
+ * - Spacing: py-24 md:py-32 en todas las secciones light. Heroes con altura propia.
+ * - Heading scale: h1 hero text-5xl→7xl, h2 sección text-3xl→5xl, todo font-semibold.
+ * - Color tokens: paleta dark (neutral-950 + white/N) en heroes 1-2, semantic tokens
+ *   (background/muted/card/primary) en secciones 3-8. Misma marca electric-blue.
+ * - Containers: max-w-7xl con px-6 consistente.
+ * - Bordes: border-border en todo lo light, border-white/10 en lo dark.
  */
 import { Layout, Pointer, Zap } from 'lucide-react';
 
@@ -17,7 +24,7 @@ import { RoadmapCard } from '@/components/ui/roadmap-card';
 
 export const metadata = {
   title: 'Playground · Solvra',
-  description: 'Stack de los 8 componentes en orden — fase 1 de integración.',
+  description: 'Stack de 8 componentes normalizados.',
   robots: { index: false, follow: false },
 };
 
@@ -93,64 +100,40 @@ const roadmapItems = [
   },
 ];
 
-function SectionLabel({ n, name }: { n: number; name: string }) {
-  return (
-    <div className="border-y border-border bg-muted/40 py-3">
-      <div className="container mx-auto flex items-center gap-3 text-xs font-mono text-muted-foreground">
-        <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold text-primary-foreground">
-          {String(n).padStart(2, '0')}
-        </span>
-        <span>{name}</span>
-      </div>
-    </div>
-  );
-}
-
 export default function PlaygroundPage() {
   return (
-    <div className="bg-background">
-      {/* 1. saa-s-template — dark hero con dashboard preview */}
-      <SectionLabel n={1} name="saa-s-template" />
+    <div className="bg-background text-foreground">
+      {/* Heroes (dark) */}
       <SaasTemplate />
-
-      {/* 2. beams-background — canvas full-screen con haces animados */}
-      <SectionLabel n={2} name="beams-background" />
       <BeamsBackground />
 
-      {/* 3. shadcnblocks feature108 — tabs con feature panels */}
-      <SectionLabel n={3} name="shadcnblocks-com-feature108" />
-      <Feature108 tabs={feature108Tabs} />
+      {/* Light bands — alterna background/muted con padding y eyebrow consistentes */}
+      <div className="bg-background">
+        <Feature108 tabs={feature108Tabs} />
+      </div>
 
-      {/* 4. logo-cloud-2 — grid de logos de marcas */}
-      <SectionLabel n={4} name="logo-cloud-2" />
-      <section className="py-24">
-        <div className="mx-auto max-w-3xl px-4">
-          <h2 className="mb-6 text-center text-lg font-medium tracking-tight text-muted-foreground md:text-2xl">
+      <section className="bg-muted py-24 md:py-32">
+        <div className="container mx-auto max-w-3xl px-6">
+          <h2 className="mb-10 text-center text-3xl font-semibold tracking-tight md:text-4xl">
             Companies we{' '}
-            <span className="font-semibold text-primary">collaborate</span> with.
+            <span className="text-primary">collaborate</span> with.
           </h2>
           <LogoCloud />
         </div>
       </section>
 
-      {/* 5. testimonials-columns-1 — 3 columnas scroll vertical */}
-      <SectionLabel n={5} name="testimonials-columns-1" />
       <Testimonials />
 
-      {/* 6. cta-4 — CTA con bullets */}
-      <SectionLabel n={6} name="cta-4" />
-      <Cta4 />
+      <div className="bg-muted">
+        <Cta4 />
+      </div>
 
-      {/* 7. faqs-1 — accordion */}
-      <SectionLabel n={7} name="faqs-1" />
-      <section className="py-24">
+      <section className="bg-background py-24 md:py-32">
         <FaqsSection />
       </section>
 
-      {/* 8. roadmap-card — timeline trimestral */}
-      <SectionLabel n={8} name="roadmap-card" />
-      <section className="py-24">
-        <div className="container mx-auto flex justify-center px-4">
+      <section className="bg-muted py-24 md:py-32">
+        <div className="container mx-auto flex justify-center px-6">
           <RoadmapCard items={roadmapItems} />
         </div>
       </section>

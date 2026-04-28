@@ -28,9 +28,11 @@ export function RoadmapCard({
   items,
 }: RoadmapCardProps) {
   return (
-    <Card className="w-full max-w-4xl shadow-xl hover:shadow-lg transiton-all duration-300">
+    <Card className="w-full max-w-4xl shadow-md hover:shadow-lg transition-all duration-300">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle className="text-2xl font-semibold tracking-tight md:text-3xl">
+          {title}
+        </CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>

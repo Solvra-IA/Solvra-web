@@ -82,14 +82,14 @@ const Feature108 = ({
   ],
 }: Feature108Props) => {
   return (
-    <section className="py-32">
-      <div className="container mx-auto">
+    <section className="py-24 md:py-32">
+      <div className="container mx-auto px-6">
         <div className="flex flex-col items-center gap-4 text-center">
           <Badge variant="outline">{badge}</Badge>
-          <h1 className="max-w-2xl text-3xl font-semibold md:text-4xl">
+          <h2 className="max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
             {heading}
-          </h1>
-          <p className="text-muted-foreground">{description}</p>
+          </h2>
+          <p className="max-w-xl text-muted-foreground md:text-lg">{description}</p>
         </div>
         <Tabs defaultValue={tabs[0]?.value} className="mt-8">
           <TabsList className="container flex flex-col items-center justify-center gap-4 sm:flex-row md:gap-10">

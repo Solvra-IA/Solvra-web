@@ -7,10 +7,12 @@ import {
 
 export function FaqsSection() {
 	return (
-		<div className="mx-auto w-full max-w-3xl space-y-7 px-4 pt-16">
-			<div className="space-y-2">
-				<h2 className="text-3xl font-bold md:text-4xl">Frequently Asked Questions</h2>
-				<p className="text-muted-foreground max-w-2xl">
+		<div className="mx-auto w-full max-w-3xl space-y-7 px-6">
+			<div className="space-y-3 text-center">
+				<h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+					Frequently Asked Questions
+				</h2>
+				<p className="text-muted-foreground max-w-2xl mx-auto md:text-lg">
 					Here are some common questions and answers that you might encounter when using Efferd. If
 					you don&apos;t find the answer you&apos;re looking for, feel free to reach out.
 				</p>

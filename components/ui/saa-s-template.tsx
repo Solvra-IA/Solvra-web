@@ -16,7 +16,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const variants = {
       default: "bg-white text-black hover:bg-gray-100",
       secondary: "bg-gray-800 text-white hover:bg-gray-700",
-      ghost: "hover:bg-gray-800/50 text-white",
+      ghost: "hover:bg-white/10 text-white",
       gradient: "bg-gradient-to-b from-white via-white/95 to-white/60 text-black hover:scale-105 active:scale-95",
     };
 
@@ -101,19 +101,19 @@ const Navigation = React.memo(() => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   return (
-    <header className="fixed top-0 w-full z-50 border-b border-gray-800/50 bg-black/80 backdrop-blur-md">
+    <header className="relative w-full border-b border-white/10 bg-neutral-950/80 backdrop-blur-md">
       <nav className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="text-xl font-semibold text-white">Logo</div>
 
           <div className="hidden md:flex items-center justify-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <a href="#getting-started" className="text-sm text-white/60 hover:text-white transition-colors">
+            <a href="#getting-started" className="text-sm text-white/65 hover:text-white transition-colors">
               Getting started
             </a>
-            <a href="#components" className="text-sm text-white/60 hover:text-white transition-colors">
+            <a href="#components" className="text-sm text-white/65 hover:text-white transition-colors">
               Components
             </a>
-            <a href="#documentation" className="text-sm text-white/60 hover:text-white transition-colors">
+            <a href="#documentation" className="text-sm text-white/65 hover:text-white transition-colors">
               Documentation
             </a>
           </div>
@@ -139,30 +139,30 @@ const Navigation = React.memo(() => {
       </nav>
 
       {mobileMenuOpen && (
-        <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-gray-800/50 animate-[slideDown_0.3s_ease-out]">
+        <div className="md:hidden bg-neutral-950/95 backdrop-blur-md border-t border-white/10 animate-[slideDown_0.3s_ease-out]">
           <div className="px-6 py-4 flex flex-col gap-4">
             <a
               href="#getting-started"
-              className="text-sm text-white/60 hover:text-white transition-colors py-2"
+              className="text-sm text-white/65 hover:text-white transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Getting started
             </a>
             <a
               href="#components"
-              className="text-sm text-white/60 hover:text-white transition-colors py-2"
+              className="text-sm text-white/65 hover:text-white transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Components
             </a>
             <a
               href="#documentation"
-              className="text-sm text-white/60 hover:text-white transition-colors py-2"
+              className="text-sm text-white/65 hover:text-white transition-colors py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Documentation
             </a>
-            <div className="flex flex-col gap-2 pt-4 border-t border-gray-800/50">
+            <div className="flex flex-col gap-2 pt-4 border-t border-white/10">
               <Button type="button" variant="ghost" size="sm">
                 Sign in
               </Button>
@@ -189,43 +189,23 @@ const Hero = React.memo(() => {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-        * {
-          font-family: 'Poppins', sans-serif;
-        }
-
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
 
-      <aside className="mb-8 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full border border-gray-700 bg-gray-800/50 backdrop-blur-sm max-w-full">
-        <span className="text-xs text-center whitespace-nowrap" style={{ color: "#9ca3af" }}>
+      <aside className="mb-8 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm max-w-full">
+        <span className="text-xs text-center whitespace-nowrap text-white/60">
           New version of template is out!
         </span>
         <a
           href="#new-version"
-          className="flex items-center gap-1 text-xs hover:text-white transition-all active:scale-95 whitespace-nowrap"
-          style={{ color: "#9ca3af" }}
+          className="flex items-center gap-1 text-xs text-white/60 hover:text-white transition-all active:scale-95 whitespace-nowrap"
           aria-label="Read more about the new version"
         >
           Read more
@@ -246,7 +226,7 @@ const Hero = React.memo(() => {
         Give your big idea <br />the website it deserves
       </h1>
 
-      <p className="text-sm md:text-base text-center max-w-2xl px-6 mb-10" style={{ color: "#9ca3af" }}>
+      <p className="text-sm md:text-base text-center max-w-2xl px-6 mb-10 text-white/60">
         Landing page kit template with React, Shadcn/ui and Tailwind <br />that you can copy/paste into your project.
       </p>
 
@@ -297,7 +277,7 @@ Hero.displayName = "Hero";
 // Main Component
 export default function Component() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="bg-neutral-950 text-white">
       <Navigation />
       <Hero />
     </main>
