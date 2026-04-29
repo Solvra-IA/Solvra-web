@@ -70,7 +70,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contacto" className="py-24 md:py-32 text-white">
+    <section id="contacto" className="scroll-mt-24 py-24 md:py-32 text-white">
       <div className="container mx-auto px-6">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
           <motion.div

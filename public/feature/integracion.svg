@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Integración con tus herramientas actuales">
+  <rect width="600" height="400" fill="transparent"/>
+  <rect x="60" y="60" width="480" height="280" rx="20" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <line x1="192" y1="148" x2="262" y2="186" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="408" y1="148" x2="338" y2="186" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="192" y1="252" x2="262" y2="214" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <line x1="408" y1="252" x2="338" y2="214" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="3 4"/>
+  <circle cx="300" cy="200" r="64" fill="none" stroke="#0052FF" stroke-width="1" stroke-opacity="0.18"/>
+  <circle cx="300" cy="200" r="44" fill="#0052FF"/>
+  <text x="300" y="208" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="700" fill="#ffffff" letter-spacing="-0.02em">S</text>
+  <g>
+    <rect x="120" y="100" width="72" height="48" rx="10" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+    <text x="156" y="129" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#374151">CRM</text>
+  </g>
+  <g>
+    <rect x="408" y="100" width="72" height="48" rx="10" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+    <text x="444" y="129" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#374151">ERP</text>
+  </g>
+  <g>
+    <rect x="120" y="252" width="72" height="48" rx="10" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+    <text x="156" y="281" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#374151">Email</text>
+  </g>
+  <g>
+    <rect x="408" y="252" width="72" height="48" rx="10" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1.5"/>
+    <text x="444" y="281" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="600" fill="#374151">Agenda</text>
+  </g>
+</svg>

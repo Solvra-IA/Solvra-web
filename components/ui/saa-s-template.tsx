@@ -121,6 +121,14 @@ const Hero = React.memo(() => {
           size="lg"
           className="rounded-lg flex items-center justify-center"
           aria-label="Solicitar diagnóstico gratuito"
+          onClick={() => {
+            const el = document.getElementById('contacto');
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              window.location.hash = '#contacto';
+            }
+          }}
         >
           Solicitar diagnóstico
         </Button>

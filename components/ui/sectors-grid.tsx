@@ -39,7 +39,7 @@ const sectors: Sector[] = [
 
 export function SectorsGrid() {
   return (
-    <section id="sectores" className="bg-muted py-24 md:py-32">
+    <section id="segmentos" className="scroll-mt-24 bg-muted py-24 md:py-32">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

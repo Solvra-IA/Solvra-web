@@ -21,7 +21,7 @@ const diferenciadores = [
  */
 export function AboutSplit() {
   return (
-    <section id="nosotros" className="py-24 md:py-32 text-white">
+    <section id="nosotros" className="scroll-mt-24 py-24 md:py-32 text-white">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

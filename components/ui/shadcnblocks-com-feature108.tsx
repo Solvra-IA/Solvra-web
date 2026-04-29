@@ -44,9 +44,8 @@ const Feature108 = ({
         description:
           "Discover new web trends that help you craft sleek, highly functional sites that drive traffic and convert leads into customers.",
         buttonText: "See Plans",
-        imageSrc:
-          "https://shadcnblocks.com/images/block/placeholder-dark-1.svg",
-        imageAlt: "placeholder",
+        imageSrc: "/feature/diagnostico.svg",
+        imageAlt: "Diagnóstico",
       },
     },
     {
@@ -59,9 +58,8 @@ const Feature108 = ({
         description:
           "Use stellar design to easily engage users and strengthen their loyalty. Create a seamless experience that keeps them coming back for more.",
         buttonText: "See Tools",
-        imageSrc:
-          "https://shadcnblocks.com/images/block/placeholder-dark-2.svg",
-        imageAlt: "placeholder",
+        imageSrc: "/feature/automatizacion.svg",
+        imageAlt: "Automatización",
       },
     },
     {
@@ -74,9 +72,8 @@ const Feature108 = ({
         description:
           "Lift your brand with modern tech that grabs attention and drives action. Create a digital experience that stands out from the crowd.",
         buttonText: "See Options",
-        imageSrc:
-          "https://shadcnblocks.com/images/block/placeholder-dark-3.svg",
-        imageAlt: "placeholder",
+        imageSrc: "/feature/integracion.svg",
+        imageAlt: "Integración",
       },
     },
   ],
@@ -120,8 +117,8 @@ const Feature108 = ({
                   <p className="text-muted-foreground lg:text-lg">
                     {tab.content.description}
                   </p>
-                  <Button className="mt-2.5 w-fit gap-2" size="lg">
-                    {tab.content.buttonText}
+                  <Button asChild className="mt-2.5 w-fit gap-2" size="lg">
+                    <a href="#contacto">{tab.content.buttonText}</a>
                   </Button>
                 </div>
                 <img

@@ -2,10 +2,8 @@ import { PlusIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Logo = {
-  src: string;
+  name: string;
   alt: string;
-  width?: number;
-  height?: number;
 };
 
 type LogoCloudProps = React.ComponentProps<"div">;
@@ -24,7 +22,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="relative border-r border-b bg-secondary dark:bg-secondary/30"
         logo={{
-          src: "https://svgl.app/library/nvidia-wordmark-light.svg",
+          name: "NVIDIA",
           alt: "Nvidia Logo",
         }}
       >
@@ -37,7 +35,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="border-b md:border-r"
         logo={{
-          src: "https://svgl.app/library/supabase_wordmark_light.svg",
+          name: "Supabase",
           alt: "Supabase Logo",
         }}
       />
@@ -45,7 +43,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="relative border-r border-b md:bg-secondary dark:md:bg-secondary/30"
         logo={{
-          src: "https://svgl.app/library/github_wordmark_light.svg",
+          name: "GitHub",
           alt: "GitHub Logo",
         }}
       >
@@ -62,7 +60,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="relative border-b bg-secondary md:bg-background dark:bg-secondary/30 md:dark:bg-background"
         logo={{
-          src: "https://svgl.app/library/openai_wordmark_light.svg",
+          name: "OpenAI",
           alt: "OpenAI Logo",
         }}
       />
@@ -70,7 +68,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="relative border-r border-b bg-secondary md:border-b-0 md:bg-background dark:bg-secondary/30 md:dark:bg-background"
         logo={{
-          src: "https://svgl.app/library/turso-wordmark-light.svg",
+          name: "Turso",
           alt: "Turso Logo",
         }}
       >
@@ -83,7 +81,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="border-b bg-background md:border-r md:border-b-0 md:bg-secondary dark:md:bg-secondary/30"
         logo={{
-          src: "https://svgl.app/library/clerk-wordmark-light.svg",
+          name: "Clerk",
           alt: "Clerk Logo",
         }}
       />
@@ -91,7 +89,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="border-r"
         logo={{
-          src: "https://svgl.app/library/claude-ai-wordmark-icon_light.svg",
+          name: "Claude",
           alt: "Claude AI Logo",
         }}
       />
@@ -99,7 +97,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       <LogoCard
         className="bg-secondary dark:bg-secondary/30"
         logo={{
-          src: "https://svgl.app/library/vercel_wordmark.svg",
+          name: "Vercel",
           alt: "Vercel Logo",
         }}
       />
@@ -122,13 +120,12 @@ function LogoCard({ logo, className, children, ...props }: LogoCardProps) {
       )}
       {...props}
     >
-      <img
-        alt={logo.alt}
-        className="pointer-events-none h-4 select-none md:h-5 dark:brightness-0 dark:invert"
-        height={logo.height || "auto"}
-        src={logo.src}
-        width={logo.width || "auto"}
-      />
+      <span
+        aria-label={logo.alt}
+        className="pointer-events-none select-none text-sm font-semibold tracking-[0.18em] text-foreground/80 md:text-base"
+      >
+        {logo.name}
+      </span>
       {children}
     </div>
   );

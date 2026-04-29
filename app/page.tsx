@@ -10,6 +10,7 @@ import { AboutSplit } from '@/components/ui/about-split';
 import { FaqsSection } from '@/components/ui/faqs-1';
 import { ContactSection } from '@/components/ui/contact-section';
 import { SiteFooter } from '@/components/ui/site-footer';
+import { SectorsGrid } from '@/components/ui/sectors-grid';
 
 const feature108Tabs = [
   {
@@ -22,8 +23,8 @@ const feature108Tabs = [
       description:
         'Una sesión sin compromiso para mapear tus procesos y detectar oportunidades concretas. Sin lenguaje técnico, con un plan claro al final.',
       buttonText: 'Solicitar diagnóstico',
-      imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-1.svg',
-      imageAlt: 'Diagnóstico de IA',
+      imageSrc: '/feature/diagnostico.svg',
+      imageAlt: 'Diagnóstico de oportunidades de IA',
     },
   },
   {
@@ -36,8 +37,8 @@ const feature108Tabs = [
       description:
         'Automatizamos respuestas, gestión documental y seguimiento comercial con agentes inteligentes que se integran con tus herramientas actuales.',
       buttonText: 'Ver casos de uso',
-      imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-2.svg',
-      imageAlt: 'Automatización de procesos',
+      imageSrc: '/feature/automatizacion.svg',
+      imageAlt: 'Automatización de procesos repetitivos',
     },
   },
   {
@@ -50,8 +51,8 @@ const feature108Tabs = [
       description:
         'Conectamos la IA con tu CRM, ERP, email y agenda. Solo proponemos cambios cuando una herramienta está bloqueando el resultado.',
       buttonText: 'Ver integraciones',
-      imageSrc: 'https://shadcnblocks.com/images/block/placeholder-dark-3.svg',
-      imageAlt: 'Integraciones',
+      imageSrc: '/feature/integracion.svg',
+      imageAlt: 'Integración con tus herramientas actuales',
     },
   },
 ];
@@ -60,7 +61,7 @@ export default function HomePage() {
   return (
     <div className="bg-background text-foreground">
       <SaasTemplate />
-      <section id="servicios">
+      <section id="servicios" className="scroll-mt-24">
         <Feature108
           badge="Servicios"
           heading="Cuatro servicios que se adaptan a tu negocio"
@@ -68,6 +69,7 @@ export default function HomePage() {
           tabs={feature108Tabs}
         />
       </section>
+      <SectorsGrid />
       <ProcessTimeline />
       <section className="bg-muted py-24 md:py-32">
         <div className="container mx-auto max-w-3xl px-6">
@@ -81,13 +83,11 @@ export default function HomePage() {
       <BeamsBackground intensity="medium">
         <AboutSplit />
       </BeamsBackground>
-      <section id="faq" className="bg-background py-24 md:py-32">
+      <section id="faq" className="scroll-mt-24 bg-background py-24 md:py-32">
         <FaqsSection />
       </section>
       <BeamsBackground intensity="strong">
         <ContactSection />
-      </BeamsBackground>
-      <BeamsBackground intensity="subtle">
         <SiteFooter />
       </BeamsBackground>
     </div>
