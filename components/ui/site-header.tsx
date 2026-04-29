@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/shadcn/button";
 import { cn } from "@/lib/utils";
 
 const navItems = [
-  { label: "Sectores", href: "/#sectores" },
   { label: "Servicios", href: "/#servicios" },
   { label: "Proceso", href: "/#proceso" },
   { label: "Nosotros", href: "/#nosotros" },

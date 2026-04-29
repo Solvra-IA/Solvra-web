@@ -2,7 +2,6 @@ import { Lightbulb, Workflow, Plug } from 'lucide-react';
 
 import SaasTemplate from '@/components/ui/saa-s-template';
 import { BeamsBackground } from '@/components/ui/beams-background';
-import { SectorsGrid } from '@/components/ui/sectors-grid';
 import { Feature108 } from '@/components/ui/shadcnblocks-com-feature108';
 import { ProcessTimeline } from '@/components/ui/process-timeline';
 import { LogoCloud } from '@/components/ui/logo-cloud-2';
@@ -61,7 +60,6 @@ export default function HomePage() {
   return (
     <div className="bg-background text-foreground">
       <SaasTemplate />
-      <SectorsGrid />
       <section id="servicios">
         <Feature108
           badge="Servicios"
@@ -89,7 +87,9 @@ export default function HomePage() {
       <BeamsBackground intensity="strong">
         <ContactSection />
       </BeamsBackground>
-      <SiteFooter />
+      <BeamsBackground intensity="subtle">
+        <SiteFooter />
+      </BeamsBackground>
     </div>
   );
 }
