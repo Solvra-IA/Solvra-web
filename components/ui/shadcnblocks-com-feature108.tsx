@@ -1,6 +1,8 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import { AnimatePresence, motion } from "framer-motion";
 import { Layout, Pointer, Zap } from "lucide-react";
 
 import { Badge } from "@/components/ui/shadcn/badge";
@@ -78,6 +80,10 @@ const Feature108 = ({
     },
   ],
 }: Feature108Props) => {
+  const initial = tabs[0]?.value ?? "";
+  const [active, setActive] = useState<string>(initial);
+  const current = tabs.find((t) => t.value === active) ?? tabs[0];
+
   return (
     <section className="py-24 md:py-32">
       <div className="container mx-auto px-6">
@@ -88,48 +94,63 @@ const Feature108 = ({
           </h2>
           <p className="max-w-xl text-muted-foreground md:text-lg">{description}</p>
         </div>
-        <Tabs defaultValue={tabs[0]?.value} className="mt-8">
+
+        <Tabs value={active} onValueChange={setActive} className="mt-8">
           <TabsList className="container flex flex-col items-center justify-center gap-4 sm:flex-row md:gap-10">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground data-[state=active]:bg-muted data-[state=active]:text-primary"
+                className="flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground transition-colors data-[state=active]:bg-muted data-[state=active]:text-primary"
               >
                 {tab.icon} {tab.label}
               </TabsTrigger>
             ))}
           </TabsList>
-          <div className="mx-auto mt-8 max-w-screen-xl rounded-2xl bg-muted/70 p-6 lg:p-16">
-            {tabs.map((tab) => (
-              <TabsContent
-                key={tab.value}
-                value={tab.value}
-                className="grid place-items-center gap-20 lg:grid-cols-2 lg:gap-10"
+        </Tabs>
+
+        {/* Panel con bleed: overflow-hidden recorta la imagen que se sale por la
+            esquina inferior derecha, creando la sensación de "ventana" sobre un
+            gráfico mayor. AnimatePresence anima la transición entre tabs. */}
+        <div className="relative mx-auto mt-8 max-w-screen-xl overflow-hidden rounded-2xl border border-gray-200/80 bg-muted/70">
+          <AnimatePresence mode="wait" initial={false}>
+            {current ? (
+              <motion.div
+                key={current.value}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="relative grid items-center gap-8 p-6 sm:p-10 lg:grid-cols-2 lg:gap-0 lg:p-0"
               >
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-5 lg:py-16 lg:pl-16 lg:pr-12">
                   <Badge variant="outline" className="w-fit bg-background">
-                    {tab.content.badge}
+                    {current.content.badge}
                   </Badge>
-                  <h3 className="text-3xl font-semibold lg:text-5xl">
-                    {tab.content.title}
+                  <h3 className="text-3xl font-semibold tracking-tight lg:text-5xl">
+                    {current.content.title}
                   </h3>
                   <p className="text-muted-foreground lg:text-lg">
-                    {tab.content.description}
+                    {current.content.description}
                   </p>
                   <Button asChild className="mt-2.5 w-fit gap-2" size="lg">
-                    <a href="#contacto">{tab.content.buttonText}</a>
+                    <a href="#contacto">{current.content.buttonText}</a>
                   </Button>
                 </div>
-                <img
-                  src={tab.content.imageSrc}
-                  alt={tab.content.imageAlt}
-                  className="rounded-xl"
-                />
-              </TabsContent>
-            ))}
-          </div>
-        </Tabs>
+
+                {/* Bleed visual: en desktop la imagen sangra fuera del panel,
+                    cortada por overflow-hidden del contenedor. */}
+                <div className="relative -mb-2 -mr-2 flex items-end justify-end lg:mb-0 lg:mr-0 lg:h-full lg:self-stretch">
+                  <img
+                    src={current.content.imageSrc}
+                    alt={current.content.imageAlt}
+                    className="w-full max-w-md drop-shadow-[0_16px_38px_rgba(15,23,42,0.08)] [filter:drop-shadow(0_28px_54px_rgba(0,82,255,0.12))] lg:absolute lg:bottom-[-16%] lg:right-[-14%] lg:w-[128%] lg:max-w-none"
+                  />
+                </div>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

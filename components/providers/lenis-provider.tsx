@@ -11,11 +11,11 @@ const HEADER_OFFSET = 88;
 function scrollToHash(hash: string, lenis: Lenis | null | undefined) {
   if (!hash) return;
   const target = document.querySelector(hash);
-  if (!target || !lenis) return;
+  if (!(target instanceof HTMLElement) || !lenis) return;
 
   lenis.scrollTo(target, {
     offset: -HEADER_OFFSET,
-    duration: 0.85,
+    duration: 0.55,
   });
 }
 
@@ -99,18 +99,18 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
 
     if (isTouch) {
       return {
-        duration: 0.8,
+        duration: 0.5,
         smoothWheel: true,
         syncTouch: true,
-        wheelMultiplier: 0.9,
-        touchMultiplier: 0.85,
+        wheelMultiplier: 1,
+        touchMultiplier: 1,
       };
     }
 
     return {
-      duration: 0.95,
+      duration: 0.65,
       smoothWheel: true,
-      wheelMultiplier: 0.82,
+      wheelMultiplier: 1,
       touchMultiplier: 1,
     };
   }, [isTouch, reducedMotion]);

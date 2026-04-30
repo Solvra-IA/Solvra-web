@@ -112,9 +112,9 @@ const Hero = React.memo(() => {
       </h1>
 
       <p className="text-sm md:text-base text-center max-w-2xl px-6 mb-10 text-white/60">
-        Consultoría de IA para inmobiliarias, clínicas y servicios profesionales.
+      Soluciones automatizadas para ser mas eficiente y multiplicar tu rentabilidad.
         <br />
-        Diagnóstico, automatización e integración con tus herramientas actuales.
+        Eliminación del trabajo manual e integración con tus herramientas actuales.
       </p>
 
       <div className="flex items-center gap-4 relative z-10 mb-16">
@@ -127,7 +127,7 @@ const Hero = React.memo(() => {
           onClick={() => {
             const el = document.getElementById("contacto");
             if (!el || !lenis) return;
-            lenis.scrollTo(el, { offset: -88, duration: 0.85 });
+            lenis.scrollTo(el, { offset: -88, duration: 0.55 });
             history.replaceState(null, "", "#contacto");
           }}
         >
