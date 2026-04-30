@@ -79,8 +79,11 @@ Optimizado para Vercel.
 - Start: `npm run start`
 - Configurar variables de entorno en el dashboard antes del primer deploy
 
-## Contribución y seguridad
+## Documentación
 
-- Guía de contribución: `CONTRIBUTING.md`
-- Reporte responsable: `SECURITY.md`
-- Código de conducta: `CODE_OF_CONDUCT.md`
+- `ARCHITECTURE.md` — decisiones técnicas y porqués del proyecto
+- `CONTRIBUTING.md` — flujo de trabajo y convenciones
+- `SECURITY.md` — política de reporte responsable
+- `CODE_OF_CONDUCT.md` — código de conducta
+- `claude.md` — guardrails para colaboración con agentes IA
+- `agent_docs/` — tono de marca y estructura de secciones

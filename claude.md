@@ -74,5 +74,7 @@ NEXT_PUBLIC_SITE_URL=
 
 ## Referencias
 
+- `ARCHITECTURE.md`: decisiones técnicas no obvias (Lenis, rate-limit en memoria, sistema visual, pipeline del formulario, etc.). Léelo antes de proponer cambios estructurales.
+- `CONTRIBUTING.md`: flujo de trabajo, convención de commits, guardrails.
 - `agent_docs/copy_and_tone.md`: tono de marca y mensajes clave.
 - `agent_docs/sections.md`: estructura y orden de secciones de la landing.
