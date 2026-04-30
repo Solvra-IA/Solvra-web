@@ -4,6 +4,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { siteConfig } from '@/lib/site-config';
 import { SiteHeader } from '@/components/ui/site-header';
 import { LenisProvider } from '@/components/providers/lenis-provider';
+import { StructuredData } from '@/components/seo/StructuredData';
 import './globals.css';
 
 const inter = Inter({
@@ -49,6 +50,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={inter.variable}>
+      <head>
+        <StructuredData />
+      </head>
       <body className="flex min-h-screen flex-col font-sans">
         <LenisProvider>
           <SiteHeader />

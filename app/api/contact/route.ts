@@ -3,6 +3,7 @@ import { contactSchema } from '@/lib/validations';
 import { getResend } from '@/lib/resend';
 import { ContactEmail } from '@/lib/email-templates';
 import { check as rateLimit, getClientIp } from '@/lib/rate-limit';
+import { getServerEnv } from '@/lib/env';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -46,11 +47,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL;
-  if (!to || !from) {
+  let env;
+  try {
+    env = getServerEnv();
+  } catch {
     return NextResponse.json(
-      { error: 'Configuración de email incompleta' },
+      { error: 'Configuración del servidor incompleta' },
       { status: 500 },
     );
   }
@@ -58,8 +60,8 @@ export async function POST(request: Request) {
   try {
     const resend = getResend();
     const { error } = await resend.emails.send({
-      from,
-      to,
+      from: env.CONTACT_FROM_EMAIL,
+      to: env.CONTACT_TO_EMAIL,
       replyTo: data.email,
       subject: `Nuevo contacto — ${data.name}`,
       react: ContactEmail({ data }),

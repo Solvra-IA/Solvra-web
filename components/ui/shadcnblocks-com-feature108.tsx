@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { AnimatePresence, motion } from "framer-motion";
 import { Layout, Pointer, Zap } from "lucide-react";
@@ -141,10 +142,13 @@ const Feature108 = ({
                 {/* Bleed visual: en desktop la imagen sangra fuera del panel,
                     cortada por overflow-hidden del contenedor. */}
                 <div className="relative -mb-2 -mr-2 flex items-end justify-end lg:mb-0 lg:mr-0 lg:h-full lg:self-stretch">
-                  <img
+                  <Image
                     src={current.content.imageSrc}
                     alt={current.content.imageAlt}
-                    className="w-full max-w-md drop-shadow-[0_16px_38px_rgba(15,23,42,0.08)] [filter:drop-shadow(0_28px_54px_rgba(0,82,255,0.12))] lg:absolute lg:bottom-[-16%] lg:right-[-14%] lg:w-[128%] lg:max-w-none"
+                    width={600}
+                    height={400}
+                    priority={current.value === "tab-1"}
+                    className="h-auto w-full max-w-md drop-shadow-[0_16px_38px_rgba(15,23,42,0.08)] [filter:drop-shadow(0_28px_54px_rgba(0,82,255,0.12))] lg:absolute lg:bottom-[-16%] lg:right-[-14%] lg:w-[128%] lg:max-w-none"
                   />
                 </div>
               </motion.div>
