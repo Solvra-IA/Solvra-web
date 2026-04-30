@@ -11,6 +11,7 @@ import { FaqsSection } from '@/components/ui/faqs-1';
 import { ContactSection } from '@/components/ui/contact-section';
 import { SiteFooter } from '@/components/ui/site-footer';
 import { SectorsGrid } from '@/components/ui/sectors-grid';
+import { FadeIn } from '@/components/ui/scroll-reveal';
 
 const feature108Tabs = [
   {
@@ -60,35 +61,58 @@ const feature108Tabs = [
 export default function HomePage() {
   return (
     <div className="bg-background text-foreground">
-      <SaasTemplate />
-      <section id="servicios" className="scroll-mt-24">
-        <Feature108
-          badge="Servicios"
-          heading="Cuatro servicios que se adaptan a tu negocio"
-          description="Diagnóstico, automatización, integración y acompañamiento. Combínalos según lo que necesites."
-          tabs={feature108Tabs}
-        />
-      </section>
-      <SectorsGrid />
-      <ProcessTimeline />
-      <section className="bg-muted py-24 md:py-32">
-        <div className="container mx-auto max-w-3xl px-6">
-          <h2 className="mb-10 text-center text-3xl font-semibold tracking-tight md:text-4xl">
-            Tecnología que <span className="text-primary">utilizamos</span>
-          </h2>
-          <LogoCloud />
-        </div>
-      </section>
-      <Testimonials />
+      <FadeIn y={12} duration={0.35}>
+        <SaasTemplate />
+      </FadeIn>
+      <FadeIn>
+        <section id="servicios" className="scroll-mt-24 bg-background">
+          <Feature108
+            badge="Servicios"
+            heading="Cuatro servicios que se adaptan a tu negocio"
+            description="Diagnóstico, automatización, integración y acompañamiento. Combínalos según lo que necesites."
+            tabs={feature108Tabs}
+          />
+        </section>
+      </FadeIn>
+      <FadeIn>
+        <SectorsGrid />
+      </FadeIn>
+      <FadeIn>
+        <ProcessTimeline />
+      </FadeIn>
+      <FadeIn>
+        <section className="bg-muted/70 py-20 md:py-24">
+          <div className="container mx-auto max-w-3xl px-6">
+            <h2 className="mb-10 text-center text-3xl font-semibold tracking-tight md:text-4xl">
+              Tecnología que <span className="text-primary">utilizamos</span>
+            </h2>
+            <LogoCloud />
+          </div>
+        </section>
+      </FadeIn>
+      <FadeIn>
+        <Testimonials />
+      </FadeIn>
       <BeamsBackground intensity="medium">
-        <AboutSplit />
+        <FadeIn>
+          <AboutSplit />
+        </FadeIn>
       </BeamsBackground>
-      <section id="faq" className="scroll-mt-24 bg-background py-24 md:py-32">
-        <FaqsSection />
-      </section>
+      <FadeIn>
+        <section
+          id="faq"
+          className="scroll-mt-24 border-y border-border/60 bg-muted/40 py-20 md:py-24"
+        >
+          <FaqsSection />
+        </section>
+      </FadeIn>
       <BeamsBackground intensity="strong">
-        <ContactSection />
-        <SiteFooter />
+        <FadeIn>
+          <ContactSection />
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <SiteFooter />
+        </FadeIn>
       </BeamsBackground>
     </div>
   );

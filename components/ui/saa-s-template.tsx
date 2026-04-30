@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useLenis } from "lenis/react";
 
 // Inline Button Component
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -63,6 +64,8 @@ const ArrowRight = ({ className = "", size = 16 }: { className?: string; size?: 
 
 // Hero Component
 const Hero = React.memo(() => {
+  const lenis = useLenis();
+
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-start px-6 py-20 md:py-24"
@@ -105,7 +108,7 @@ const Hero = React.memo(() => {
           letterSpacing: "-0.05em",
         }}
       >
-        La IA que tu PYME merece, <br />sin complicaciones
+        La IA que tu empresa merece, <br />sin complicaciones
       </h1>
 
       <p className="text-sm md:text-base text-center max-w-2xl px-6 mb-10 text-white/60">
@@ -122,12 +125,10 @@ const Hero = React.memo(() => {
           className="rounded-lg flex items-center justify-center"
           aria-label="Solicitar diagnóstico gratuito"
           onClick={() => {
-            const el = document.getElementById('contacto');
-            if (el) {
-              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-              window.location.hash = '#contacto';
-            }
+            const el = document.getElementById("contacto");
+            if (!el || !lenis) return;
+            lenis.scrollTo(el, { offset: -88, duration: 0.85 });
+            history.replaceState(null, "", "#contacto");
           }}
         >
           Solicitar diagnóstico
