@@ -122,14 +122,12 @@ App Router puro. Una ruta por carpeta. Convenciones de Next 14:
 ```
 components/
 ├── providers/         providers globales (LenisProvider)
-├── ui/                bloques de la landing (uno por archivo)
-│   └── shadcn/        primitives reutilizables (button, card, badge, etc.)
-└── _legacy/           implementación anterior, excluida del build
+├── seo/               StructuredData (JSON-LD) y otros metadatos
+└── ui/                bloques de la landing (uno por archivo)
+    └── shadcn/        primitives reutilizables (button, card, badge, etc.)
 ```
 
 **Regla:** todo bloque visible en la home vive en `components/ui/`. Los primitives (sin lógica de negocio) viven en `components/ui/shadcn/`. Los providers React puros van en `components/providers/`.
-
-`components/_legacy/` está **excluido** vía `tsconfig.json` (`exclude`) y `.eslintrc.json` (`ignorePatterns`). No editar ni importar nada de ahí. Se mantiene como referencia histórica del rediseño anterior; cuando deje de ser útil, borrarlo.
 
 ### `lib/`
 

@@ -16,7 +16,7 @@ type Status = "idle" | "loading" | "success" | "error";
 const bullets = [
   "Respuesta en menos de 24 horas laborables",
   "Sin comerciales insistentes",
-  "En español, claro y directo",
+  "Servicio claro y directo",
 ];
 
 export function ContactSection() {
@@ -121,7 +121,14 @@ export function ContactSection() {
             <Card className="shadow-2xl">
               <CardContent className="p-6 sm:p-8">
                 {status === "success" ? (
-                  <div className="py-6 text-center">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="py-6 text-center"
+                    role="status"
+                    aria-live="polite"
+                  >
                     <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary">
                       <Check className="h-6 w-6" strokeWidth={2.5} />
                     </div>
@@ -129,9 +136,18 @@ export function ContactSection() {
                       ¡Mensaje enviado!
                     </p>
                     <p className="mt-2 text-muted-foreground">
-                      Te contestamos en menos de 24 horas laborables.
+                      Te contestamos en menos de 24 horas laborables al email
+                      que nos has indicado.
                     </p>
-                  </div>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setStatus("idle")}
+                      className="mt-6"
+                    >
+                      Enviar otro mensaje
+                    </Button>
+                  </motion.div>
                 ) : (
                   <form onSubmit={onSubmit} className="space-y-5" noValidate>
                     <div className="grid gap-4 sm:grid-cols-2">

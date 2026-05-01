@@ -44,7 +44,6 @@ Este repo contiene solo la web pública de marketing. No añadir auth, base de d
 ## Guardrails
 
 - No introducir librerías de UI nuevas (ya hay shadcn primitives, Radix, lucide, framer-motion). Si crees que falta una, abre issue antes.
-- No tocar `components/_legacy/` (excluido del build, conservado por referencia).
 - No omitir el rate-limit, honeypot ni la validación Zod del endpoint `/api/contact`. Forman un sistema; quitar uno deja el formulario expuesto.
 - Componentes nuevos en `components/ui/` siguiendo el patrón shadcn ya presente: tokens semánticos, primitives en `components/ui/shadcn/`, framer-motion para animaciones.
 - Tests automáticos solo si se piden explícitamente — el repo no tiene framework de tests configurado.

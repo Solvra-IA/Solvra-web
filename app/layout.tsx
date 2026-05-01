@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { siteConfig } from '@/lib/site-config';
+import { Analytics } from '@vercel/analytics/next';
 import { SiteHeader } from '@/components/ui/site-header';
 import { LenisProvider } from '@/components/providers/lenis-provider';
 import { StructuredData } from '@/components/seo/StructuredData';
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SiteHeader />
           <main className="flex-1">{children}</main>
         </LenisProvider>
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>

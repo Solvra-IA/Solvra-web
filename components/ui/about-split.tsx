@@ -6,10 +6,10 @@ import { Check } from "lucide-react";
 import { Badge } from "@/components/ui/shadcn/badge";
 
 const diferenciadores = [
-  "Sin humo ni buzzwords",
+  "Sin complicaciones",
   "Precios cerrados, sin sorpresas",
   "Cumplimiento RGPD de serie",
-  "Soporte en español",
+  "Soporte cercano",
   "Integración con tus herramientas",
   "Acompañamiento real",
 ];

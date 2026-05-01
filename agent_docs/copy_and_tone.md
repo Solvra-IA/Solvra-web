@@ -18,7 +18,7 @@ Consultora de IA para PYMEs españolas. Joint venture con la gestoría Solfico S
 1. IA aplicada a negocios reales, no demos.
 2. Precios cerrados, sin sorpresas.
 3. Cumplimiento RGPD de serie.
-4. Soporte en español, con contexto de PYME española.
+4. Soporte claro y directo, con contexto de PYME española.
 5. Integración con herramientas existentes, no reemplazo.
 
 ## Segmentos prioritarios
