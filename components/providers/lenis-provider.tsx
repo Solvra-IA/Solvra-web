@@ -88,31 +88,29 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const lenisOptions = useMemo(() => {
+    // reduced-motion: desactiva el smooth-scroll por completo, deja al
+    // navegador hacer scroll nativo instantáneo.
     if (reducedMotion) {
-      return {
-        duration: 0,
-        smoothWheel: false,
-        wheelMultiplier: 1,
-        touchMultiplier: 1,
-      };
+      return { smoothWheel: false, syncTouch: false, lerp: 1 } as const;
     }
 
+    // Móvil/touch: scroll nativo. Lenis sobre touch suele empeorar la
+    // sensación porque interfiere con el momentum nativo de iOS/Android.
     if (isTouch) {
-      return {
-        duration: 0.5,
-        smoothWheel: true,
-        syncTouch: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 1,
-      };
+      return { smoothWheel: false, syncTouch: false, lerp: 1 } as const;
     }
 
+    // Desktop: lerp en lugar de duration.
+    // - duration crea una animación temporal por cada wheel event → latencia fija
+    //   visible incluso en valores bajos (0.65s).
+    // - lerp 0.1 interpola un 10% del delta cada frame → ~22 frames hasta 90%
+    //   del target, pero con sensación inmediata de respuesta en el primer frame.
     return {
-      duration: 0.65,
       smoothWheel: true,
+      lerp: 0.1,
       wheelMultiplier: 1,
       touchMultiplier: 1,
-    };
+    } as const;
   }, [isTouch, reducedMotion]);
 
   return (

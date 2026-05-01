@@ -9,6 +9,12 @@ type Testimonial = {
   role: string;
 };
 
+/**
+ * Columna con scroll vertical infinito. La animación es CSS (keyframe en
+ * globals.css) en vez de framer-motion, lo que la pone en el compositor
+ * thread y libera el main thread. Browsers modernos pausan la animación
+ * cuando la sección está fuera del viewport (con content-visibility).
+ */
 export const TestimonialsColumn = (props: {
   className?: string;
   testimonials: Testimonial[];
@@ -16,17 +22,11 @@ export const TestimonialsColumn = (props: {
 }) => {
   return (
     <div className={props.className}>
-      <motion.div
-        animate={{
-          translateY: "-50%",
+      <div
+        className="flex flex-col gap-6 pb-6 bg-background will-change-transform"
+        style={{
+          animation: `column-scroll-up ${props.duration ?? 10}s linear infinite`,
         }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-6 pb-6 bg-background"
       >
         {[
           ...new Array(2).fill(0).map((_, index) => (
@@ -43,6 +43,8 @@ export const TestimonialsColumn = (props: {
                       height={40}
                       src={image}
                       alt={name}
+                      loading="lazy"
+                      decoding="async"
                       className="h-10 w-10 rounded-full"
                     />
                     <div className="flex flex-col">
@@ -59,7 +61,7 @@ export const TestimonialsColumn = (props: {
             </React.Fragment>
           )),
         ]}
-      </motion.div>
+      </div>
     </div>
   );
 };
