@@ -111,9 +111,9 @@ export function ContactSection() {
             >
               Contacto
             </Badge>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+            <h2 className="mt-4 text-3xl font-[510] tracking-[-0.012em] md:text-4xl lg:text-5xl">
               Reservar{" "}
-              <span className="text-primary">diagnóstico gratuito</span>
+              <span className="text-aether-blue">diagnóstico gratuito</span>
             </h2>
             <p className="mt-5 text-white/75 md:text-lg">
               Cuéntanos en qué proceso pierdes horas o dónde falla el control.
@@ -157,9 +157,9 @@ export function ContactSection() {
                 >
                   <span
                     aria-hidden
-                    className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground"
+                    className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-deep-slate text-aether-blue ring-1 ring-charcoal-grey"
                   >
-                    <Check className="h-3 w-3" strokeWidth={3} />
+                    <Check className="h-3 w-3" strokeWidth={2.5} />
                   </span>
                   <span>{b}</span>
                 </li>
@@ -185,7 +185,7 @@ export function ContactSection() {
                     role="status"
                     aria-live="polite"
                   >
-                    <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary">
+                    <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-neon-lime/10 text-neon-lime ring-1 ring-neon-lime/30">
                       <Check className="h-6 w-6" strokeWidth={2.5} />
                     </div>
                     <p className="mt-5 text-2xl font-semibold tracking-tight">
@@ -226,7 +226,7 @@ export function ContactSection() {
                           aria-describedby={fieldErrors.name ? "name-error" : undefined}
                         />
                         {fieldErrors.name ? (
-                          <p id="name-error" role="alert" className="mt-1 text-xs text-red-600">
+                          <p id="name-error" role="alert" className="mt-1 text-xs text-warning-red">
                             {fieldErrors.name}
                           </p>
                         ) : null}
@@ -248,7 +248,7 @@ export function ContactSection() {
                           aria-describedby={fieldErrors.email ? "email-error" : undefined}
                         />
                         {fieldErrors.email ? (
-                          <p id="email-error" role="alert" className="mt-1 text-xs text-red-600">
+                          <p id="email-error" role="alert" className="mt-1 text-xs text-warning-red">
                             {fieldErrors.email}
                           </p>
                         ) : null}
@@ -268,7 +268,7 @@ export function ContactSection() {
                           aria-describedby={fieldErrors.company ? "company-error" : undefined}
                         />
                         {fieldErrors.company ? (
-                          <p id="company-error" role="alert" className="mt-1 text-xs text-red-600">
+                          <p id="company-error" role="alert" className="mt-1 text-xs text-warning-red">
                             {fieldErrors.company}
                           </p>
                         ) : null}
@@ -289,7 +289,7 @@ export function ContactSection() {
                           aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
                         />
                         {fieldErrors.phone ? (
-                          <p id="phone-error" role="alert" className="mt-1 text-xs text-red-600">
+                          <p id="phone-error" role="alert" className="mt-1 text-xs text-warning-red">
                             {fieldErrors.phone}
                           </p>
                         ) : null}
@@ -311,7 +311,7 @@ export function ContactSection() {
                         aria-describedby={fieldErrors.message ? "message-error" : undefined}
                       />
                       {fieldErrors.message ? (
-                        <p id="message-error" role="alert" className="mt-1 text-xs text-red-600">
+                        <p id="message-error" role="alert" className="mt-1 text-xs text-warning-red">
                           {fieldErrors.message}
                         </p>
                       ) : null}
@@ -330,7 +330,7 @@ export function ContactSection() {
 
                     {status === "error" && errorMsg ? (
                       <div className="space-y-3">
-                        <p className="text-sm text-red-600" role="alert">
+                        <p className="text-sm text-warning-red" role="alert">
                           {errorMsg}
                         </p>
                         <div className="rounded-lg border border-border bg-muted/40 p-3 text-sm">
