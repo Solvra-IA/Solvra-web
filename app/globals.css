@@ -3,13 +3,37 @@
 @tailwind utilities;
 
 :root {
-  --background: #fafafa;
-  --foreground: #0f172a;
+  color-scheme: dark;
+
+  /* Tokens semánticos (Linear Midnight Command Center) */
+  --background: #08090a;
+  --foreground: #f7f8f8;
+
+  /* Paleta Linear */
+  --color-pitch-black: #08090a;
+  --color-graphite: #0f1011;
+  --color-deep-slate: #161718;
+  --color-charcoal-grey: #23252a;
+  --color-muted-ash: #323334;
+  --color-gunmetal: #383b3f;
+  --color-porcelain: #f7f8f8;
+  --color-light-steel: #d0d6e0;
+  --color-storm-cloud: #8a8f98;
+  --color-fog-grey: #62666d;
+  --color-alabaster: #e5e5e6;
+  --color-neon-lime: #e4f222;
+  --color-aether-blue: #5e6ad2;
+
+  /* Layout */
+  --section-gap: 24px;
+  --card-padding: 12px;
+  --element-gap: 8px;
 }
 
 html {
   scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
+  background: var(--background);
 }
 
 body {
@@ -18,12 +42,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  font-feature-settings: 'cv01', 'ss03';
+  letter-spacing: -0.0093em;
 }
 
 ::selection {
-  background: rgba(0, 82, 255, 0.2);
-  color: #0f172a;
+  background: rgba(228, 242, 34, 0.28);
+  color: #08090a;
 }
 
 @layer utilities {
@@ -34,28 +59,38 @@ body {
     text-wrap: pretty;
   }
   .hairline-b {
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--color-charcoal-grey);
   }
   .hairline-t {
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--color-charcoal-grey);
   }
 
-  /* Highlight gradient para palabras clave */
+  /* Gradiente de marca actualizado: porcelain → light-steel (sin azul) */
   .text-gradient-brand {
-    background-image: linear-gradient(to right, #0052ff, #4d7cff);
+    background-image: linear-gradient(to bottom, #f7f8f8 0%, #f7f8f8 60%, rgba(247, 248, 248, 0.65) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* Patrón de puntos para secciones invertidas */
+  /* Acento lima sólido (palabras clave puntuales) */
+  .text-accent-lime {
+    color: var(--color-neon-lime);
+  }
+
+  /* Patrones de puntos para profundidad sobre canvas oscuro */
   .bg-dots-light {
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(247, 248, 248, 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
   }
   .bg-dots-dark {
-    background-image: radial-gradient(circle, rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(247, 248, 248, 0.05) 1px, transparent 1px);
     background-size: 24px 24px;
+  }
+
+  /* Hairline 1px usando shadow Linear */
+  .ring-hairline {
+    box-shadow: var(--color-charcoal-grey) 0px 0px 0px 1px inset;
   }
 
   /* Scroll-driven animations nativas */
