@@ -14,7 +14,7 @@ Este repositorio es **solo la web de marketing**: landing, propuesta de valor y 
 - TypeScript (strict, `noUncheckedIndexedAccess`)
 - Tailwind CSS con tokens semánticos (`background`, `foreground`, `muted`, `card`, `primary`, `border`, …)
 - shadcn/ui style: primitives Radix + `class-variance-authority`, iconos `lucide-react`
-- `framer-motion` / `motion` para animaciones de entrada y scroll
+- `motion` (`motion/react`; API compatible con la anterior `framer-motion`) para animaciones de entrada y scroll
 - Resend para el formulario de contacto
 - Zod para validación cliente y servidor
 - npm como package manager
@@ -30,7 +30,7 @@ Este repositorio es **solo la web de marketing**: landing, propuesta de valor y 
 - `components/ui/shadcn/`: primitives reutilizables (`button`, `card`, `badge`, `input`, `textarea`, `accordion`)
 - `lib/`: utilidades, schemas Zod, cliente Resend, plantillas de email, rate-limit, `site-config`
 - `public/`: assets estáticos (logos, iconos, `public/feature/*.svg` para los tabs de Servicios)
-- `agent_docs/`: contexto de marca (`copy_and_tone.md`, `sections.md`)
+- `agent_docs/`: contexto de marca (`copy_and_tone.md`, `sections.md`) y guía operativa del agente (`agent_guide.md`)
 
 ## Flujo local
 
@@ -64,15 +64,17 @@ NEXT_PUBLIC_SITE_URL=
 
 - No usar `any` en TypeScript (regla ESLint activa).
 - No introducir BD, auth ni rutas protegidas sin requerimiento explícito.
-- No añadir nuevas librerías de UI (más allá de las ya instaladas: Radix, lucide, framer-motion, motion) sin pedirlo.
+- No añadir nuevas librerías de UI (más allá de las ya instaladas: Radix, lucide, motion) sin pedirlo.
 - No generar tests automáticos salvo que se pidan.
 - No exponer secretos en código o commits; siempre `process.env.*`.
 - Mantener honeypot, validación Zod y rate-limit (`lib/rate-limit.ts`) en `/api/contact` al editar el formulario.
-- Para componentes nuevos en la home, seguir el patrón de los bloques existentes en `components/ui/` (tokens semánticos, primitives shadcn, framer-motion para animaciones).
+- Para componentes nuevos en la home, seguir el patrón de los bloques existentes en `components/ui/` (tokens semánticos, primitives shadcn, `motion/react` para animaciones).
 
 ## Referencias
 
 - `ARCHITECTURE.md`: decisiones técnicas no obvias (Lenis, rate-limit en memoria, sistema visual, pipeline del formulario, etc.). Léelo antes de proponer cambios estructurales.
 - `CONTRIBUTING.md`: flujo de trabajo, convención de commits, guardrails.
+- `agent_docs/agent_guide.md`: guía completa para el agente (protocolo, trust & security, checklists).
+- `agent_docs/prompt_agente.md`: prompt listo para pegar al iniciar un agente o chat.
 - `agent_docs/copy_and_tone.md`: tono de marca y mensajes clave.
 - `agent_docs/sections.md`: estructura y orden de secciones de la landing.

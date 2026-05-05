@@ -6,9 +6,13 @@
  * para el spam casual y para abuso desde un solo origen sostenido (esa función
  * tiende a reutilizar el mismo aislado mientras esté caliente).
  *
- * Para protección real ante ataques distribuidos, sustituir por Upstash Redis
- * o Vercel KV. La interfaz `check()` está pensada para que ese cambio sea
- * mecánico — devolver { ok, retryAfter }.
+ * TODO(infra): migrar a Upstash Redis (Vercel Marketplace) cuando el tráfico
+ * o evidencia real de abuso lo justifique. Decisión 2026-05-02: diferido —
+ * el vector "abuso distribuido contra formulario de contacto" no es realista
+ * a la escala actual (landing PYME, baja tracción). El honeypot + Zod + este
+ * limiter por aislado bastan para spam casual. Re-evaluar cuando aparezcan
+ * 429s legítimos en logs o el tráfico lo amerite. La interfaz `check()` está
+ * diseñada para que el swap sea mecánico (devolver { ok, retryAfter, remaining }).
  */
 
 type Hit = {

@@ -4,10 +4,16 @@ import { motion } from "motion/react";
 
 type Testimonial = {
   text: string;
-  image: string;
   name: string;
   role: string;
 };
+
+function getInitials(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts.length > 1 ? parts[parts.length - 1]?.[0] ?? "" : "";
+  return (first + last).toUpperCase();
+}
 
 /**
  * Columna con scroll vertical infinito. La animación es CSS (keyframe en
@@ -31,22 +37,19 @@ export const TestimonialsColumn = (props: {
         {[
           ...new Array(2).fill(0).map((_, index) => (
             <React.Fragment key={index}>
-              {props.testimonials.map(({ text, image, name, role }, i) => (
+              {props.testimonials.map(({ text, name, role }, i) => (
                 <div
                   className="p-10 rounded-3xl border shadow-lg shadow-primary/10 max-w-xs w-full"
                   key={i}
                 >
                   <div>{text}</div>
-                  <div className="flex items-center gap-2 mt-5">
-                    <img
-                      width={40}
-                      height={40}
-                      src={image}
-                      alt={name}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-10 w-10 rounded-full"
-                    />
+                  <div className="flex items-center gap-3 mt-5">
+                    <div
+                      aria-hidden
+                      className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary/10 text-sm font-semibold text-primary"
+                    >
+                      {getInitials(name)}
+                    </div>
                     <div className="flex flex-col">
                       <div className="font-medium tracking-tight leading-5">
                         {name}
@@ -69,55 +72,46 @@ export const TestimonialsColumn = (props: {
 const testimonials: Testimonial[] = [
   {
     text: "Pasamos de tardar tres días en cualificar leads a hacerlo en minutos. El equipo se centra en cerrar visitas, no en filtrar emails.",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
     name: "Marta Ribas",
     role: "Inmobiliaria, Sant Cugat",
   },
   {
     text: "Implementamos los recordatorios automáticos de citas y bajamos las cancelaciones un 40% en dos meses. Sin tocar nuestro software actual.",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
     name: "David Romero",
     role: "Clínica dental, Tarragona",
   },
   {
     text: "Llevábamos años posponiendo la digitalización. Solvra hizo el diagnóstico, marcó prioridades y arrancamos sin caos.",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
     name: "Núria Vidal",
     role: "Gestoría, Barcelona",
   },
   {
     text: "Lo que más valoramos es que hablan claro. Te dicen lo que se puede hacer y lo que no, sin venderte humo.",
-    image: "https://randomuser.me/api/portraits/men/22.jpg",
     name: "Jordi Martínez",
     role: "Despacho de abogados, Sabadell",
   },
   {
     text: "El asistente responde fuera de horario en castellano y catalán. Nuestros pacientes se sorprenden por la rapidez.",
-    image: "https://randomuser.me/api/portraits/women/12.jpg",
     name: "Elena Serrano",
     role: "Clínica de fisioterapia, Vilafranca",
   },
   {
     text: "Precio cerrado desde el inicio. Sin facturas sorpresa ni horas extra. Cumplieron en tiempo y forma.",
-    image: "https://randomuser.me/api/portraits/men/51.jpg",
     name: "Pablo Ruiz",
     role: "Inmobiliaria, Castelldefels",
   },
   {
     text: "El acompañamiento posterior marca la diferencia. No nos dejaron solos cuando se complicó la integración.",
-    image: "https://randomuser.me/api/portraits/women/28.jpg",
     name: "Cristina Aliaga",
     role: "Consultoría empresarial, Reus",
   },
   {
     text: "Nos preocupaba el tema RGPD. Pasaron por todos los compliance que necesitábamos sin que tuviéramos que pelearlo.",
-    image: "https://randomuser.me/api/portraits/men/76.jpg",
     name: "Manel Casas",
     role: "Asesoría fiscal, Sitges",
   },
   {
     text: "Antes nuestro equipo gastaba media jornada redactando descripciones de inmuebles. Ahora ese tiempo se va a visitar pisos.",
-    image: "https://randomuser.me/api/portraits/women/89.jpg",
     name: "Sandra Beltrán",
     role: "Inmobiliaria, Vilanova i la Geltrú",
   },

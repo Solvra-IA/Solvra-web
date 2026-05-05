@@ -29,14 +29,29 @@ export function SiteHeader() {
       return;
     }
 
+    let ticking = false;
     function onScroll() {
-      setScrolled(window.scrollY > window.innerHeight * 0.8);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > window.innerHeight * 0.8);
+        ticking = false;
+      });
     }
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMobileOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
 
   return (
     <header
@@ -82,6 +97,8 @@ export function SiteHeader() {
           <button
             type="button"
             aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
             className={cn(
               "md:hidden transition-colors duration-300",
               scrolled ? "text-foreground" : "text-white",
@@ -98,7 +115,7 @@ export function SiteHeader() {
       </nav>
 
       {mobileOpen ? (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
+        <div id="mobile-menu" className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
           <div className="container mx-auto flex flex-col gap-1 px-6 py-4">
             {navItems.map((item) => (
               <Link

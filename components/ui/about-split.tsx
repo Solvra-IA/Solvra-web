@@ -1,17 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Check } from "lucide-react";
 
 import { Badge } from "@/components/ui/shadcn/badge";
 
 const diferenciadores = [
-  "Sin complicaciones",
-  "Precios cerrados, sin sorpresas",
-  "Cumplimiento RGPD de serie",
-  "Soporte cercano",
-  "Integración con tus herramientas",
-  "Acompañamiento real",
+  "Lenguaje de dirección: tiempo, riesgo y control",
+  "Propuestas cerradas: alcance, plazo y precio",
+  "Cumplimiento RGPD y trazabilidad por defecto",
+  "Integración con vuestro stack antes que “rip and replace”",
+  "Acompañamiento con objetivos, no soporte anónimo",
+  "Joint venture con gestoría Solfico: contexto fiscal y PYME real",
 ];
 
 /**
@@ -35,22 +35,24 @@ export function AboutSplit() {
               variant="outline"
               className="border-white/20 bg-white/5 text-white/85"
             >
-              Sobre nosotros
+              Sobre Solvra
             </Badge>
             <h2 className="mt-5 text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
-              Tecnología con{" "}
-              <span className="text-primary">contexto</span> de negocio
+              IA con{" "}
+              <span className="text-primary">literacia de negocio</span>{" "}
+              española
             </h2>
             <p className="mt-7 text-base leading-relaxed text-white/75 md:text-lg">
-              Solvra nace como joint venture con{" "}
-              <strong className="font-semibold text-white">Solfico S.L.</strong>
-              , una gestoría con décadas de experiencia acompañando a PYMEs
-              desde Vilanova i la Geltrú.
+              Solvra es consultoría aplicada: traducimos capacidades de IA a
+              decisiones que entiende una mesa de dirección—qué automatizar, qué
+              supervisar y qué no conviene tocar.
             </p>
             <p className="mt-4 text-base leading-relaxed text-white/75 md:text-lg">
-              Combinamos conocimiento técnico de IA con comprensión real de
-              cómo funciona una pequeña o mediana empresa española: su
-              fiscalidad, sus ritmos, sus obligaciones y sus límites.
+              Nacimos en joint venture con{" "}
+              <strong className="font-semibold text-white">Solfico S.L.</strong>
+              , gestoría con décadas acompañando PYMEs desde Vilanova i la Geltrú.
+              Eso nos obliga a un estándar alto en rigor, confidencialidad y
+              explicabilidad hacia cliente final.
             </p>
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Building2, Stethoscope, Briefcase } from "lucide-react";
 
 import { Badge } from "@/components/ui/shadcn/badge";
@@ -18,21 +18,21 @@ const sectors: Sector[] = [
     badge: "Inmuebles",
     title: "Inmobiliarias",
     description:
-      "Cualificación automática de leads, redacción de descripciones de inmuebles, respuestas 24/7 a consultas frecuentes y seguimiento postvisita.",
+      "Cualificación de leads, redacción asistida de fichas, respuestas 24/7 a consultas repetitivas y seguimiento post-visita con menos intercambios perdidos.",
     icon: <Building2 className="h-5 w-5" />,
   },
   {
     badge: "Salud",
     title: "Clínicas",
     description:
-      "Recordatorios inteligentes, gestión de citas, respuestas a pacientes fuera de horario y documentación asistida sin tocar datos sensibles sin control.",
+      "Recordatorios, reprogramación asistida y mensajes fuera de horario sin saturar recepción. Siempre con controles explícitos sobre datos clínicos y consentimiento.",
     icon: <Stethoscope className="h-5 w-5" />,
   },
   {
     badge: "B2B",
     title: "Servicios profesionales",
     description:
-      "Gestorías, despachos y consultoras: redacción asistida, resumen de documentación, clasificación automática y soporte al cliente.",
+      "Gestorías y despachos: clasificación de documentos entrantes, borradores asistidos, resúmenes para revisión humana y trazabilidad para auditoría interna.",
     icon: <Briefcase className="h-5 w-5" />,
   },
 ];
@@ -50,11 +50,12 @@ export function SectorsGrid() {
         >
           <Badge variant="outline">Sectores</Badge>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-            Sectores donde ya generamos{" "}
-            <span className="text-primary">valor</span>
+            Dónde ya aportamos{" "}
+            <span className="text-primary">orden operativo</span>
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
-            No somos generalistas. Nos centramos donde tenemos experiencia real.
+            Nos centramos en segmentos donde conocemos normativa y ritmo de trabajo.
+            Si tu caso es límite, lo decimos en la primera conversación.
           </p>
         </motion.div>
 

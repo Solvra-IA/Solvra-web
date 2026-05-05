@@ -65,7 +65,7 @@ Todo el resto de decisiones técnicas se derivan de ese objetivo.
 
 ### 5. Animaciones con dos motores complementarios
 
-**Qué:** `framer-motion` para transiciones controladas (AnimatePresence en tabs, fade-in al entrar en viewport con `<FadeIn>`) y CSS `animation-timeline: view()` para reveals declarativos (`.reveal`).
+**Qué:** `motion` (`motion/react`; reexporta la misma API que históricamente se importaba de `framer-motion`) para transiciones controladas (AnimatePresence en tabs, fade-in al entrar en viewport con `<FadeIn>`) y CSS `animation-timeline: view()` para reveals declarativos (`.reveal`).
 
 **Por qué:**
 - CSS scroll-driven es nativo, gratis, ejecuta en compositor: cero coste de runtime.

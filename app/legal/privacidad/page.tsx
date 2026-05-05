@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Política de privacidad',
@@ -29,6 +30,11 @@ export default function PrivacidadPage() {
           Para responder a tu consulta. No los usamos para fines comerciales distintos ni
           los cedemos a terceros salvo obligación legal.
         </p>
+        <h2 className="mt-6 text-xl font-semibold text-foreground">Base jurídica</h2>
+        <p>
+          Tratamos tus datos por consentimiento explícito al enviar el formulario y por
+          interés legítimo para responder tu solicitud.
+        </p>
         <h2 className="mt-6 text-xl font-semibold text-foreground">Conservación</h2>
         <p>
           Conservamos los datos mientras exista una relación o consulta activa y, después,
@@ -37,7 +43,18 @@ export default function PrivacidadPage() {
         <h2 className="mt-6 text-xl font-semibold text-foreground">Tus derechos</h2>
         <p>
           Puedes ejercer los derechos de acceso, rectificación, supresión, oposición,
-          portabilidad y limitación del tratamiento escribiéndonos al email de contacto.
+          portabilidad y limitación del tratamiento escribiéndonos al email de contacto:{" "}
+          <a
+            href={`mailto:${siteConfig.contactEmail}`}
+            className="font-medium text-primary underline-offset-4 hover:underline"
+          >
+            {siteConfig.contactEmail}
+          </a>
+        </p>
+        <h2 className="mt-6 text-xl font-semibold text-foreground">Proveedor de email</h2>
+        <p>
+          Para enviar notificaciones del formulario usamos Resend como encargado de
+          tratamiento. No usamos los datos enviados para publicidad automatizada.
         </p>
       </div>
     </section>

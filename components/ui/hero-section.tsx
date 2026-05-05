@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import { track } from "@vercel/analytics";
 import { useLenis } from "lenis/react";
 
 // Inline Button Component
@@ -99,7 +101,7 @@ const Hero = React.memo(() => {
       </aside>
 
       <h1
-        className="text-4xl md:text-5xl lg:text-6xl font-medium text-center max-w-3xl px-6 leading-tight mb-6"
+        className="text-4xl md:text-5xl lg:text-6xl font-medium text-center max-w-3xl px-6 leading-tight mb-6 [text-wrap:balance]"
         style={{
           background: "linear-gradient(to bottom, #ffffff, #ffffff, rgba(255, 255, 255, 0.6))",
           WebkitBackgroundClip: "text",
@@ -108,11 +110,11 @@ const Hero = React.memo(() => {
           letterSpacing: "-0.05em",
         }}
       >
-        La IA que tu empresa merece, <br />sin complicaciones
+        La IA que tu empresa merece, sin complicaciones
       </h1>
 
       <p className="text-sm md:text-base text-center max-w-2xl px-6 mb-10 text-white/60">
-      Soluciones automatizadas para ser mas eficiente y multiplicar tu rentabilidad.
+      Soluciones automatizadas para ser más eficiente y multiplicar tu rentabilidad.
         <br />
         Eliminación del trabajo manual e integración con tus herramientas actuales.
       </p>
@@ -125,6 +127,7 @@ const Hero = React.memo(() => {
           className="rounded-lg flex items-center justify-center"
           aria-label="Solicitar diagnóstico gratuito"
           onClick={() => {
+            track("cta_click", { location: "hero" });
             const el = document.getElementById("contacto");
             if (!el || !lenis) return;
             lenis.scrollTo(el, { offset: -88, duration: 0.55 });
@@ -144,20 +147,26 @@ const Hero = React.memo(() => {
           }}
           aria-hidden="true"
         >
-          <img
-            src="https://i.postimg.cc/Ss6yShGy/glows.png"
+          <Image
+            src="/hero/glows.png"
             alt=""
+            width={1280}
+            height={720}
+            priority
+            sizes="(min-width: 1024px) 1024px, 90vw"
             className="w-full h-auto"
-            loading="eager"
           />
         </div>
 
         <div className="relative z-10">
-          <img
-            src="https://i.postimg.cc/SKcdVTr1/Dashboard2.png"
+          <Image
+            src="/hero/dashboard.png"
             alt="Vista previa del panel de Solvra con métricas e indicadores"
+            width={1280}
+            height={800}
+            priority
+            sizes="(min-width: 1024px) 1024px, 100vw"
             className="w-full h-auto rounded-lg shadow-2xl"
-            loading="eager"
           />
         </div>
       </div>

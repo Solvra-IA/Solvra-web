@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 import { Layout, Pointer, Zap } from "lucide-react";
 
 import { Badge } from "@/components/ui/shadcn/badge";
@@ -25,14 +25,14 @@ interface Tab {
   content: TabContent;
 }
 
-interface Feature108Props {
+interface ServicesTabsProps {
   badge?: string;
   heading?: string;
   description?: string;
   tabs?: Tab[];
 }
 
-const Feature108 = ({
+const ServicesTabs = ({
   badge = "shadcnblocks.com",
   heading = "A Collection of Components Built With Shadcn & Tailwind",
   description = "Join us to build flawless web solutions.",
@@ -80,7 +80,7 @@ const Feature108 = ({
       },
     },
   ],
-}: Feature108Props) => {
+}: ServicesTabsProps) => {
   const initial = tabs[0]?.value ?? "";
   const [active, setActive] = useState<string>(initial);
   const current = tabs.find((t) => t.value === active) ?? tabs[0];
@@ -160,4 +160,4 @@ const Feature108 = ({
   );
 };
 
-export { Feature108 };
+export { ServicesTabs };

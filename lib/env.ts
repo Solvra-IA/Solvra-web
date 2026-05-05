@@ -29,6 +29,10 @@ const clientSchema = z.object({
     .string()
     .url('NEXT_PUBLIC_SITE_URL debe ser una URL válida')
     .default('http://localhost:3000'),
+  NEXT_PUBLIC_WHATSAPP_URL: z
+    .string()
+    .url('NEXT_PUBLIC_WHATSAPP_URL debe ser una URL válida')
+    .optional(),
 });
 
 type ServerEnv = z.infer<typeof serverSchema>;
@@ -40,6 +44,7 @@ type ClientEnv = z.infer<typeof clientSchema>;
  */
 export const clientEnv: ClientEnv = clientSchema.parse({
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+  NEXT_PUBLIC_WHATSAPP_URL: process.env.NEXT_PUBLIC_WHATSAPP_URL,
 });
 
 /**

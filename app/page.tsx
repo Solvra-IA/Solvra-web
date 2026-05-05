@@ -1,18 +1,18 @@
 import { Lightbulb, Workflow, Plug } from 'lucide-react';
 
-import SaasTemplate from '@/components/ui/saa-s-template';
+import HeroSection from '@/components/ui/hero-section';
 import { BeamsBackground } from '@/components/ui/beams-background';
-import { Feature108 } from '@/components/ui/shadcnblocks-com-feature108';
+import { ServicesTabs } from '@/components/ui/services-tabs';
 import { ProcessTimeline } from '@/components/ui/process-timeline';
-import { LogoCloud } from '@/components/ui/logo-cloud-2';
-import { Testimonials } from '@/components/ui/testimonials-columns-1';
+import { LogoCloud } from '@/components/ui/tech-stack-logos';
+import { Testimonials } from '@/components/ui/testimonials-section';
 import { AboutSplit } from '@/components/ui/about-split';
-import { FaqsSection } from '@/components/ui/faqs-1';
+import { FaqsSection } from '@/components/ui/faqs-section';
 import { ContactSection } from '@/components/ui/contact-section';
 import { SiteFooter } from '@/components/ui/site-footer';
 import { SectorsGrid } from '@/components/ui/sectors-grid';
 
-const feature108Tabs = [
+const servicesTabs = [
   {
     value: 'tab-1',
     icon: <Lightbulb className="h-auto w-4 shrink-0" />,
@@ -60,13 +60,13 @@ const feature108Tabs = [
 export default function HomePage() {
   return (
     <div className="bg-background text-foreground">
-      <SaasTemplate />
+      <HeroSection />
       <section id="servicios" className="scroll-mt-24 bg-background">
-        <Feature108
+        <ServicesTabs
           badge="Servicios"
           heading="Cuatro servicios que se adaptan a tu negocio"
           description="Diagnóstico, automatización, integración y acompañamiento. Combínalos según lo que necesites."
-          tabs={feature108Tabs}
+          tabs={servicesTabs}
         />
       </section>
       <SectorsGrid />

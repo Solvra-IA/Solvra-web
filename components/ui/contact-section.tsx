@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import { track } from "@vercel/analytics";
+import { useLenis } from "lenis/react";
 import { ArrowRight, Check } from "lucide-react";
 
 import { Badge } from "@/components/ui/shadcn/badge";
@@ -9,26 +11,42 @@ import { Button } from "@/components/ui/shadcn/button";
 import { Card, CardContent } from "@/components/ui/shadcn/card";
 import { Input } from "@/components/ui/shadcn/input";
 import { Textarea } from "@/components/ui/shadcn/textarea";
+import { siteConfig } from "@/lib/site-config";
 import { contactSchema, type ContactInput } from "@/lib/validations";
+import { clientEnv } from "@/lib/env";
 
 type Status = "idle" | "loading" | "success" | "error";
+type FieldErrors = Partial<Record<keyof ContactInput, string>>;
 
 const bullets = [
   "Respuesta en menos de 24 horas laborables",
-  "Sin comerciales insistentes",
-  "Servicio claro y directo",
+  "En el mensaje puedes pedir hueco para videollamada",
+  "Sin equipos comerciales a presión",
 ];
 
+const SCROLL_OFFSET = -88;
+const SCROLL_DURATION = 0.55;
+
 export function ContactSection() {
+  const lenis = useLenis();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+  function scrollToForm() {
+    const el = document.getElementById("contacto-form");
+    if (!el || !lenis) return;
+    lenis.scrollTo(el, { offset: SCROLL_OFFSET, duration: SCROLL_DURATION });
+  }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
     setErrorMsg("");
+    setFieldErrors({});
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const payload: ContactInput = {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
@@ -40,9 +58,15 @@ export function ContactSection() {
 
     const parsed = contactSchema.safeParse(payload);
     if (!parsed.success) {
+      const flat = parsed.error.flatten().fieldErrors;
+      const next: FieldErrors = {};
+      (Object.keys(flat) as (keyof ContactInput)[]).forEach((k) => {
+        const msg = flat[k]?.[0];
+        if (msg) next[k] = msg;
+      });
+      setFieldErrors(next);
       setStatus("error");
-      const first = Object.values(parsed.error.flatten().fieldErrors).flat()[0];
-      setErrorMsg(first ?? "Revisa los datos del formulario");
+      setErrorMsg("Revisa los campos marcados.");
       return;
     }
 
@@ -62,7 +86,8 @@ export function ContactSection() {
         return;
       }
       setStatus("success");
-      event.currentTarget.reset();
+      track("contact_submit");
+      form.reset();
     } catch {
       setStatus("error");
       setErrorMsg("Error de red. Revisa tu conexión.");
@@ -87,12 +112,43 @@ export function ContactSection() {
               Contacto
             </Badge>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
-              Cuéntanos tu <span className="text-primary">caso</span>
+              Reservar{" "}
+              <span className="text-primary">diagnóstico gratuito</span>
             </h2>
             <p className="mt-5 text-white/75 md:text-lg">
-              Una sesión inicial de 30 minutos, gratuita y sin compromiso. Te
-              diremos si podemos ayudarte y cómo.
+              Cuéntanos en qué proceso pierdes horas o dónde falla el control.
+              Responderemos por email; si encaja, te proponemos un hueco breve de
+              videollamada. También puedes limitarte a enviar el formulario por
+              escrito.
             </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button
+                type="button"
+                size="lg"
+                className="w-full sm:w-auto"
+                onClick={() => {
+                  track("cta_click", { location: "contact_primary" });
+                  scrollToForm();
+                  window.requestAnimationFrame(() => {
+                    document.getElementById("contact-message")?.focus();
+                  });
+                }}
+              >
+                Reservar diagnóstico gratuito
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="lg"
+                className="w-full border-white/25 bg-white/5 text-white hover:bg-white/10 hover:text-white sm:w-auto"
+                onClick={() => {
+                  track("cta_click", { location: "contact_secondary" });
+                  scrollToForm();
+                }}
+              >
+                Enviar formulario
+              </Button>
+            </div>
             <ul className="mt-8 space-y-3">
               {bullets.map((b) => (
                 <li
@@ -118,7 +174,7 @@ export function ContactSection() {
             viewport={{ once: true, margin: "-80px" }}
             className="lg:col-span-7"
           >
-            <Card className="shadow-2xl">
+            <Card id="contacto-form" className="scroll-mt-24 shadow-2xl">
               <CardContent className="p-6 sm:p-8">
                 {status === "success" ? (
                   <motion.div
@@ -133,11 +189,11 @@ export function ContactSection() {
                       <Check className="h-6 w-6" strokeWidth={2.5} />
                     </div>
                     <p className="mt-5 text-2xl font-semibold tracking-tight">
-                      ¡Mensaje enviado!
+                      Formulario enviado
                     </p>
                     <p className="mt-2 text-muted-foreground">
-                      Te contestamos en menos de 24 horas laborables al email
-                      que nos has indicado.
+                      Te contestamos en menos de 24 horas laborables al email que
+                      nos has indicado.
                     </p>
                     <Button
                       type="button"
@@ -145,11 +201,14 @@ export function ContactSection() {
                       onClick={() => setStatus("idle")}
                       className="mt-6"
                     >
-                      Enviar otro mensaje
+                      Enviar otro formulario
                     </Button>
                   </motion.div>
                 ) : (
                   <form onSubmit={onSubmit} className="space-y-5" noValidate>
+                    <p className="text-sm font-medium text-foreground">
+                      O envía el formulario con tu consulta
+                    </p>
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div>
                         <label
@@ -163,7 +222,14 @@ export function ContactSection() {
                           name="name"
                           required
                           autoComplete="name"
+                          aria-invalid={fieldErrors.name ? true : undefined}
+                          aria-describedby={fieldErrors.name ? "name-error" : undefined}
                         />
+                        {fieldErrors.name ? (
+                          <p id="name-error" role="alert" className="mt-1 text-xs text-red-600">
+                            {fieldErrors.name}
+                          </p>
+                        ) : null}
                       </div>
                       <div>
                         <label
@@ -178,7 +244,14 @@ export function ContactSection() {
                           type="email"
                           required
                           autoComplete="email"
+                          aria-invalid={fieldErrors.email ? true : undefined}
+                          aria-describedby={fieldErrors.email ? "email-error" : undefined}
                         />
+                        {fieldErrors.email ? (
+                          <p id="email-error" role="alert" className="mt-1 text-xs text-red-600">
+                            {fieldErrors.email}
+                          </p>
+                        ) : null}
                       </div>
                       <div>
                         <label
@@ -191,7 +264,14 @@ export function ContactSection() {
                           id="company"
                           name="company"
                           autoComplete="organization"
+                          aria-invalid={fieldErrors.company ? true : undefined}
+                          aria-describedby={fieldErrors.company ? "company-error" : undefined}
                         />
+                        {fieldErrors.company ? (
+                          <p id="company-error" role="alert" className="mt-1 text-xs text-red-600">
+                            {fieldErrors.company}
+                          </p>
+                        ) : null}
                       </div>
                       <div>
                         <label
@@ -205,22 +285,36 @@ export function ContactSection() {
                           name="phone"
                           type="tel"
                           autoComplete="tel"
+                          aria-invalid={fieldErrors.phone ? true : undefined}
+                          aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
                         />
+                        {fieldErrors.phone ? (
+                          <p id="phone-error" role="alert" className="mt-1 text-xs text-red-600">
+                            {fieldErrors.phone}
+                          </p>
+                        ) : null}
                       </div>
                     </div>
                     <div>
                       <label
-                        htmlFor="message"
+                        htmlFor="contact-message"
                         className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
                       >
                         ¿En qué podemos ayudarte? *
                       </label>
                       <Textarea
-                        id="message"
+                        id="contact-message"
                         name="message"
                         required
                         className="min-h-[140px]"
+                        aria-invalid={fieldErrors.message ? true : undefined}
+                        aria-describedby={fieldErrors.message ? "message-error" : undefined}
                       />
+                      {fieldErrors.message ? (
+                        <p id="message-error" role="alert" className="mt-1 text-xs text-red-600">
+                          {fieldErrors.message}
+                        </p>
+                      ) : null}
                     </div>
 
                     {/* Honeypot anti-bot */}
@@ -235,9 +329,34 @@ export function ContactSection() {
                     </div>
 
                     {status === "error" && errorMsg ? (
-                      <p className="text-sm text-red-600" role="alert">
-                        {errorMsg}
-                      </p>
+                      <div className="space-y-3">
+                        <p className="text-sm text-red-600" role="alert">
+                          {errorMsg}
+                        </p>
+                        <div className="rounded-lg border border-border bg-muted/40 p-3 text-sm">
+                          <p className="font-medium text-foreground">
+                            Si falla el envío, contáctanos directamente:
+                          </p>
+                          <div className="mt-2 flex flex-wrap items-center gap-3">
+                            <a
+                              href={`mailto:${siteConfig.contactEmail}`}
+                              className="font-medium text-primary underline-offset-4 hover:underline"
+                            >
+                              {siteConfig.contactEmail}
+                            </a>
+                            {clientEnv.NEXT_PUBLIC_WHATSAPP_URL ? (
+                              <a
+                                href={clientEnv.NEXT_PUBLIC_WHATSAPP_URL}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="font-medium text-primary underline-offset-4 hover:underline"
+                              >
+                                WhatsApp
+                              </a>
+                            ) : null}
+                          </div>
+                        </div>
+                      </div>
                     ) : null}
 
                     <div className="flex flex-col items-stretch gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
@@ -256,7 +375,7 @@ export function ContactSection() {
                         disabled={status === "loading"}
                         className="w-full gap-2 sm:w-auto sm:shrink-0"
                       >
-                        {status === "loading" ? "Enviando…" : "Enviar mensaje"}
+                        {status === "loading" ? "Enviando…" : "Enviar formulario"}
                         {status !== "loading" ? (
                           <ArrowRight className="h-4 w-4" />
                         ) : null}

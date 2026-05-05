@@ -6,10 +6,38 @@ import { siteConfig } from '@/lib/site-config';
  * Combina:
  * - Organization: identidad corporativa de Solvra (joint venture).
  * - LocalBusiness: ubicación y actividad para SEO local (Vilanova i la Geltrú).
+ * - WebSite: metadatos del sitio.
+ * - Service[]: una entrada por servicio expuesto en la home (#servicios).
  *
  * Se inyecta como <script type="application/ld+json"> en el <head> del layout.
  * Google y Bing lo leen para enriquecer resultados de búsqueda.
+ *
+ * Mantener `services` aquí en sincronía con `servicesTabs` en app/page.tsx.
  */
+const services = [
+  {
+    slug: 'diagnostico',
+    name: 'Diagnóstico de IA',
+    description:
+      'Una sesión sin compromiso para mapear tus procesos y detectar oportunidades concretas de IA. Sin lenguaje técnico, con un plan claro al final.',
+    serviceType: 'Consultoría de IA',
+  },
+  {
+    slug: 'automatizacion',
+    name: 'Automatización de procesos',
+    description:
+      'Automatizamos respuestas, gestión documental y seguimiento comercial con agentes inteligentes que se integran con tus herramientas actuales.',
+    serviceType: 'Automatización empresarial',
+  },
+  {
+    slug: 'integracion',
+    name: 'Integración con tus herramientas',
+    description:
+      'Conectamos la IA con tu CRM, ERP, email y agenda. Solo proponemos cambios cuando una herramienta está bloqueando el resultado.',
+    serviceType: 'Integración de sistemas',
+  },
+] as const;
+
 export function StructuredData() {
   const data = {
     '@context': 'https://schema.org',
@@ -66,6 +94,20 @@ export function StructuredData() {
         inLanguage: siteConfig.locale,
         publisher: { '@id': `${siteConfig.url}#organization` },
       },
+      ...services.map((s) => ({
+        '@type': 'Service',
+        '@id': `${siteConfig.url}#service-${s.slug}`,
+        name: s.name,
+        description: s.description,
+        serviceType: s.serviceType,
+        url: `${siteConfig.url}/#servicios`,
+        provider: { '@id': `${siteConfig.url}#organization` },
+        areaServed: { '@type': 'Country', name: 'España' },
+        audience: {
+          '@type': 'BusinessAudience',
+          audienceType: 'PYMEs (inmobiliarias, clínicas, servicios profesionales)',
+        },
+      })),
     ],
   };
 

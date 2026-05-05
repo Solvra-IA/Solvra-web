@@ -25,3 +25,4 @@ Consultora de IA para PYMEs españolas. Joint venture con la gestoría Solfico S
 - Inmobiliarias
 - Clínicas (dentales, fisio, estéticas)
 - Servicios profesionales (gestorías, despachos, consultoras pequeñas)
+

@@ -3,23 +3,24 @@
 /**
  * Content Security Policy.
  *
- * Whitelist explícito por servicio:
- * - Google Fonts: fonts.googleapis.com (CSS) y fonts.gstatic.com (woff2).
- * - Vercel Analytics: va.vercel-scripts.com (script) y vitals.vercel-insights.com (beacon).
+ * Las fuentes Inter se sirven self-hosted vía next/font/google (bundle en build),
+ * por eso no hace falta whitelisting de fonts.googleapis.com / fonts.gstatic.com.
+ * Vercel Analytics necesita va.vercel-scripts.com (script) y
+ * vitals.vercel-insights.com (beacon).
  *
- * 'unsafe-inline' es necesario en script-src y style-src porque:
- * - Next.js inyecta runtime scripts inline para hidratación.
- * - Tailwind y framer-motion usan estilos inline en componentes client.
- *
- * Esto debilita la protección frente a XSS reflejado, pero sigue bloqueando
- * inyección de scripts desde dominios no listados, que es la amenaza más
- * común en una landing.
+ * TODO(seguridad): sustituir 'unsafe-inline' en script-src por nonces.
+ * Next 14+ admite nonces vía middleware; añade un middleware que genere
+ * un nonce por request, lo inyecte en la cabecera CSP y lo propague a
+ * <Script nonce={...}> y a los scripts inline de Next. Mientras tanto,
+ * 'unsafe-inline' permite XSS reflejado si entra contenido de usuario;
+ * en una landing 100% estática el riesgo es bajo, pero conviene cerrarlo.
+ * Ref: https://nextjs.org/docs/app/building-your-application/configuring/content-security-policy
  */
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com data:",
+  "style-src 'self' 'unsafe-inline'",
+  "font-src 'self' data:",
   "img-src 'self' data: blob:",
   "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com",
   "frame-ancestors 'none'",

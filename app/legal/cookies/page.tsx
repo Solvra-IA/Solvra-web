@@ -18,6 +18,11 @@ export default function CookiesPage() {
           la web (por ejemplo, preferencias básicas).
         </p>
         <p>
+          El formulario de contacto envía datos al backend de Solvra y al proveedor de
+          email transaccional (Resend), pero ese flujo no añade cookies publicitarias ni de
+          perfilado.
+        </p>
+        <p>
           Si en el futuro incorporamos herramientas de analítica, actualizaremos esta
           política y te pediremos consentimiento previo conforme a la normativa vigente.
         </p>
