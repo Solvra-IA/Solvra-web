@@ -23,4 +23,4 @@ Los mantenedores pueden moderar o bloquear interacciones que incumplan este cód
 
 ## Contacto
 
-Para reportar incidentes: `hola@nexus.es`
+Para reportar incidentes: `hola@nexus-ia.es`

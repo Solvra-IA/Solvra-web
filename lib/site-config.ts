@@ -9,7 +9,7 @@ export const siteConfig = {
     name: 'Solfico S.L.',
     location: 'Vilanova i la Geltrú, Cataluña',
   },
-  contactEmail: 'hola@nexus.es',
+  contactEmail: 'hola@nexus-ia.es',
   nav: [
     { label: 'Servicios', href: '#servicios' },
     { label: 'Segmentos', href: '#segmentos' },

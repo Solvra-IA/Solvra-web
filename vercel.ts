@@ -27,19 +27,19 @@ export const config: VercelConfig = {
   ],
 
   /**
-   * Redirects del dominio histórico solvra.es → nexus.es.
+   * Redirects del dominio histórico solvra.es → nexus-ia.es.
    * Requiere que ambos dominios estén asociados al proyecto en Vercel.
    */
   redirects: [
     {
       source: '/:path*',
-      destination: 'https://nexus.es/:path*',
+      destination: 'https://nexus-ia.es/:path*',
       permanent: true,
       has: [{ type: 'host', value: 'solvra.es' }],
     },
     {
       source: '/:path*',
-      destination: 'https://nexus.es/:path*',
+      destination: 'https://nexus-ia.es/:path*',
       permanent: true,
       has: [{ type: 'host', value: 'www.solvra.es' }],
     },
