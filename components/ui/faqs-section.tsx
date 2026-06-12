@@ -11,10 +11,10 @@ export function FaqsSection() {
 	return (
 		<div className="mx-auto w-full max-w-3xl space-y-7 px-6">
 			<div className="space-y-3 text-center">
-				<h2 className="text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+				<h2 className="text-3xl font-[510] tracking-[-0.012em] md:text-4xl lg:text-5xl">
 					Preguntas frecuentes
 				</h2>
-				<p className="text-muted-foreground max-w-2xl mx-auto md:text-lg">
+				<p className="text-storm-cloud max-w-2xl mx-auto md:text-lg">
 					Lo que más nos preguntan antes de empezar a trabajar juntos. Si tu duda no
 					está aquí, escríbenos.
 				</p>
@@ -22,27 +22,27 @@ export function FaqsSection() {
 			<Accordion
 				type="single"
 				collapsible
-				className="bg-card dark:bg-card/50 w-full -space-y-px rounded-lg "
+				className="bg-deep-slate w-full -space-y-px rounded-md ring-1 ring-charcoal-grey"
 				defaultValue="item-1"
 			>
 				{questions.map((item) => (
 					<AccordionItem
 						value={item.id}
 						key={item.id}
-						className="relative border-x first:rounded-t-lg first:border-t last:rounded-b-lg last:border-b"
+						className="relative border-x border-charcoal-grey first:rounded-t-md first:border-t last:rounded-b-md last:border-b"
 					>
-						<AccordionTrigger className="px-4 py-4 text-[15px] leading-6 hover:no-underline">
+						<AccordionTrigger className="px-4 py-4 text-[15px] leading-6 text-porcelain hover:no-underline">
 							{item.title}
 						</AccordionTrigger>
-						<AccordionContent className="text-muted-foreground pb-4 px-4">
+						<AccordionContent className="text-storm-cloud pb-4 px-4">
 							{item.content}
 						</AccordionContent>
 					</AccordionItem>
 				))}
 			</Accordion>
-			<p className="text-muted-foreground text-center">
+			<p className="text-storm-cloud text-center">
 				¿No encuentras tu respuesta?{' '}
-				<a href="#contacto" className="text-primary hover:underline">
+				<a href="#contacto" className="text-aether-blue hover:underline">
 					Escríbenos directamente
 				</a>
 				.
@@ -66,7 +66,7 @@ const questions: Question[] = [
 	},
 	{
 		id: 'item-2',
-		title: '¿Qué hace Solvra diferente de otras agencias de IA?',
+		title: '¿Qué hace Nexus diferente de otras agencias de IA?',
 		content: (
 			<div className="space-y-4">
 				<p className="font-medium text-foreground">No somos:</p>
@@ -101,7 +101,7 @@ const questions: Question[] = [
 	},
 	{
 		id: 'item-3',
-		title: '¿Qué tipo de empresas son ideales para Solvra?',
+		title: '¿Qué tipo de empresas son ideales para Nexus?',
 		content: (
 			<div className="space-y-4">
 				<p>

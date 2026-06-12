@@ -1,8 +1,8 @@
-# CLAUDE.md — Solvra Web
+# CLAUDE.md — Nexus Web
 
 ## Contexto de producto
 
-Sitio web de marketing de Solvra, consultora de IA para PYMEs españolas. Joint venture con la gestoría **Solfico S.L.** (Vilanova i la Geltrú, Cataluña).
+Sitio web de marketing de Nexus, consultora de IA para PYMEs españolas. Joint venture con la gestoría **Solfico S.L.** (Vilanova i la Geltrú, Cataluña).
 
 Segmentos objetivo: **inmobiliarias, clínicas y servicios profesionales** (gestorías, despachos, consultoras pequeñas).
 

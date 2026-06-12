@@ -1,4 +1,4 @@
-# Arquitectura de Solvra Web
+# Arquitectura de Nexus Web
 
 Este documento captura las decisiones técnicas no triviales del proyecto: el **porqué** detrás de la estructura, no solo el **qué**. Está pensado para que un colaborador (humano o IA) entienda en 10 minutos las restricciones del repo y por qué tomamos las decisiones que ves en el código.
 
@@ -8,7 +8,7 @@ Para el **qué** (estructura de carpetas, scripts, variables) consulta `README.m
 
 ## Objetivo del producto
 
-Web de marketing B2B de **Solvra** — consultoría de IA para PYMEs españolas, joint venture con la gestoría **Solfico S.L.** (Vilanova i la Geltrú).
+Web de marketing B2B de **Nexus** — consultoría de IA para PYMEs españolas, joint venture con la gestoría **Solfico S.L.** (Vilanova i la Geltrú).
 
 Un único objetivo de conversión: **que un decisor de PYME (inmobiliaria, clínica o servicios profesionales) llegue a la web, entienda en 30 segundos qué hacemos, y rellene el formulario de contacto.**
 

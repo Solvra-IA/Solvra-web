@@ -35,15 +35,15 @@ export function AboutSplit() {
               variant="outline"
               className="border-white/20 bg-white/5 text-white/85"
             >
-              Sobre Solvra
+              Sobre Nexus
             </Badge>
-            <h2 className="mt-5 text-3xl font-semibold tracking-tight md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
+            <h2 className="mt-5 text-3xl font-[510] tracking-[-0.012em] md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
               IA con{" "}
-              <span className="text-primary">literacia de negocio</span>{" "}
+              <span className="text-aether-blue">literacia de negocio</span>{" "}
               española
             </h2>
             <p className="mt-7 text-base leading-relaxed text-white/75 md:text-lg">
-              Solvra es consultoría aplicada: traducimos capacidades de IA a
+              Nexus es consultoría aplicada: traducimos capacidades de IA a
               decisiones que entiende una mesa de dirección—qué automatizar, qué
               supervisar y qué no conviene tocar.
             </p>
@@ -64,9 +64,9 @@ export function AboutSplit() {
               >
                 <span
                   aria-hidden
-                  className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground"
+                  className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-deep-slate text-aether-blue ring-1 ring-charcoal-grey"
                 >
-                  <Check className="h-3 w-3" strokeWidth={3} />
+                  <Check className="h-3 w-3" strokeWidth={2.5} />
                 </span>
                 <span>{item}</span>
               </li>

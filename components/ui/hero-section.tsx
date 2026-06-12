@@ -5,34 +5,34 @@ import Image from "next/image";
 import { track } from "@vercel/analytics";
 import { useLenis } from "lenis/react";
 
-// Inline Button Component
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "secondary" | "ghost" | "gradient";
-  size?: "default" | "sm" | "lg";
+  variant?: "primary" | "ghost";
+  size?: "sm" | "md" | "lg";
   children: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "default", size = "default", className = "", children, ...props }, ref) => {
-    const baseStyles = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+  ({ variant = "primary", size = "md", className = "", children, ...props }, ref) => {
+    const base =
+      "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-lime focus-visible:ring-offset-2 focus-visible:ring-offset-pitch-black disabled:pointer-events-none disabled:opacity-50";
 
-    const variants = {
-      default: "bg-white text-black hover:bg-gray-100",
-      secondary: "bg-gray-800 text-white hover:bg-gray-700",
-      ghost: "hover:bg-white/10 text-white",
-      gradient: "bg-gradient-to-b from-white via-white/95 to-white/60 text-black hover:scale-105 active:scale-95",
+    const variants: Record<string, string> = {
+      primary:
+        "bg-neon-lime text-pitch-black hover:bg-[#eef84a] active:scale-[0.98]",
+      ghost:
+        "bg-transparent text-porcelain hover:bg-charcoal-grey/60 ring-1 ring-charcoal-grey",
     };
 
-    const sizes = {
-      default: "h-10 px-4 py-2 text-sm",
-      sm: "h-10 px-5 text-sm",
-      lg: "h-12 px-8 text-base",
+    const sizes: Record<string, string> = {
+      sm: "h-9 px-4 text-[13px]",
+      md: "h-10 px-5 text-[14px] tracking-[-0.0093em]",
+      lg: "h-11 px-6 text-[15px] tracking-[-0.011em]",
     };
 
     return (
       <button
         ref={ref}
-        className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+        className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
         {...props}
       >
         {children}
@@ -43,8 +43,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = "Button";
 
-// Icons
-const ArrowRight = ({ className = "", size = 16 }: { className?: string; size?: number }) => (
+const ArrowRight = ({ className = "", size = 14 }: { className?: string; size?: number }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -56,43 +55,61 @@ const ArrowRight = ({ className = "", size = 16 }: { className?: string; size?: 
     strokeLinecap="round"
     strokeLinejoin="round"
     className={className}
+    aria-hidden="true"
   >
     <path d="M5 12h14" />
     <path d="m12 5 7 7-7 7" />
   </svg>
 );
 
-// Navegación movida a SiteHeader (componente global con sticky reveal).
-
-// Hero Component
 const Hero = React.memo(() => {
   const lenis = useLenis();
 
+  const handleCta = () => {
+    track("cta_click", { location: "hero" });
+    const el = document.getElementById("contacto");
+    if (!el || !lenis) return;
+    lenis.scrollTo(el, { offset: -88, duration: 0.55 });
+    history.replaceState(null, "", "#contacto");
+  };
+
+  const handleSecondary = () => {
+    const el = document.getElementById("servicios");
+    if (!el || !lenis) return;
+    lenis.scrollTo(el, { offset: -88, duration: 0.55 });
+  };
+
   return (
     <section
-      className="relative min-h-screen flex flex-col items-center justify-start px-6 py-20 md:py-24"
-      style={{
-        animation: "fadeIn 0.6s ease-out",
-      }}
+      className="relative flex min-h-[88vh] flex-col items-center justify-start overflow-hidden bg-pitch-black px-6 pt-24 pb-16 md:pt-28"
+      style={{ animation: "fadeIn 0.6s ease-out" }}
     >
       <style>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideDown {
-          from { opacity: 0; transform: translateY(-10px); }
+          from { opacity: 0; transform: translateY(8px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
 
-      <aside className="mb-8 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm max-w-full">
-        <span className="text-xs text-center whitespace-nowrap text-white/60">
-          Nuevo: diagnóstico de IA gratuito disponible
+      {/* Halo lima sutil detrás del hero */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[480px] bg-lime-glow opacity-70"
+      />
+      {/* Hairline horizontal bajo el viewport del hero */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-charcoal-grey/80"
+      />
+
+      <aside className="relative z-10 mb-7 inline-flex items-center gap-2 rounded-full bg-graphite/80 px-3 py-1.5 ring-1 ring-charcoal-grey shadow-linear-subtle backdrop-blur">
+        <span className="inline-block h-1.5 w-1.5 rounded-full bg-neon-lime shadow-[0_0_8px_2px_rgba(228,242,34,0.6)]" />
+        <span className="text-[12px] tracking-[-0.0093em] text-storm-cloud">
+          Diagnóstico de IA gratuito disponible
         </span>
         <a
           href="#contacto"
-          className="flex items-center gap-1 text-xs text-white/60 hover:text-white transition-all active:scale-95 whitespace-nowrap"
+          className="inline-flex items-center gap-1 text-[12px] tracking-[-0.0093em] text-porcelain transition-colors hover:text-neon-lime"
           aria-label="Saber más sobre el diagnóstico"
         >
           Saber más
@@ -100,75 +117,58 @@ const Hero = React.memo(() => {
         </a>
       </aside>
 
-      <h1
-        className="text-4xl md:text-5xl lg:text-6xl font-medium text-center max-w-3xl px-6 leading-tight mb-6 [text-wrap:balance]"
-        style={{
-          background: "linear-gradient(to bottom, #ffffff, #ffffff, rgba(255, 255, 255, 0.6))",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          backgroundClip: "text",
-          letterSpacing: "-0.05em",
-        }}
-      >
-        La IA que tu empresa merece, sin complicaciones
+      <h1 className="relative z-10 max-w-3xl text-center text-[44px] font-[510] leading-[1.05] tracking-[-0.005em] text-porcelain md:text-[60px] lg:text-[72px] lg:tracking-[-0.003em] [text-wrap:balance]">
+        La IA que tu empresa merece,{" "}
+        <span className="text-storm-cloud">sin complicaciones</span>
       </h1>
 
-      <p className="text-sm md:text-base text-center max-w-2xl px-6 mb-10 text-white/60">
-      Soluciones automatizadas para ser más eficiente y multiplicar tu rentabilidad.
-        <br />
-        Eliminación del trabajo manual e integración con tus herramientas actuales.
+      <p className="relative z-10 mt-5 max-w-xl text-center text-[15px] leading-[1.55] tracking-[-0.011em] text-storm-cloud md:text-[16px]">
+        Soluciones automatizadas para ser más eficiente y multiplicar tu rentabilidad.
+        Eliminamos el trabajo manual e integramos IA con tus herramientas actuales.
       </p>
 
-      <div className="flex items-center gap-4 relative z-10 mb-16">
+      <div className="relative z-10 mt-9 flex flex-col items-center gap-3 sm:flex-row sm:gap-3">
         <Button
           type="button"
-          variant="gradient"
+          variant="primary"
           size="lg"
-          className="rounded-lg flex items-center justify-center"
+          onClick={handleCta}
           aria-label="Solicitar diagnóstico gratuito"
-          onClick={() => {
-            track("cta_click", { location: "hero" });
-            const el = document.getElementById("contacto");
-            if (!el || !lenis) return;
-            lenis.scrollTo(el, { offset: -88, duration: 0.55 });
-            history.replaceState(null, "", "#contacto");
-          }}
         >
           Solicitar diagnóstico
+          <ArrowRight size={14} />
+        </Button>
+        <Button
+          type="button"
+          variant="ghost"
+          size="lg"
+          onClick={handleSecondary}
+          aria-label="Ver servicios"
+        >
+          Ver servicios
         </Button>
       </div>
 
-      <div className="w-full max-w-5xl relative pb-20">
+      {/* Mockup del producto, embebido al estilo Linear */}
+      <div className="relative z-10 mt-16 w-full max-w-5xl">
+        <div className="relative rounded-xl bg-graphite p-1 shadow-linear-card-inset">
+          <div className="overflow-hidden rounded-[10px] ring-1 ring-charcoal-grey">
+            <Image
+              src="/hero/dashboard.png"
+              alt="Vista previa del panel de Nexus con métricas e indicadores"
+              width={1280}
+              height={800}
+              priority
+              sizes="(min-width: 1024px) 1024px, 100vw"
+              className="h-auto w-full"
+            />
+          </div>
+        </div>
+        {/* Glow sutil bajo el mockup */}
         <div
-          className="absolute left-1/2 w-[90%] pointer-events-none z-0"
-          style={{
-            top: "-23%",
-            transform: "translateX(-50%)",
-          }}
           aria-hidden="true"
-        >
-          <Image
-            src="/hero/glows.png"
-            alt=""
-            width={1280}
-            height={720}
-            priority
-            sizes="(min-width: 1024px) 1024px, 90vw"
-            className="w-full h-auto"
-          />
-        </div>
-
-        <div className="relative z-10">
-          <Image
-            src="/hero/dashboard.png"
-            alt="Vista previa del panel de Solvra con métricas e indicadores"
-            width={1280}
-            height={800}
-            priority
-            sizes="(min-width: 1024px) 1024px, 100vw"
-            className="w-full h-auto rounded-lg shadow-2xl"
-          />
-        </div>
+          className="pointer-events-none absolute inset-x-12 -bottom-10 h-24 bg-aether-glow blur-2xl opacity-60"
+        />
       </div>
     </section>
   );
@@ -176,10 +176,9 @@ const Hero = React.memo(() => {
 
 Hero.displayName = "Hero";
 
-// Main Component — solo el hero. La navegación global vive en SiteHeader.
 export default function Component() {
   return (
-    <div className="bg-neutral-950 text-white">
+    <div className="bg-pitch-black text-porcelain">
       <Hero />
     </div>
   );

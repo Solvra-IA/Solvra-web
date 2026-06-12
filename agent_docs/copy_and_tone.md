@@ -1,4 +1,4 @@
-# Tono y copy — Solvra
+# Tono y copy — Nexus
 
 ## Posicionamiento
 Consultora de IA para PYMEs españolas. Joint venture con la gestoría Solfico S.L. Hablamos a empresas que no quieren tecnología por tecnología, sino resultados.

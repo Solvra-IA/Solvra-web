@@ -89,11 +89,11 @@ const ServicesTabs = ({
     <section className="py-24 md:py-32">
       <div className="container mx-auto px-6">
         <div className="flex flex-col items-center gap-4 text-center">
-          <Badge variant="outline">{badge}</Badge>
-          <h2 className="max-w-2xl text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+          <Badge variant="outline" className="border-charcoal-grey bg-deep-slate text-storm-cloud">{badge}</Badge>
+          <h2 className="max-w-2xl text-3xl font-[510] tracking-[-0.012em] md:text-4xl lg:text-5xl">
             {heading}
           </h2>
-          <p className="max-w-xl text-muted-foreground md:text-lg">{description}</p>
+          <p className="max-w-xl text-storm-cloud md:text-lg">{description}</p>
         </div>
 
         <Tabs value={active} onValueChange={setActive} className="mt-8">
@@ -102,7 +102,7 @@ const ServicesTabs = ({
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground transition-colors data-[state=active]:bg-muted data-[state=active]:text-primary"
+                className="flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium text-storm-cloud ring-1 ring-transparent transition-colors hover:text-porcelain data-[state=active]:bg-deep-slate data-[state=active]:text-porcelain data-[state=active]:ring-charcoal-grey"
               >
                 {tab.icon} {tab.label}
               </TabsTrigger>
@@ -113,7 +113,7 @@ const ServicesTabs = ({
         {/* Panel con bleed: overflow-hidden recorta la imagen que se sale por la
             esquina inferior derecha, creando la sensación de "ventana" sobre un
             gráfico mayor. AnimatePresence anima la transición entre tabs. */}
-        <div className="relative mx-auto mt-8 max-w-screen-xl overflow-hidden rounded-2xl border border-gray-200/80 bg-muted/70">
+        <div className="relative mx-auto mt-8 max-w-screen-xl overflow-hidden rounded-xl border border-charcoal-grey bg-graphite shadow-linear-card-inset">
           <AnimatePresence mode="wait" initial={false}>
             {current ? (
               <motion.div
@@ -125,13 +125,13 @@ const ServicesTabs = ({
                 className="relative grid items-center gap-8 p-6 sm:p-10 lg:grid-cols-2 lg:gap-0 lg:p-0"
               >
                 <div className="flex flex-col gap-5 lg:py-16 lg:pl-16 lg:pr-12">
-                  <Badge variant="outline" className="w-fit bg-background">
+                  <Badge variant="outline" className="w-fit border-charcoal-grey bg-deep-slate text-storm-cloud">
                     {current.content.badge}
                   </Badge>
-                  <h3 className="text-3xl font-semibold tracking-tight lg:text-5xl">
+                  <h3 className="text-3xl font-[510] tracking-[-0.012em] text-porcelain lg:text-5xl">
                     {current.content.title}
                   </h3>
-                  <p className="text-muted-foreground lg:text-lg">
+                  <p className="text-storm-cloud lg:text-lg">
                     {current.content.description}
                   </p>
                   <Button asChild className="mt-2.5 w-fit gap-2" size="lg">
@@ -148,7 +148,7 @@ const ServicesTabs = ({
                     width={600}
                     height={400}
                     priority={current.value === "tab-1"}
-                    className="h-auto w-full max-w-md drop-shadow-[0_16px_38px_rgba(15,23,42,0.08)] [filter:drop-shadow(0_28px_54px_rgba(0,82,255,0.12))] lg:absolute lg:bottom-[-16%] lg:right-[-14%] lg:w-[128%] lg:max-w-none"
+                    className="h-auto w-full max-w-md drop-shadow-[0_16px_38px_rgba(0,0,0,0.5)] [filter:drop-shadow(0_28px_54px_rgba(94,106,210,0.18))] lg:absolute lg:bottom-[-16%] lg:right-[-14%] lg:w-[128%] lg:max-w-none"
                   />
                 </div>
               </motion.div>

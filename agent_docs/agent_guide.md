@@ -1,4 +1,4 @@
-# Guía para el agente — Solvra Web
+# Guía para el agente — Nexus Web
 
 Documento operativo para colaboradores humanos o asistentes de IA que trabajan en este repositorio. Complementa `CLAUDE.md`, `ARCHITECTURE.md` y el resto de `agent_docs/` con un flujo único: **qué leer, qué no romper, cómo validar y qué revisar en confianza y seguridad**.
 

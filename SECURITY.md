@@ -4,7 +4,7 @@ Si detectas una vulnerabilidad, por favor **no** abras un issue público.
 
 ## Reporte responsable
 
-Envía la información por email a: `hola@solvra.es`
+Envía la información por email a: `hola@nexus.es`
 
 Incluye:
 

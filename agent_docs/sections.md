@@ -1,4 +1,4 @@
-# Estructura de secciones — Landing Solvra
+# Estructura de secciones — Landing Nexus
 
 Orden actual de la home (`app/page.tsx`):
 

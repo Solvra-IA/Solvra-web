@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/shadcn/button";
+import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -70,7 +71,7 @@ export function SiteHeader() {
             scrolled ? "text-foreground" : "text-white",
           )}
         >
-          Solvra
+          {siteConfig.name}
         </Link>
 
         <div className="hidden items-center gap-7 md:flex">

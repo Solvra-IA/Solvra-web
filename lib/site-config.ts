@@ -1,15 +1,15 @@
 export const siteConfig = {
-  name: 'Solvra',
+  name: 'Nexus',
   tagline: 'Consultoría de IA para PYMEs españolas',
   description:
-    'Solvra ayuda a pequeñas y medianas empresas españolas a integrar inteligencia artificial en sus procesos: inmobiliarias, clínicas y servicios profesionales.',
+    'Nexus ayuda a pequeñas y medianas empresas españolas a integrar inteligencia artificial en sus procesos: inmobiliarias, clínicas y servicios profesionales.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   locale: 'es-ES',
   partner: {
     name: 'Solfico S.L.',
     location: 'Vilanova i la Geltrú, Cataluña',
   },
-  contactEmail: 'hola@solvra.es',
+  contactEmail: 'hola@nexus.es',
   nav: [
     { label: 'Servicios', href: '#servicios' },
     { label: 'Segmentos', href: '#segmentos' },

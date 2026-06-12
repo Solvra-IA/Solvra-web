@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { siteConfig } from "@/lib/site-config";
+
 const legal = [
   { label: "Aviso legal", href: "/legal/aviso-legal" },
   { label: "Privacidad", href: "/legal/privacidad" },
@@ -21,7 +23,7 @@ export function SiteFooter() {
               href="/"
               className="text-lg font-semibold tracking-tight text-white transition-opacity hover:opacity-80"
             >
-              Solvra
+              {siteConfig.name}
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/65">
               Consultoría de IA para PYMEs españolas. Joint venture con Solfico
@@ -53,10 +55,10 @@ export function SiteFooter() {
               <ul className="mt-4 space-y-2.5">
                 <li>
                   <a
-                    href="mailto:hola@solvra.es"
+                    href={`mailto:${siteConfig.contactEmail}`}
                     className="text-sm text-white/70 transition-colors hover:text-white"
                   >
-                    hola@solvra.es
+                    {siteConfig.contactEmail}
                   </a>
                 </li>
                 <li>
@@ -72,7 +74,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/55 sm:flex-row sm:items-center">
-          <p>© {year} Solvra. Todos los derechos reservados.</p>
+          <p>© {year} {siteConfig.name}. Todos los derechos reservados.</p>
           <p>Hecho en Vilanova i la Geltrú.</p>
         </div>
       </div>

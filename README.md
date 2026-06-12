@@ -1,6 +1,6 @@
-# Solvra Web
+# Nexus Web
 
-Landing pública de **Solvra** (joint venture con **Solfico S.L.**): consultoría de IA para PYMEs españolas — inmobiliarias, clínicas y servicios profesionales.
+Landing pública de **Nexus** (joint venture con **Solfico S.L.**): consultoría de IA para PYMEs españolas — inmobiliarias, clínicas y servicios profesionales.
 
 Este repositorio contiene **solo el sitio de marketing** (landing, legal y formulario de contacto). No incluye panel interno ni base de datos.
 

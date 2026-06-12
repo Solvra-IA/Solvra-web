@@ -49,9 +49,9 @@ export function SectorsGrid() {
           className="mx-auto max-w-2xl text-center"
         >
           <Badge variant="outline">Sectores</Badge>
-          <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+          <h2 className="mt-4 text-3xl font-[510] tracking-[-0.012em] md:text-4xl lg:text-5xl">
             Dónde ya aportamos{" "}
-            <span className="text-primary">orden operativo</span>
+            <span className="text-aether-blue">orden operativo</span>
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
             Nos centramos en segmentos donde conocemos normativa y ritmo de trabajo.
@@ -72,22 +72,22 @@ export function SectorsGrid() {
               }}
               viewport={{ once: true, margin: "-80px" }}
             >
-              <Card className="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              <Card className="h-full border-charcoal-grey shadow-linear-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-linear-card-inset">
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <span className="grid h-10 w-10 place-items-center rounded-md bg-primary/10 text-primary">
+                    <span className="grid h-10 w-10 place-items-center rounded-md bg-deep-slate text-aether-blue ring-1 ring-charcoal-grey">
                       {s.icon}
                     </span>
-                    <Badge variant="outline" className="text-[11px]">
+                    <Badge variant="outline" className="border-charcoal-grey bg-deep-slate text-[11px] text-storm-cloud">
                       {s.badge}
                     </Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <h3 className="text-2xl font-semibold tracking-tight">
+                  <h3 className="text-xl font-[510] tracking-[-0.012em] text-porcelain">
                     {s.title}
                   </h3>
-                  <p className="mt-3 text-muted-foreground">{s.description}</p>
+                  <p className="mt-3 text-[14px] leading-[1.55] text-storm-cloud">{s.description}</p>
                 </CardContent>
               </Card>
             </motion.div>

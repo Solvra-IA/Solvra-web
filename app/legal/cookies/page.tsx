@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Política de cookies',
-  description: 'Uso de cookies en el sitio web de Solvra.',
+  description: 'Uso de cookies en el sitio web de Nexus.',
 };
 
 export default function CookiesPage() {
@@ -18,7 +18,7 @@ export default function CookiesPage() {
           la web (por ejemplo, preferencias básicas).
         </p>
         <p>
-          El formulario de contacto envía datos al backend de Solvra y al proveedor de
+          El formulario de contacto envía datos al backend de Nexus y al proveedor de
           email transaccional (Resend), pero ese flujo no añade cookies publicitarias ni de
           perfilado.
         </p>
