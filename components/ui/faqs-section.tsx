@@ -66,7 +66,7 @@ const questions: Question[] = [
 	},
 	{
 		id: 'item-2',
-		title: '¿Qué hace Solvra diferente de otras agencias de IA?',
+		title: '¿Qué hace Nexus diferente de otras agencias de IA?',
 		content: (
 			<div className="space-y-4">
 				<p className="font-medium text-foreground">No somos:</p>
@@ -101,7 +101,7 @@ const questions: Question[] = [
 	},
 	{
 		id: 'item-3',
-		title: '¿Qué tipo de empresas son ideales para Solvra?',
+		title: '¿Qué tipo de empresas son ideales para Nexus?',
 		content: (
 			<div className="space-y-4">
 				<p>

@@ -35,7 +35,7 @@ export function AboutSplit() {
               variant="outline"
               className="border-white/20 bg-white/5 text-white/85"
             >
-              Sobre Solvra
+              Sobre Nexus
             </Badge>
             <h2 className="mt-5 text-3xl font-[510] tracking-[-0.012em] md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
               IA con{" "}
@@ -43,7 +43,7 @@ export function AboutSplit() {
               española
             </h2>
             <p className="mt-7 text-base leading-relaxed text-white/75 md:text-lg">
-              Solvra es consultoría aplicada: traducimos capacidades de IA a
+              Nexus es consultoría aplicada: traducimos capacidades de IA a
               decisiones que entiende una mesa de dirección—qué automatizar, qué
               supervisar y qué no conviene tocar.
             </p>

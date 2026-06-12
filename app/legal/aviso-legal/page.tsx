@@ -3,7 +3,7 @@ import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Aviso legal',
-  description: 'Información legal y titularidad del sitio Solvra.',
+  description: 'Información legal y titularidad del sitio Nexus.',
 };
 
 export default function AvisoLegalPage() {
@@ -14,7 +14,7 @@ export default function AvisoLegalPage() {
       </h1>
       <div className="mt-6 space-y-4 text-muted-foreground">
         <p>
-          Este sitio web es titularidad de Solvra, en joint venture con Solfico S.L.
+          Este sitio web es titularidad de Nexus, en joint venture con Solfico S.L.
           (Vilanova i la Geltrú, Cataluña), y tiene carácter informativo y comercial.
         </p>
         <p>

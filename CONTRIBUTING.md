@@ -1,6 +1,6 @@
 # Guía de contribución
 
-Gracias por contribuir a Solvra Web.
+Gracias por contribuir a Nexus Web.
 
 ## Antes de empezar
 

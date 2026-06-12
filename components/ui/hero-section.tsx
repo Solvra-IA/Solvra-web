@@ -155,7 +155,7 @@ const Hero = React.memo(() => {
           <div className="overflow-hidden rounded-[10px] ring-1 ring-charcoal-grey">
             <Image
               src="/hero/dashboard.png"
-              alt="Vista previa del panel de Solvra con métricas e indicadores"
+              alt="Vista previa del panel de Nexus con métricas e indicadores"
               width={1280}
               height={800}
               priority

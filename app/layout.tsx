@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'automatización empresas España',
     'IA inmobiliarias',
     'IA clínicas',
-    'Solvra',
+    'Nexus',
     'Solfico',
   ],
   authors: [{ name: siteConfig.name }],

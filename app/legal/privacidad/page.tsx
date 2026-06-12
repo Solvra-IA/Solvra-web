@@ -3,7 +3,7 @@ import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Política de privacidad',
-  description: 'Cómo tratamos tus datos personales en Solvra.',
+  description: 'Cómo tratamos tus datos personales en Nexus.',
 };
 
 export default function PrivacidadPage() {
@@ -14,7 +14,7 @@ export default function PrivacidadPage() {
       </h1>
       <div className="mt-6 space-y-4 text-muted-foreground">
         <p>
-          En Solvra tratamos los datos personales conforme al Reglamento (UE) 2016/679
+          En Nexus tratamos los datos personales conforme al Reglamento (UE) 2016/679
           (RGPD) y la Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de
           los derechos digitales (LOPDGDD).
         </p>

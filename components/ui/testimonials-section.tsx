@@ -81,7 +81,7 @@ const testimonials: Testimonial[] = [
     role: "Clínica dental, Tarragona",
   },
   {
-    text: "Llevábamos años posponiendo la digitalización. Solvra hizo el diagnóstico, marcó prioridades y arrancamos sin caos.",
+    text: "Llevábamos años posponiendo la digitalización. Nexus hizo el diagnóstico, marcó prioridades y arrancamos sin caos.",
     name: "Núria Vidal",
     role: "Gestoría, Barcelona",
   },
@@ -139,7 +139,7 @@ export const Testimonials = () => {
             Lo que dicen nuestros clientes
           </h2>
           <p className="text-muted-foreground md:text-lg">
-            PYMEs que ya integran IA con Solvra.
+            PYMEs que ya integran IA con Nexus.
           </p>
         </motion.div>
 

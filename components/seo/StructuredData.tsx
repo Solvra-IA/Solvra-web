@@ -4,7 +4,7 @@ import { siteConfig } from '@/lib/site-config';
  * JSON-LD Schema.org para SEO local y rich results de Google.
  *
  * Combina:
- * - Organization: identidad corporativa de Solvra (joint venture).
+ * - Organization: identidad corporativa de Nexus (joint venture).
  * - LocalBusiness: ubicación y actividad para SEO local (Vilanova i la Geltrú).
  * - WebSite: metadatos del sitio.
  * - Service[]: una entrada por servicio expuesto en la home (#servicios).

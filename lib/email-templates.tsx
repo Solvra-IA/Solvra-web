@@ -3,7 +3,7 @@ import type { ContactInput } from './validations';
 export function ContactEmail({ data }: { data: ContactInput }) {
   return (
     <div style={{ fontFamily: 'Arial, sans-serif', color: '#0b1020', lineHeight: 1.5 }}>
-      <h2 style={{ margin: '0 0 16px' }}>Nuevo contacto desde solvra.es</h2>
+      <h2 style={{ margin: '0 0 16px' }}>Nuevo contacto desde nexus.es</h2>
       <p>
         <strong>Nombre:</strong> {data.name}
         <br />
