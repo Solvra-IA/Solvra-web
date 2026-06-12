@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { track } from "@vercel/analytics";
 import { useLenis } from "lenis/react";
@@ -11,11 +12,13 @@ import { Button } from "@/components/ui/shadcn/button";
 import { Card, CardContent } from "@/components/ui/shadcn/card";
 import { Input } from "@/components/ui/shadcn/input";
 import { Textarea } from "@/components/ui/shadcn/textarea";
+import { TurnstileWidget } from "@/components/ui/turnstile-widget";
 import { siteConfig } from "@/lib/site-config";
+import { pushGenerateLead } from "@/lib/analytics";
 import { contactSchema, type ContactInput } from "@/lib/validations";
 import { clientEnv } from "@/lib/env";
 
-type Status = "idle" | "loading" | "success" | "error";
+type Status = "idle" | "loading" | "error";
 type FieldErrors = Partial<Record<keyof ContactInput, string>>;
 
 const bullets = [
@@ -26,12 +29,15 @@ const bullets = [
 
 const SCROLL_OFFSET = -88;
 const SCROLL_DURATION = 0.55;
+const turnstileSiteKey = clientEnv.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export function ContactSection() {
+  const router = useRouter();
   const lenis = useLenis();
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   function scrollToForm() {
     const el = document.getElementById("contacto-form");
@@ -54,7 +60,14 @@ export function ContactSection() {
       phone: String(formData.get("phone") ?? ""),
       message: String(formData.get("message") ?? ""),
       website: String(formData.get("website") ?? ""),
+      turnstileToken: turnstileToken ?? undefined,
     };
+
+    if (turnstileSiteKey && !turnstileToken) {
+      setStatus("error");
+      setErrorMsg("Completa la verificación de seguridad antes de enviar.");
+      return;
+    }
 
     const parsed = contactSchema.safeParse(payload);
     if (!parsed.success) {
@@ -85,9 +98,10 @@ export function ContactSection() {
         );
         return;
       }
-      setStatus("success");
+
       track("contact_submit");
-      form.reset();
+      pushGenerateLead("contacto_footer");
+      router.push("/gracias");
     } catch {
       setStatus("error");
       setErrorMsg("Error de red. Revisa tu conexión.");
@@ -176,213 +190,197 @@ export function ContactSection() {
           >
             <Card id="contacto-form" className="scroll-mt-24 shadow-2xl">
               <CardContent className="p-6 sm:p-8">
-                {status === "success" ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.96 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="py-6 text-center"
-                    role="status"
-                    aria-live="polite"
-                  >
-                    <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary">
-                      <Check className="h-6 w-6" strokeWidth={2.5} />
-                    </div>
-                    <p className="mt-5 text-2xl font-semibold tracking-tight">
-                      Formulario enviado
-                    </p>
-                    <p className="mt-2 text-muted-foreground">
-                      Te contestamos en menos de 24 horas laborables al email que
-                      nos has indicado.
-                    </p>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setStatus("idle")}
-                      className="mt-6"
-                    >
-                      Enviar otro formulario
-                    </Button>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={onSubmit} className="space-y-5" noValidate>
-                    <p className="text-sm font-medium text-foreground">
-                      O envía el formulario con tu consulta
-                    </p>
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
-                        >
-                          Nombre *
-                        </label>
-                        <Input
-                          id="name"
-                          name="name"
-                          required
-                          autoComplete="name"
-                          aria-invalid={fieldErrors.name ? true : undefined}
-                          aria-describedby={fieldErrors.name ? "name-error" : undefined}
-                        />
-                        {fieldErrors.name ? (
-                          <p id="name-error" role="alert" className="mt-1 text-xs text-red-600">
-                            {fieldErrors.name}
-                          </p>
-                        ) : null}
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
-                        >
-                          Email *
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          autoComplete="email"
-                          aria-invalid={fieldErrors.email ? true : undefined}
-                          aria-describedby={fieldErrors.email ? "email-error" : undefined}
-                        />
-                        {fieldErrors.email ? (
-                          <p id="email-error" role="alert" className="mt-1 text-xs text-red-600">
-                            {fieldErrors.email}
-                          </p>
-                        ) : null}
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="company"
-                          className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
-                        >
-                          Empresa
-                        </label>
-                        <Input
-                          id="company"
-                          name="company"
-                          autoComplete="organization"
-                          aria-invalid={fieldErrors.company ? true : undefined}
-                          aria-describedby={fieldErrors.company ? "company-error" : undefined}
-                        />
-                        {fieldErrors.company ? (
-                          <p id="company-error" role="alert" className="mt-1 text-xs text-red-600">
-                            {fieldErrors.company}
-                          </p>
-                        ) : null}
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="phone"
-                          className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
-                        >
-                          Teléfono
-                        </label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          autoComplete="tel"
-                          aria-invalid={fieldErrors.phone ? true : undefined}
-                          aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
-                        />
-                        {fieldErrors.phone ? (
-                          <p id="phone-error" role="alert" className="mt-1 text-xs text-red-600">
-                            {fieldErrors.phone}
-                          </p>
-                        ) : null}
-                      </div>
-                    </div>
+                <form
+                  onSubmit={onSubmit}
+                  className="space-y-5"
+                  noValidate
+                  aria-label="Formulario de contacto"
+                >
+                  <p className="text-sm font-medium text-foreground">
+                    Envía el formulario con tu consulta
+                  </p>
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label
-                        htmlFor="contact-message"
+                        htmlFor="name"
                         className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
                       >
-                        ¿En qué podemos ayudarte? *
+                        Nombre *
                       </label>
-                      <Textarea
-                        id="contact-message"
-                        name="message"
+                      <Input
+                        id="name"
+                        name="name"
                         required
-                        className="min-h-[140px]"
-                        aria-invalid={fieldErrors.message ? true : undefined}
-                        aria-describedby={fieldErrors.message ? "message-error" : undefined}
+                        autoComplete="name"
+                        aria-invalid={fieldErrors.name ? true : undefined}
+                        aria-describedby={fieldErrors.name ? "name-error" : undefined}
                       />
-                      {fieldErrors.message ? (
-                        <p id="message-error" role="alert" className="mt-1 text-xs text-red-600">
-                          {fieldErrors.message}
+                      {fieldErrors.name ? (
+                        <p id="name-error" role="alert" className="mt-1 text-xs text-red-600">
+                          {fieldErrors.name}
                         </p>
                       ) : null}
                     </div>
-
-                    {/* Honeypot anti-bot */}
-                    <div aria-hidden className="hidden">
-                      <label htmlFor="website">Web</label>
-                      <input
-                        id="website"
-                        name="website"
-                        tabIndex={-1}
-                        autoComplete="off"
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
+                      >
+                        Email *
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        autoComplete="email"
+                        aria-invalid={fieldErrors.email ? true : undefined}
+                        aria-describedby={fieldErrors.email ? "email-error" : undefined}
                       />
-                    </div>
-
-                    {status === "error" && errorMsg ? (
-                      <div className="space-y-3">
-                        <p className="text-sm text-red-600" role="alert">
-                          {errorMsg}
+                      {fieldErrors.email ? (
+                        <p id="email-error" role="alert" className="mt-1 text-xs text-red-600">
+                          {fieldErrors.email}
                         </p>
-                        <div className="rounded-lg border border-border bg-muted/40 p-3 text-sm">
-                          <p className="font-medium text-foreground">
-                            Si falla el envío, contáctanos directamente:
-                          </p>
-                          <div className="mt-2 flex flex-wrap items-center gap-3">
+                      ) : null}
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="company"
+                        className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
+                      >
+                        Empresa
+                      </label>
+                      <Input
+                        id="company"
+                        name="company"
+                        autoComplete="organization"
+                        aria-invalid={fieldErrors.company ? true : undefined}
+                        aria-describedby={fieldErrors.company ? "company-error" : undefined}
+                      />
+                      {fieldErrors.company ? (
+                        <p id="company-error" role="alert" className="mt-1 text-xs text-red-600">
+                          {fieldErrors.company}
+                        </p>
+                      ) : null}
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="phone"
+                        className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
+                      >
+                        Teléfono
+                      </label>
+                      <Input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        autoComplete="tel"
+                        aria-invalid={fieldErrors.phone ? true : undefined}
+                        aria-describedby={fieldErrors.phone ? "phone-error" : undefined}
+                      />
+                      {fieldErrors.phone ? (
+                        <p id="phone-error" role="alert" className="mt-1 text-xs text-red-600">
+                          {fieldErrors.phone}
+                        </p>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="contact-message"
+                      className="mb-1.5 block text-[13px] font-medium text-muted-foreground"
+                    >
+                      ¿En qué podemos ayudarte? *
+                    </label>
+                    <Textarea
+                      id="contact-message"
+                      name="message"
+                      required
+                      className="min-h-[140px]"
+                      aria-invalid={fieldErrors.message ? true : undefined}
+                      aria-describedby={fieldErrors.message ? "message-error" : undefined}
+                    />
+                    {fieldErrors.message ? (
+                      <p id="message-error" role="alert" className="mt-1 text-xs text-red-600">
+                        {fieldErrors.message}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  {turnstileSiteKey ? (
+                    <TurnstileWidget
+                      siteKey={turnstileSiteKey}
+                      onToken={(token) => setTurnstileToken(token)}
+                      onExpire={() => setTurnstileToken(null)}
+                      onError={() => setTurnstileToken(null)}
+                    />
+                  ) : null}
+
+                  {/* Honeypot anti-bot */}
+                  <div aria-hidden className="hidden">
+                    <label htmlFor="website">Web</label>
+                    <input
+                      id="website"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  {status === "error" && errorMsg ? (
+                    <div className="space-y-3">
+                      <p className="text-sm text-red-600" role="alert">
+                        {errorMsg}
+                      </p>
+                      <div className="rounded-lg border border-border bg-muted/40 p-3 text-sm">
+                        <p className="font-medium text-foreground">
+                          Si falla el envío, contáctanos directamente:
+                        </p>
+                        <div className="mt-2 flex flex-wrap items-center gap-3">
+                          <a
+                            href={`mailto:${siteConfig.contactEmail}`}
+                            className="font-medium text-primary underline-offset-4 hover:underline"
+                          >
+                            {siteConfig.contactEmail}
+                          </a>
+                          {clientEnv.NEXT_PUBLIC_WHATSAPP_URL ? (
                             <a
-                              href={`mailto:${siteConfig.contactEmail}`}
+                              href={clientEnv.NEXT_PUBLIC_WHATSAPP_URL}
+                              target="_blank"
+                              rel="noreferrer"
                               className="font-medium text-primary underline-offset-4 hover:underline"
                             >
-                              {siteConfig.contactEmail}
+                              WhatsApp
                             </a>
-                            {clientEnv.NEXT_PUBLIC_WHATSAPP_URL ? (
-                              <a
-                                href={clientEnv.NEXT_PUBLIC_WHATSAPP_URL}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="font-medium text-primary underline-offset-4 hover:underline"
-                              >
-                                WhatsApp
-                              </a>
-                            ) : null}
-                          </div>
+                          ) : null}
                         </div>
                       </div>
-                    ) : null}
-
-                    <div className="flex flex-col items-stretch gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
-                      <p className="text-xs leading-relaxed text-muted-foreground">
-                        Al enviar aceptas nuestra{" "}
-                        <a
-                          href="/legal/privacidad"
-                          className="font-medium underline-offset-4 hover:underline"
-                        >
-                          política de privacidad
-                        </a>
-                        .
-                      </p>
-                      <Button
-                        type="submit"
-                        disabled={status === "loading"}
-                        className="w-full gap-2 sm:w-auto sm:shrink-0"
-                      >
-                        {status === "loading" ? "Enviando…" : "Enviar formulario"}
-                        {status !== "loading" ? (
-                          <ArrowRight className="h-4 w-4" />
-                        ) : null}
-                      </Button>
                     </div>
-                  </form>
-                )}
+                  ) : null}
+
+                  <div className="flex flex-col items-stretch gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      Al enviar aceptas nuestra{" "}
+                      <a
+                        href="/legal/privacidad"
+                        className="font-medium underline-offset-4 hover:underline"
+                      >
+                        política de privacidad
+                      </a>
+                      .
+                    </p>
+                    <Button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="w-full gap-2 sm:w-auto sm:shrink-0"
+                    >
+                      {status === "loading" ? "Enviando…" : "Enviar formulario"}
+                      {status !== "loading" ? (
+                        <ArrowRight className="h-4 w-4" />
+                      ) : null}
+                    </Button>
+                  </div>
+                </form>
               </CardContent>
             </Card>
           </motion.div>

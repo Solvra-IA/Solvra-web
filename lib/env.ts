@@ -22,6 +22,8 @@ const serverSchema = z.object({
     .string()
     .email('CONTACT_TO_EMAIL debe ser un email válido')
     .min(1),
+  TURNSTILE_SECRET_KEY: z.string().min(1).optional(),
+  CONTACT_WEBHOOK_URL: z.string().url().optional(),
 });
 
 const clientSchema = z.object({
@@ -33,6 +35,8 @@ const clientSchema = z.object({
     .string()
     .url('NEXT_PUBLIC_WHATSAPP_URL debe ser una URL válida')
     .optional(),
+  NEXT_PUBLIC_GTM_ID: z.string().min(1).optional(),
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY: z.string().min(1).optional(),
 });
 
 type ServerEnv = z.infer<typeof serverSchema>;
@@ -45,6 +49,8 @@ type ClientEnv = z.infer<typeof clientSchema>;
 export const clientEnv: ClientEnv = clientSchema.parse({
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
   NEXT_PUBLIC_WHATSAPP_URL: process.env.NEXT_PUBLIC_WHATSAPP_URL,
+  NEXT_PUBLIC_GTM_ID: process.env.NEXT_PUBLIC_GTM_ID,
+  NEXT_PUBLIC_TURNSTILE_SITE_KEY: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
 });
 
 /**
@@ -64,6 +70,8 @@ export function getServerEnv(): ServerEnv {
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     CONTACT_FROM_EMAIL: process.env.CONTACT_FROM_EMAIL,
     CONTACT_TO_EMAIL: process.env.CONTACT_TO_EMAIL,
+    TURNSTILE_SECRET_KEY: process.env.TURNSTILE_SECRET_KEY,
+    CONTACT_WEBHOOK_URL: process.env.CONTACT_WEBHOOK_URL,
   });
 
   if (!parsed.success) {
@@ -78,4 +86,9 @@ export function getServerEnv(): ServerEnv {
 
   cachedServerEnv = parsed.data;
   return cachedServerEnv;
+}
+
+/** Turnstile obligatorio en producción cuando hay secret configurado. */
+export function isTurnstileRequired(): boolean {
+  return Boolean(process.env.TURNSTILE_SECRET_KEY);
 }
