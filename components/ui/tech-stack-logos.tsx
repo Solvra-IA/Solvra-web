@@ -13,15 +13,15 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
   return (
     <div
       className={cn(
-        "relative grid grid-cols-2 border-x border-charcoal-grey md:grid-cols-4",
+        "relative grid grid-cols-2 border-x md:grid-cols-4",
         className
       )}
       {...props}
     >
-      <div className="-translate-x-1/2 -top-px pointer-events-none absolute left-1/2 w-screen border-t border-charcoal-grey" />
+      <div className="-translate-x-1/2 -top-px pointer-events-none absolute left-1/2 w-screen border-t" />
 
       <LogoCard
-        className="relative border-r border-b border-charcoal-grey bg-deep-slate"
+        className="relative border-r border-b bg-secondary dark:bg-secondary/30"
         logo={{
           name: "NVIDIA",
           alt: "Nvidia Logo",
@@ -35,7 +35,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       </LogoCard>
 
       <LogoCard
-        className="border-b border-charcoal-grey md:border-r"
+        className="border-b md:border-r"
         logo={{
           name: "Supabase",
           alt: "Supabase Logo",
@@ -62,7 +62,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       </LogoCard>
 
       <LogoCard
-        className="relative border-b border-charcoal-grey bg-deep-slate md:bg-graphite"
+        className="relative border-b bg-secondary md:bg-background dark:bg-secondary/30 md:dark:bg-background"
         logo={{
           name: "OpenAI",
           alt: "OpenAI Logo",
@@ -71,7 +71,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       />
 
       <LogoCard
-        className="relative border-r border-b border-charcoal-grey bg-deep-slate md:border-b-0 md:bg-graphite"
+        className="relative border-r border-b bg-secondary md:border-b-0 md:bg-background dark:bg-secondary/30 md:dark:bg-background"
         logo={{
           name: "Zapier",
           alt: "Zapier Logo",
@@ -85,7 +85,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       </LogoCard>
 
       <LogoCard
-        className="border-b border-charcoal-grey bg-graphite md:border-r md:border-b-0 md:bg-deep-slate"
+        className="border-b bg-background md:border-r md:border-b-0 md:bg-secondary dark:md:bg-secondary/30"
         logo={{
           name: "MCP",
           alt: "Model Context Protocol Logo",
@@ -94,7 +94,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       />
 
       <LogoCard
-        className="border-r border-charcoal-grey"
+        className="border-r"
         logo={{
           name: "Claude",
           alt: "Claude AI Logo",
@@ -103,7 +103,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
       />
 
       <LogoCard
-        className="bg-deep-slate"
+        className="bg-secondary dark:bg-secondary/30"
         logo={{
           name: "Vercel",
           alt: "Vercel Logo",
@@ -111,7 +111,7 @@ export function LogoCloud({ className, ...props }: LogoCloudProps) {
         }}
       />
 
-      <div className="-translate-x-1/2 -bottom-px pointer-events-none absolute left-1/2 w-screen border-b border-charcoal-grey" />
+      <div className="-translate-x-1/2 -bottom-px pointer-events-none absolute left-1/2 w-screen border-b" />
     </div>
   );
 }
@@ -124,7 +124,7 @@ function LogoCard({ logo, className, children, ...props }: LogoCardProps) {
   return (
     <div
       className={cn(
-        "flex items-center justify-center bg-graphite px-4 py-8 md:p-8",
+        "flex items-center justify-center bg-background px-4 py-8 md:p-8",
         className
       )}
       {...props}
@@ -133,7 +133,7 @@ function LogoCard({ logo, className, children, ...props }: LogoCardProps) {
         src={logo.src}
         alt={logo.alt}
         title={logo.name}
-        className="pointer-events-none h-8 w-auto select-none object-contain opacity-70 transition-opacity duration-200 hover:opacity-100 md:h-9 [filter:brightness(0)_invert(1)]"
+        className="pointer-events-none h-8 w-auto select-none object-contain md:h-9"
         loading="lazy"
       />
       {children}

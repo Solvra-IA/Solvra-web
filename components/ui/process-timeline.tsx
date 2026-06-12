@@ -43,8 +43,8 @@ export function ProcessTimeline() {
           className="mx-auto max-w-2xl text-center"
         >
           <Badge variant="outline">Proceso</Badge>
-          <h2 className="mt-4 text-3xl font-[510] tracking-[-0.012em] md:text-4xl lg:text-5xl">
-            Cómo <span className="text-aether-blue">trabajamos</span> contigo
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
+            Cómo <span className="text-primary">trabajamos</span> contigo
           </h2>
           <p className="mt-4 text-muted-foreground md:text-lg">
             Tres fases con entregables claros. Sin oscurantismo técnico ni promesas
@@ -75,9 +75,9 @@ export function ProcessTimeline() {
                 >
                   <span
                     aria-hidden
-                    className="absolute left-1/2 top-2 grid h-5 w-5 -translate-x-1/2 place-items-center rounded-full bg-deep-slate ring-1 ring-charcoal-grey"
+                    className="absolute left-1/2 top-2 grid h-5 w-5 -translate-x-1/2 place-items-center rounded-full bg-primary"
                   >
-                    <span className="h-2 w-2 rounded-full bg-aether-blue shadow-[0_0_10px_2px_rgba(94,106,210,0.55)]" />
+                    <span className="h-2 w-2 rounded-full bg-background" />
                   </span>
 
                   <Badge variant="outline" className="mb-3 text-[11px] font-normal">

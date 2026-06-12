@@ -39,22 +39,22 @@ export const TestimonialsColumn = (props: {
             <React.Fragment key={index}>
               {props.testimonials.map(({ text, name, role }, i) => (
                 <div
-                  className="p-8 rounded-xl border border-charcoal-grey bg-graphite shadow-linear-sm max-w-xs w-full"
+                  className="p-10 rounded-3xl border shadow-lg shadow-primary/10 max-w-xs w-full"
                   key={i}
                 >
-                  <div className="text-[14px] leading-[1.55] text-light-steel">{text}</div>
+                  <div>{text}</div>
                   <div className="flex items-center gap-3 mt-5">
                     <div
                       aria-hidden
-                      className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-deep-slate text-[12px] font-[510] text-aether-blue ring-1 ring-charcoal-grey"
+                      className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-primary/10 text-sm font-semibold text-primary"
                     >
                       {getInitials(name)}
                     </div>
                     <div className="flex flex-col">
-                      <div className="text-[14px] font-[510] text-porcelain leading-5">
+                      <div className="font-medium tracking-tight leading-5">
                         {name}
                       </div>
-                      <div className="text-[12px] text-storm-cloud leading-5">
+                      <div className="leading-5 opacity-60 tracking-tight">
                         {role}
                       </div>
                     </div>
@@ -132,10 +132,10 @@ export const Testimonials = () => {
           viewport={{ once: true }}
           className="flex flex-col items-center justify-center max-w-2xl mx-auto text-center gap-4"
         >
-          <div className="border border-charcoal-grey bg-deep-slate py-1 px-4 rounded-full text-[11px] font-[510] uppercase tracking-[0.12em] text-storm-cloud">
+          <div className="border border-border py-1 px-4 rounded-full text-xs font-medium uppercase tracking-widest text-muted-foreground">
             Testimonios
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-[510] tracking-[-0.012em]">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
             Lo que dicen nuestros clientes
           </h2>
           <p className="text-muted-foreground md:text-lg">

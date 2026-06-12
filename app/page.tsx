@@ -71,10 +71,10 @@ export default function HomePage() {
       </section>
       <SectorsGrid />
       <ProcessTimeline />
-      <section className="bg-deep-slate py-20 md:py-24">
+      <section className="bg-muted/70 py-20 md:py-24">
         <div className="container mx-auto max-w-3xl px-6">
-          <h2 className="mb-10 text-center text-3xl font-[510] tracking-[-0.012em] md:text-4xl">
-            Tecnología que <span className="text-aether-blue">utilizamos</span>
+          <h2 className="mb-10 text-center text-3xl font-semibold tracking-tight md:text-4xl">
+            Tecnología que <span className="text-primary">utilizamos</span>
           </h2>
           <LogoCloud />
         </div>
@@ -85,7 +85,7 @@ export default function HomePage() {
       </BeamsBackground>
       <section
         id="faq"
-        className="scroll-mt-24 border-y border-charcoal-grey bg-graphite py-20 md:py-24"
+        className="scroll-mt-24 border-y border-border/60 bg-muted/40 py-20 md:py-24"
       >
         <FaqsSection />
       </section>
