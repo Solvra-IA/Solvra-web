@@ -14,7 +14,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = "default", size = "default", className = "", children, ...props }, ref) => {
-    const baseStyles = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+    const baseStyles = "inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
 
     const variants = {
       default: "bg-white text-black hover:bg-gray-100",
@@ -153,7 +153,7 @@ const Hero = React.memo(() => {
             width={1280}
             height={720}
             priority
-            sizes="(min-width: 1024px) 1024px, 90vw"
+            sizes="(min-width: 1024px) 640px, (min-width: 640px) 480px, 90vw"
             className="w-full h-auto"
           />
         </div>
@@ -165,7 +165,7 @@ const Hero = React.memo(() => {
             width={1280}
             height={800}
             priority
-            sizes="(min-width: 1024px) 1024px, 100vw"
+            sizes="(min-width: 1024px) 1024px, (min-width: 640px) 768px, 100vw"
             className="w-full h-auto rounded-lg shadow-2xl"
           />
         </div>

@@ -8,6 +8,7 @@ export const contactSchema = z.object({
   message: z.string().trim().min(10, 'Cuéntanos un poco más').max(4000),
   // Honeypot: debe venir vacío. Si trae valor, es bot.
   website: z.string().max(0).optional().or(z.literal('')),
+  turnstileToken: z.string().min(1, 'Completa la verificación de seguridad').optional(),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
